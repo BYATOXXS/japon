@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#1E2A44"/>
+  <g transform="rotate(-6 256 256)">
+    <rect x="146" y="76" width="220" height="360" rx="34" fill="#C8371F"/>
+    <text x="256" y="236" text-anchor="middle" font-family="Yu Mincho, Hiragino Mincho ProN, serif" font-weight="800" font-size="150" fill="#FBFBF9">日</text>
+    <text x="256" y="392" text-anchor="middle" font-family="Yu Mincho, Hiragino Mincho ProN, serif" font-weight="800" font-size="150" fill="#FBFBF9">本</text>
+  </g>
+</svg>
