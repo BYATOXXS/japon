@@ -18,10 +18,16 @@ Se comparte por WhatsApp con el enlace de GitHub Pages y funciona sin internet u
 - "Hoy": antes del viaje muestra cuenta atrás + reservas pendientes; durante el viaje, el plan del día con ← →.
 - Casillas (reservas, maleta, 48 h) y cambio €/¥ se guardan en localStorage de cada móvil (no se comparten entre amigos).
 - `?fecha=2026-11-07` en la URL simula un día concreto (para probar).
-- Enlace directo a un día: `#ruta/2026-11-03`. Secciones de guía: `#guia/reservas`, `#guia/48h`, `#guia/pwa`.
+- Enlace directo a un día: `#ruta/2026-11-03`. Secciones de guía: `#guia/gastos`, `#guia/reservas`, `#guia/48h`, `#guia/pwa`.
+- Precios en ¥ muestran "≈X€" automáticamente (`withEur`, usa el cambio del conversor, por defecto 170).
+- "Mis gastos" (Guía): apuntador local con presupuesto (por defecto 1.100€), lo que queda y cuánto se puede gastar al día. No se comparte; para el grupo, Tricount.
+- "Cerca de mí" (Sitios): ordena por distancia con el GPS usando `GEO` (coordenadas de OpenStreetMap; las marcadas con 1 son zona aproximada; Kutani sin ubicación).
+- Paradas con horario y precio (`VISITAS`, comprobado en oct 2026) y "Antes de salir" / "Para mañana" (`PREPARAR`).
+- Frases con audio (speechSynthesis ja-JP; si el móvil no tiene voz japonesa, avisa).
+- Quitado el botón "Enviar por WhatsApp" de los días: el usuario lo considera innecesario (todos tienen la web y viajan juntos).
 
 ## Archivos clave
-- `index.html` — todo. Los DATOS están al principio del `<script>`: `HOTELES`, `SEGURO`, `DIAS`, `COMER`, `COMPRAS`, `ONSEN`, `FRASES`, `PRESUPUESTO`, `TRANSPORTE`. Para cambiar contenido, editar solo esos arrays.
+- `index.html` — todo. Los DATOS están al principio del `<script>`: `HOTELES`, `SEGURO`, `DIAS`, `MOMENTOS`, `COMER`, `COMPRAS`, `ONSEN`, `FRASES`, `PRESUPUESTO`, `TRANSPORTE`, `GEO`, `VISITAS`, `PREPARAR`. Si se añade un sitio nuevo, añadir también sus coordenadas en `GEO` (clave = su `q`). Para cambiar contenido, editar solo esos arrays.
 - `sw.js` — caché offline. **Subir `VERSION` cada vez que se cambie algo** para que los móviles se actualicen.
 - `og.png` (1200×630) — vista previa del enlace en WhatsApp. `icon*.png`, `icon.svg` — iconos de la app.
 

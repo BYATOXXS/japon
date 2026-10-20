@@ -205,7 +205,6 @@ h3.h { font-size: 15px; font-weight: 650; margin: 18px 0 6px; }
   background: var(--ink); color: var(--card); border: 0;
 }
 .btn.ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--line); }
-.btn.wa { background: #1F8F4E; color: #fff; }
 .btn-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
 .btn-row .btn { flex: 1 1 auto; }
 .eat { list-style: none; }
@@ -343,6 +342,48 @@ details.acc > summary .sub { display: block; font-weight: 400; font-size: 13px; 
 .overlay .close { position: absolute; top: calc(16px + env(safe-area-inset-top)); right: 16px; font-size: 15px; font-weight: 600; padding: 10px 14px; border: 1.5px solid var(--line); border-radius: 999px; }
 .overlay .hint { position: absolute; bottom: calc(24px + env(safe-area-inset-bottom)); font-size: 13px; color: var(--muted); }
 
+.overlay .listen { margin-top: 26px; }
+
+/* ---------- Euros, visitas, cerca de mí ---------- */
+.eur { color: var(--muted); font-weight: 400; font-size: .88em; white-space: nowrap; }
+.vi { display: block; font-size: 13px; color: var(--ink); margin-top: 3px; line-height: 1.45; }
+.srow { display: flex; gap: 8px; margin-top: 10px; }
+.srow .search { margin-top: 0; flex: 1; min-width: 0; }
+.nearbtn { flex-shrink: 0; border: 1.5px solid var(--line); background: var(--card); border-radius: 12px; padding: 0 12px; font-size: 14px; font-weight: 600; min-height: 46px; }
+.nearbtn[aria-pressed="true"] { background: var(--shu); border-color: var(--shu); color: #fff; }
+.dist { font-size: 12.5px; font-weight: 700; color: var(--shu); }
+
+/* ---------- Gastos ---------- */
+.gsum .left { font-family: var(--serif); font-weight: 800; font-size: 26px; line-height: 1.2; }
+.gbar { height: 10px; border-radius: 5px; background: var(--paper); overflow: hidden; margin: 10px 0 6px; border: 1px solid var(--line); }
+.gbar span { display: block; height: 100%; background: var(--matcha); }
+.gbar.over span { background: var(--shu); }
+.gform { margin-top: 14px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
+.grow { display: flex; gap: 8px; min-width: 0; }
+.gform input { width: 100%; }
+.gform input, .gform select {
+  font: inherit; font-size: 16px; padding: 10px 12px; border-radius: 10px; border: 1.5px solid var(--line);
+  background: var(--paper); color: var(--ink); min-width: 0; flex: 1; min-height: 46px;
+}
+.gform #g-imp { font-size: 20px; font-weight: 700; }
+.gform select { flex: 0 0 auto; width: 40%; }
+.cur { display: flex; border: 1.5px solid var(--line); border-radius: 10px; overflow: hidden; flex-shrink: 0; }
+.cur button { width: 46px; font-weight: 700; font-size: 17px; }
+.cur button[aria-pressed="true"] { background: var(--ink); color: var(--card); }
+.gday { font-size: 13px; font-weight: 700; color: var(--muted); margin: 16px 0 2px; display: flex; justify-content: space-between; }
+.gitem { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+.gitem .gt { flex: 1; min-width: 0; }
+.gitem .gt small { display: block; color: var(--muted); font-size: 12.5px; }
+.gitem .ga { font-weight: 700; white-space: nowrap; text-align: right; }
+.gitem .ga small { display: block; font-weight: 400; color: var(--muted); font-size: 12px; }
+.gitem .gdel { width: 36px; height: 36px; border-radius: 50%; color: var(--muted); font-size: 18px; flex-shrink: 0; }
+
+/* ---------- Frases con audio ---------- */
+.phrase-row { display: flex; align-items: center; border-bottom: 1px solid var(--line); }
+.phrase-row:last-child { border-bottom: 0; }
+.phrase-row .phrase { border-bottom: 0; flex: 1; }
+.say { width: 44px; height: 44px; border-radius: 50%; font-size: 19px; flex-shrink: 0; border: 1.5px solid var(--line); margin-left: 8px; }
+
 .toast {
   position: fixed; left: 50%; bottom: calc(var(--nav-h) + env(safe-area-inset-bottom) + 16px); transform: translateX(-50%);
   background: var(--ink); color: var(--card); padding: 10px 16px; border-radius: 999px; font-size: 14px; z-index: 60;
@@ -388,7 +429,10 @@ details.acc > summary .sub { display: block; font-weight: 400; font-size: 13px; 
       <button data-kind="onsen" aria-pressed="false">Onsen</button>
     </div>
     <div class="chips" id="city-chips" role="group" aria-label="Ciudad"></div>
-    <input class="search" id="q" type="search" placeholder="Buscar: ramen, kimono, takoyaki…" aria-label="Buscar sitios">
+    <div class="srow">
+      <input class="search" id="q" type="search" placeholder="Buscar: ramen, kimono…" aria-label="Buscar sitios">
+      <button class="nearbtn" id="near" aria-pressed="false">📍 Cerca de mí</button>
+    </div>
     <div id="sitios-intro"></div>
     <div id="sitios-list" style="margin-top:12px"></div>
   </section>
@@ -397,6 +441,31 @@ details.acc > summary .sub { display: block; font-weight: 400; font-size: 13px; 
   <section class="view" id="v-guia" aria-label="Guía">
     <h1 class="v-title">Guía</h1>
     <p class="v-sub">Dinero, transporte, normas y lo que hay que llevar. Las casillas se guardan en tu móvil.</p>
+
+    <details class="acc" id="g-gastos">
+      <summary><span class="ico">🧾</span><span>Mis gastos<span class="sub" id="gastos-sub">Apunta lo que gastas y mira lo que te queda</span></span></summary>
+      <div class="acc-body">
+        <div id="gastos-resumen"></div>
+        <form id="gasto-form" class="gform" autocomplete="off" novalidate>
+          <div class="grow">
+            <input id="g-imp" inputmode="decimal" placeholder="Importe" aria-label="Importe">
+            <div class="cur" role="group" aria-label="Moneda">
+              <button type="button" data-cur="yen" aria-pressed="true">¥</button><button type="button" data-cur="eur" aria-pressed="false">€</button>
+            </div>
+          </div>
+          <div class="grow">
+            <select id="g-cat" aria-label="Categoría">
+              <option>Comida</option><option>Transporte</option><option>Entradas</option><option>Compras</option><option>Otros</option>
+            </select>
+            <input id="g-txt" placeholder="Concepto (opcional)" aria-label="Concepto" maxlength="60">
+          </div>
+          <button class="btn" type="submit" style="width:100%">Apuntar gasto</button>
+        </form>
+        <div id="gastos-lista"></div>
+        <div class="rate" style="margin-top:16px"><label for="g-pres">Mi presupuesto:</label><input id="g-pres" inputmode="decimal"> <span>€ (sin vuelos ni hotel)</span></div>
+        <p class="small muted" style="margin-top:8px">Se guarda solo en este móvil. Para los gastos a medias del grupo, mejor Tricount.</p>
+      </div>
+    </details>
 
     <details class="acc" id="g-reservas">
       <summary><span class="ico">🎟️</span><span>Reservas pendientes<span class="sub">Lo que se agota si no se compra antes</span></span><span class="progress" data-progress="res"></span></summary>
@@ -654,6 +723,7 @@ details.acc > summary .sub { display: block; font-weight: 400; font-size: 13px; 
   <div class="ja" id="ov-ja"></div>
   <div class="ro" id="ov-ro"></div>
   <div class="es" id="ov-es"></div>
+  <button class="btn listen" id="ov-listen" hidden>🔊 Escuchar</button>
   <div class="hint">Gira el móvil si hace falta más grande</div>
 </div>
 <div class="toast" id="toast" role="status"></div>
@@ -814,7 +884,7 @@ const DIAS = [
 
   { fecha: '2026-11-12', n: 13, ciudad: 'osaka', tiempo: 'kioto',
     titulo: 'Kinkaku-ji y paso a Osaka', resumen: 'Última mañana en Kioto, noche de neones en Dotonbori.',
-    plan: ['Kinkaku-ji, el pabellón dorado, temprano', 'Philosopher’s Path: canal con arces, el koyo de Kioto con calma', { x: 'Tofuku-ji, si da tiempo: menos conocido y de los mejores momiji de Kioto (está al sur, cerca de la estación)', opt: true }, 'Tren a Osaka a mediodía (JR, ~30 min, ~4€; en Shinkansen 15 min, ~9€)', 'Castillo de Osaka por la tarde', 'Dotonbori al atardecer y de noche'],
+    plan: ['Kinkaku-ji, el pabellón dorado, temprano', 'Philosopher’s Path: canal con arces, el koyo de Kioto con calma', { x: 'Tofuku-ji, si da tiempo: menos conocido y de los mejores momiji de Kioto (al sur, cerca de la estación; 8:30–16:30, jardín 500–600¥ y puente Tsutenkyo 1.000¥ en temporada alta)', opt: true }, 'Tren a Osaka a mediodía (JR, ~30 min, ~4€; en Shinkansen 15 min, ~9€)', 'Castillo de Osaka por la tarde', 'Dotonbori al atardecer y de noche'],
     notas: [{ t: 'tip', h: 'Guardad energía', x: 'El canal de Dotonbori con los neones es mucho mejor de noche. Enviad las maletas de Kioto a Osaka la noche anterior.' }],
     comer: ['Mercado de Nishiki', 'Mizuno', 'Takoyaki Wanaka'],
     lluvia: 'Kinkaku-ji con lluvia se refleja igual de bien. Dotonbori tiene galerías cubiertas.',
@@ -891,7 +961,7 @@ const COMER = [
   { c: 'osaka', n: 'Mizuno', t: 'Okonomiyaki desde 1945, Dotonbori', p: '1.200–1.600¥', tag: 'turistico', d: 'Bib Gourmand Michelin y el okonomiyaki de referencia de Osaka, cocinado delante de vosotros. Id pronto para evitar la cola de la noche.', o: 'El mixto de cerdo, gamba y calamar, el más representativo; o su yamaimo-yaki.', q: 'Mizuno Okonomiyaki Dotonbori' },
   { c: 'osaka', n: 'Kushikatsu Daruma', t: 'El kushikatsu más famoso, Shinsekai', p: '1.800–2.500¥', tag: 'local', d: 'Se reconoce por la figura del cocinero enfadado en la entrada; cuna del kushikatsu en Osaka. Regla de oro: solo se moja una vez en la salsa.', o: 'El “Shinsekai Set” de 9 brochetas variadas (~1.800¥) y el doteyaki (tendón de ternera guisado en miso).', q: 'Kushikatsu Daruma Shinsekai' },
   { c: 'osaka', n: 'Takoyaki Wanaka', t: 'Uno de los mejores takoyaki de la ciudad', p: '650–900¥', tag: 'turistico', d: 'Exterior crujiente e interior cremoso: referencia de Osaka.', o: 'La ración estándar de 8, para picar por Dotonbori (de pie junto al puesto).', q: 'Takoyaki Wanaka Sennichimae' },
-  { c: 'osaka', n: 'Aizuya', t: 'El takoyaki original', p: '~600¥', tag: 'local', d: 'Se presentan como los inventores del takoyaki. Masa más fina y delicada que la competencia, con caldo dashi intenso y menos dulce. Favorito de los locales.', o: '6 piezas por ~600¥, de los más baratos y mejor valorados de la zona.', q: 'Aizuya Namba' },
+  { c: 'osaka', n: 'Aizuya', t: 'El takoyaki original (local de Umeda)', p: '~600¥', tag: 'local', d: 'Se presentan como los inventores del takoyaki. Masa más fina y delicada que la competencia, con caldo dashi intenso y menos dulce. Favorito de los locales.', o: '6 piezas por ~600¥, de los más baratos y mejor valorados de la zona.', q: 'Aizuya Umeda' },
   { c: 'osaka', n: 'Mercado Kuromon Ichiba', t: '170 puestos, “la cocina de Osaka”', p: '2.000–3.000¥', tag: 'turistico', d: 'Ideal para desayunar o picar variado por la mañana, cuando el producto está más fresco.', o: 'Sashimi de atún recién cortado, vieira a la plancha, tamagoyaki y fruta cortada.', q: 'Kuromon Ichiba Market' },
   { c: 'osaka', n: 'Chitose', t: 'Okonomiyaki local, Shinsekai', p: '900–1.500¥', tag: 'local', d: 'Más pequeño y auténtico que los de Dotonbori, con más de 60 años de historia y precios algo más bajos.', o: 'Okonomiyaki clásico mixto, y probad el modan-yaki (con yakisoba dentro).', q: 'Chitose okonomiyaki Osaka' },
   { c: 'osaka', n: 'Steakland Kobe-kan', t: 'Excursión a Kobe: 30 min en tren desde Umeda', p: '20–40€', tag: 'excursion', feat: true, d: 'La forma 100% segura de probar carne de Kobe certificada (la raza Tajima-gyū de Hyōgo) es ir a Kobe: 30 min en tren (línea Kobe) desde Osaka-Umeda o 13 min en Shinkansen hasta Shin-Kobe. Este restaurante, cerca de la estación de Sannomiya, es proveedor certificado oficial y cocina en teppanyaki delante de vosotros. Al mediodía los menús van de ~3.200 a 6.000¥ (el de Kobe certificado es el más caro); por la noche suben hasta ~13.000¥. Id a comer, no a cenar, sobre las 11:30 para evitar 20–40 min de cola.', o: 'Menú de mediodía de Kobe beef con sopa miso, arroz, encurtidos, ensalada y verduras.', q: 'Steakland Kobe-kan Sannomiya' },
@@ -1003,6 +1073,132 @@ const TRANSPORTE = [
   { d: 'Día 16', r: 'Namba → aeropuerto', m: 'Nankai', t: '35–45 min', p: '~8€', donde: 'Con Suica, o el Rapi:t con asiento reservado.' },
 ];
 
+// Coordenadas [lat, lon, 1 = zona aproximada] de cada sitio, por su búsqueda de Maps (OpenStreetMap)
+const GEO = {
+  "Omoide Yokocho Shinjuku":[35.69307,139.6995],
+  "Ichiran Shibuya":[35.66113,139.70099],
+  "Sometaro Asakusa":[35.71194,139.79092],
+  "Daikokuya Tempura Asakusa":[35.71274,139.79559],
+  "Afuri Harajuku":[35.6687,139.70534,1],
+  "Tenka Sushi Otsuka":[35.73257,139.729],
+  "Kourin Sushi Kanazawa":[36.56942,136.65859],
+  "Omicho Market Kanazawa":[36.57187,136.65578],
+  "Mori Mori Sushi Omicho":[36.5714,136.65784],
+  "Fuwari Kanazawa izakaya":[36.57187,136.65578],
+  "Hakuichi Higashiyama Kanazawa":[36.57231,136.66647],
+  "Hidagyu Maruaki Takayama":[36.14,137.2545,1],
+  "Suzuya Takayama":[36.14257,137.2557],
+  "Hida Kotte Ushi Takayama":[36.14282,137.25908,1],
+  "Matsuki Sushi Takayama":[36.14412,137.25455],
+  "Heianraku Takayama":[36.1408,137.2511,1],
+  "Nishiki Market Kyoto":[35.00502,135.76557],
+  "Yagenbori Gion Kyoto":[35.00553,135.77457,1],
+  "Yudofu Sagano Arashiyama":[35.01448,135.67451],
+  "Gion Tanto Kyoto":[35.00553,135.77457],
+  "kaiten sushi Gion Kyoto":[35.00269,135.7716],
+  "ramen Pontocho Kyoto":[35.00425,135.77121],
+  "Kubotaya Omihachiman":[35.13429,136.08965,1],
+  "Mizuno Okonomiyaki Dotonbori":[34.66845,135.50307],
+  "Kushikatsu Daruma Shinsekai":[34.65105,135.50648,1],
+  "Takoyaki Wanaka Sennichimae":[34.66521,135.5034],
+  "Aizuya Umeda":[34.70359,135.50028],
+  "Kuromon Ichiba Market":[34.6658,135.50702],
+  "Chitose okonomiyaki Osaka":[34.64761,135.50466],
+  "Steakland Kobe-kan Sannomiya":[34.69291,135.1919],
+  "Yodobashi Akiba":[35.69878,139.77473],
+  "Mandarake Complex Akihabara":[35.66148,139.69755,1],
+  "Don Quijote Shibuya":[35.66045,139.69784],
+  "Shibuya 109":[35.6596,139.69868],
+  "2nd Street Harajuku":[35.6687,139.70534,1],
+  "Shibuya Hands":[35.66201,139.69791],
+  "Map Camera Shinjuku":[35.68945,139.69724],
+  "Kanazawa Crafts Hirosaka":[36.56164,136.65801],
+  "Sakuda Gold Leaf Kanazawa":[36.57793,136.64744],
+  "Kutani ware shop Kanazawa":null,"Kanazawa Hyakubangai":[36.57808,136.64729],
+  "Higashi Chaya District":[36.57299,136.66507],
+  "Ichii Ittobori Takayama":[36.14282,137.25908],
+  "Hida Shunkei Takayama":[36.14169,137.25951],
+  "Sarubobo shop Takayama":[36.14169,137.25951],
+  "Sake breweries Sanmachi Takayama":[36.14169,137.25951,1],
+  "Shinshoen Kyoto kimono":[35.01193,135.75458],
+  "Okamoto kimono rental Kiyomizu":[34.9989,135.78078],
+  "Maisendo Gion":[35.00371,135.77388],
+  "Kasagen Gion":[35.0036,135.77826,1],
+  "Kiyomizu ware Gojozaka":[34.99536,135.77837],
+  "Ippodo Tea Kyoto":[35.01446,135.76736],
+  "Teramachi Kyoto":[35.02648,135.76775],
+  "Den Den Town Osaka":[34.65922,135.50582],
+  "Midosuji Avenue Osaka":[34.67452,135.50036],
+  "Shinsaibashi-suji":[34.67067,135.50133],
+  "Sennichimae Doguyasuji":[34.66398,135.50349],
+  "Don Quijote Dotonbori":[34.66907,135.5013,1],
+  "Aqua Higashinakano sento":[35.70748,139.68573],
+  "Komaeyu sento":[35.63258,139.57945],
+  "Funaoka Onsen Kyoto":[35.03695,135.7445],
+  "Kurama Onsen":[35.11924,135.77654],
+  "Hanaikada Arashiyama":[35.01129,135.67718],
+  "Kaga Onsen":[36.32039,136.3505],
+  "Arima Onsen":[34.79926,135.24627]
+};
+
+// Horario y entrada de cada parada (por su nombre en "paradas"). Comprobado en octubre de 2026; puede cambiar.
+const VISITAS = {
+  'Lake Ashi, Hakone': { x: 'Incluido en la excursión' },
+  'Owakudani, Hakone': { x: 'Incluido en la excursión' },
+  'Nikko Toshogu': { h: '9:00–16:00 (última entrada 15:30)', p: '1.600¥' },
+  'Kegon Falls': { h: 'Ascensor al mirador 8:00–17:00', p: '~600¥ ida y vuelta' },
+  'Tokyo Disneyland': { h: 'Suele abrir 9:00–21:00 (mirad el día en la app)' },
+  'Tokyo DisneySea': { h: 'Suele abrir 9:00–21:00 (mirad el día en la app)' },
+  'Tokyo Tower': { h: '9:00–23:00 (última entrada 22:30)', p: 'Main Deck 1.200–1.500¥' },
+  'Azabudai Hills': { h: 'teamLab Borderless: entrada con hora, hasta ~21:00', p: 'teamLab 3.400–4.800¥ según el día' },
+  'Senso-ji, Asakusa': { h: 'Recinto 24 h; sala principal hasta las 17:00', p: 'Gratis' },
+  'Nakamise Shopping Street': { h: 'Tiendas hasta ~19:00' },
+  'Kenrokuen Garden': { h: '8:00–17:00 (última entrada 16:30)', p: '320¥' },
+  'Omicho Market': { h: '~9:00–17:00, según el puesto', x: 'Muchos puestos cierran los miércoles; el 6 de noviembre es viernes.' },
+  'Higashi Chaya District': { h: 'Casa de geishas Shima: 9:30–17:30, cierra los jueves', p: 'Calle gratis; casa Shima 500¥' },
+  'Nagamachi Samurai District': { h: 'Casa Nomura: 8:30–16:30 (última entrada 16:00)', p: 'Calles gratis; casa Nomura 550¥' },
+  'Jinya-mae Morning Market, Takayama': { h: 'Por la mañana, hasta mediodía', x: 'Al lado, Takayama Jinya (antigua casa de gobierno): 8:45–16:30, 440¥.' },
+  'Sanmachi Suji, Takayama': { h: 'Tiendas ~9:00–17:00', p: 'Gratis' },
+  'Hida Folk Village': { h: '8:30–17:00', p: '700¥' },
+  'Shirakawa-go': { p: 'Pueblo y mirador gratis' },
+  'Hiroshima Peace Memorial Park': { h: 'Museo 8:30–18:00 (última entrada 17:30)', p: 'Parque gratis; museo 200¥' },
+  'Miyajimaguchi Ferry Terminal': { p: 'Ferry ~200¥ por trayecto + 100¥ de tasa de la isla', x: 'Puede ir incluido en la excursión.' },
+  'Itsukushima Shrine': { h: '6:30–17:30', p: '300¥' },
+  'Fushimi Inari Taisha': { h: 'Abierto 24 h', p: 'Gratis' },
+  'Nara Park': { h: 'Siempre abierto', p: 'Gratis; galletas ~200¥' },
+  'Todai-ji': { h: 'Gran Buda 8:00–17:00', p: '800¥' },
+  'Arashiyama Bamboo Grove': { h: 'Abierto 24 h', p: 'Gratis' },
+  'Tenryu-ji': { h: '8:30–17:00', p: 'Jardín 500¥ (+300¥ los edificios)' },
+  'Kiyomizu-dera': { h: '6:00–18:00', p: '500¥' },
+  'Kinkaku-ji': { h: '9:00–17:00', p: '500¥' },
+  "Philosopher's Path, Kyoto": { h: 'Siempre abierto', p: 'Gratis' },
+  'Osaka Castle': { h: 'Torre: desde las 9:00 hasta las 17:00–18:00 según el día', p: 'Parque gratis; torre 1.200¥' },
+  'Kuromon Ichiba Market': { h: 'Mejor por la mañana; muchos puestos cierran a media tarde' },
+  'Universal Studios Japan': { h: 'Suele abrir 8:30–9:00 (mirad el día en la app)' },
+  'Umeda Sky Building': { h: '9:30–22:30 (última entrada 22:00)', p: '2.000¥' },
+};
+
+// Qué preparar para cada día (se ve en el día y, la noche antes, en "Para mañana")
+const PREPARAR = {
+  '2026-10-30': ['Pasaporte, tarjetas y algo de efectivo en el equipaje de mano', 'QR de Visit Japan Web guardados en el móvil', 'Móvil y batería externa cargados'],
+  '2026-10-31': ['QR de Visit Japan Web a mano para inmigración', 'El disfraz para la noche', 'Pasaporte encima si vais a comprar algo caro: último día con Tax Free directo en caja'],
+  '2026-11-01': ['Bono de la excursión y hora del punto de encuentro', 'Abrigo: en Hakone hace más frío que en Tokio', 'Efectivo para el onsen y souvenirs'],
+  '2026-11-02': ['Salir temprano hacia Asakusa (tren Tobu)', 'Calzado cómodo: hay cuestas y escaleras', 'Efectivo para las entradas (Tosho-gu 1.600¥)'],
+  '2026-11-03': ['Entradas de Disneyland descargadas y app de Tokyo Disney Resort con sesión iniciada', 'Batería externa', 'Salir para estar 45–60 min antes de abrir'],
+  '2026-11-04': ['Entradas de DisneySea descargadas', 'Batería externa', 'Misma hora de salida que ayer'],
+  '2026-11-05': ['Si llueve: comprar entradas de teamLab Borderless', 'Por la noche: maletas listas para enviarlas a Kanazawa'],
+  '2026-11-06': ['Maletas enviadas a Kanazawa la noche antes (takuhaibin)', 'Billetes del Shinkansen', 'Paraguas: Kanazawa es muy lluviosa', 'Confirmar la hora de la ceremonia del té'],
+  '2026-11-07': ['Billetes del bus Nohi (Kanazawa → Takayama y Shirakawa-go)', 'Maletas grandes: enviadlas desde Kanazawa directamente al hotel de Kioto y viajad dos días con mochila', 'Abrigo: Takayama es la noche más fría del viaje', 'Efectivo para mercados y degustaciones'],
+  '2026-11-08': ['Billete de tren a Kioto (se puede comprar en la estación el día antes)', 'Si enviasteis las maletas, avisad al hotel de Kioto'],
+  '2026-11-09': ['Bono de la excursión y punto de encuentro', 'Mirar la tabla de mareas de Miyajima', 'Monedas: 100¥ de tasa de la isla'],
+  '2026-11-10': ['Despertador temprano: Fushimi Inari a las 7:00', 'Monedas para las galletas de los ciervos', 'Calzado cómodo: en Fushimi Inari todo son escaleras'],
+  '2026-11-11': ['Salir antes de las 8:00 hacia Arashiyama', 'Si alquiláis kimono, reserva hecha'],
+  '2026-11-12': ['Maletas a Osaka por takuhaibin la noche antes, o en consigna', 'Check-out del hotel de Kioto'],
+  '2026-11-13': ['Efectivo para el mercado y el kushikatsu', 'Bolsa plegable para las compras'],
+  '2026-11-14': ['Entradas de USJ y app oficial con sesión iniciada', 'Express Pass, si lo comprasteis', 'Batería externa', 'Salir para estar 1 h antes de abrir'],
+  '2026-11-15': ['Pasaporte y todos los recibos de Tax Free', 'Compras con Tax Free a mano y sin abrir, no en la maleta facturada', 'Estar en el aeropuerto 3 h antes + 30–45 min para el Tax Free'],
+};
+
 /* =========================================================
    LÓGICA
    ========================================================= */
@@ -1026,6 +1222,20 @@ const isoLocal = d => d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(
 const fmtDate = (iso, opts) => new Date(iso + 'T12:00:00').toLocaleDateString('es-ES', opts || { weekday: 'long', day: 'numeric', month: 'long' });
 const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
 const allPlaces = [...COMER, ...ONSEN];
+const num = v => parseFloat(String(v).replace(/\./g, '').replace(',', '.')) || 0;
+const fmtE = n => (Math.abs(n) < 10 ? n.toLocaleString('es-ES', { maximumFractionDigits: 1 }) : Math.round(n).toLocaleString('es-ES')) + '€';
+
+// Yenes → euros con el cambio guardado en el conversor
+const rate = () => store.get('rate', 170) || 170;
+const toEur = y => { const e = y / rate(); return e < 10 ? Math.max(1, Math.round(e)) : Math.round(e); };
+// Añade "≈X€" detrás de cada precio en yenes que no lleve ya su equivalente en euros
+const withEur = html => html.replace(/(\d{1,3}(?:\.\d{3})*)(?:–(\d{1,3}(?:\.\d{3})*))?¥(?!\s*\(~|\s*≈|\s*\(≈)/g, (m, a, b) =>
+  `${m} <span class="eur">≈${toEur(num(a))}${b ? '–' + toEur(num(b)) : ''}€</span>`);
+
+// Distancia en km entre dos puntos
+const km = (a, b) => { const r = x => x * Math.PI / 180, dLa = r(b[0] - a[0]), dLo = r(b[1] - a[1]);
+  const h = Math.sin(dLa / 2) ** 2 + Math.cos(r(a[0])) * Math.cos(r(b[0])) * Math.sin(dLo / 2) ** 2; return 12742 * Math.asin(Math.sqrt(h)); };
+const fmtKm = d => d < 1 ? Math.max(50, Math.round(d * 1000 / 50) * 50) + ' m' : d.toLocaleString('es-ES', { maximumFractionDigits: d < 10 ? 1 : 0 }) + ' km';
 
 // "?fecha=2026-11-03" permite simular un día concreto
 const params = new URLSearchParams(location.search);
@@ -1086,30 +1296,31 @@ function dayBody(dia) {
     <div><div class="meta">${fecha} · Día ${dia.n}</div><h2>${esc(dia.titulo)}</h2><div class="sum">${esc(dia.resumen)}</div>
     ${dia.flag ? `<span class="tag">${esc(dia.flag)}</span>` : ''}</div></div>`;
   h += `<div class="wx" data-wx="${dia.fecha}"></div>`;
-  h += `<div class="sec"><h4>Plan</h4><ol class="plan">${dia.plan.map(p => typeof p === 'string' ? `<li>${esc(p)}</li>` : `<li class="opt">${esc(p.x)}</li>`).join('')}</ol></div>`;
-  dia.notas.forEach(n => { h += `<div class="note ${n.t === 'warn' ? 'warn' : ''}"><b>${esc(n.h)}</b>${esc(n.x)}</div>`; });
+  const prep = PREPARAR[dia.fecha];
+  if (prep) h += `<div class="sec"><h4>Antes de salir</h4><ul class="eat">${prep.map(x => `<li>☐ ${withEur(esc(x))}</li>`).join('')}</ul></div>`;
+  h += `<div class="sec"><h4>Plan</h4><ol class="plan">${dia.plan.map(p => typeof p === 'string' ? `<li>${withEur(esc(p))}</li>` : `<li class="opt">${withEur(esc(p.x))}</li>`).join('')}</ol></div>`;
+  dia.notas.forEach(n => { h += `<div class="note ${n.t === 'warn' ? 'warn' : ''}"><b>${esc(n.h)}</b>${withEur(esc(n.x))}</div>`; });
   if (dia.comer.length) {
     h += `<div class="sec"><h4>Dónde comer</h4><ul class="eat">${dia.comer.map(name => {
       const p = placeByName(name);
-      return p ? `<li><a href="${mapsUrl(p.q)}" target="_blank" rel="noopener"><b>${esc(p.n)}</b></a> <span class="muted small">${esc(p.t)} · ${esc(p.p)}</span></li>` : `<li>${esc(name)}</li>`;
+      return p ? `<li><a href="${mapsUrl(p.q)}" target="_blank" rel="noopener"><b>${esc(p.n)}</b></a> <span class="muted small">${esc(p.t)} · ${withEur(esc(p.p))}</span></li>` : `<li>${esc(name)}</li>`;
     }).join('')}</ul></div>`;
   }
   if (dia.lluvia) h += `<div class="note rain"><b>Si llueve</b>${esc(dia.lluvia)}</div>`;
   if (dia.paradas.length) {
-    h += `<div class="sec"><h4>Paradas</h4><ol class="stops">${dia.paradas.map((p, i) =>
-      `<li><a href="${mapsUrl(p.n)}" target="_blank" rel="noopener"><span class="pin">${i + 1}</span><span><span class="nm">${esc(p.n)}</span><br><span class="nt">${esc(p.t)}</span></span><span class="go">Mapa ↗</span></a></li>`).join('')}</ol></div>`;
+    let anyInfo = false;
+    h += `<div class="sec"><h4>Paradas</h4><ol class="stops">${dia.paradas.map((p, i) => {
+      const v = VISITAS[p.n];
+      let info = '';
+      if (v) {
+        anyInfo = true;
+        info = [v.h && '🕘 ' + esc(v.h), v.p && '🎟️ ' + withEur(esc(v.p)), v.x && esc(v.x)].filter(Boolean).join('<br>');
+      }
+      return `<li><a href="${mapsUrl(p.n)}" target="_blank" rel="noopener"><span class="pin">${i + 1}</span><span><span class="nm">${esc(p.n)}</span><br><span class="nt">${esc(p.t)}</span>${info ? `<span class="vi">${info}</span>` : ''}</span><span class="go">Mapa ↗</span></a></li>`;
+    }).join('')}</ol>${anyInfo ? '<p class="small muted" style="margin-top:6px">Horarios y precios comprobados en octubre de 2026; pueden cambiar.</p>' : ''}</div>`;
   }
-  h += `<div class="btn-row">${dia.paradas.length > 1 ? `<a class="btn" href="${routeUrl(dia.paradas)}" target="_blank" rel="noopener">Ruta en Google Maps</a>` : ''}
-    <button class="btn wa" data-share="${dia.fecha}">Enviar por WhatsApp</button></div>`;
+  if (dia.paradas.length > 1) h += `<div class="btn-row"><a class="btn" href="${routeUrl(dia.paradas)}" target="_blank" rel="noopener">Ruta en Google Maps</a></div>`;
   return h;
-}
-
-function shareDay(iso) {
-  const d = DIAS[dayIndex(iso)];
-  const url = location.origin + location.pathname + '#ruta/' + iso;
-  const text = `${cap(fmtDate(iso, { weekday: 'long', day: 'numeric', month: 'short' }))}: ${d.titulo}\n` +
-    d.plan.map(p => '• ' + (typeof p === 'string' ? p : p.x)).join('\n') + '\n\n' + url;
-  window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank', 'noopener');
 }
 
 /* ---------- Cabecera ---------- */
@@ -1143,6 +1354,7 @@ function renderHoy() {
       <span style="font-size:24px">🎟️</span><span><b>Reservas pendientes</b><br><span class="muted small">${done} de ${res.length} hechas</span></span><span class="chev">›</span></a>`;
     h += `<a class="card" href="#guia/48h" style="display:flex;align-items:center;gap:12px;text-decoration:none">
       <span style="font-size:24px">⏰</span><span><b>Las 48 horas antes de volar</b><br><span class="muted small">Visit Japan Web, mapas offline, Suica…</span></span><span class="chev">›</span></a>`;
+    h += gastosCard();
     if (!matchMedia('(display-mode: standalone)').matches && !navigator.standalone) {
       h += `<a class="card" href="#guia/pwa" style="display:flex;align-items:center;gap:12px;text-decoration:none">
         <span style="font-size:24px">📲</span><span><b>Instálala en el móvil</b><br><span class="muted small">Para tenerla sin internet en Japón</span></span><span class="chev">›</span></a>`;
@@ -1157,8 +1369,29 @@ function renderHoy() {
     <span class="label">${lbl}${hoySel !== dayIndex(todayISO()) && ph === 'durante' ? ` · <a href="#" data-nav="hoy">volver a hoy</a>` : ''}</span>
     <button data-nav="1" ${hoySel === DIAS.length - 1 ? 'disabled' : ''} aria-label="Día siguiente">Siguiente ›</button></div>`;
   h += `<article class="card">${dayBody(dia)}</article>`;
+  // Para mañana: lo que hay que dejar listo esta noche
+  const viendoHoy = ph === 'durante' && hoySel === dayIndex(todayISO());
+  const man = DIAS[hoySel + 1];
+  if (viendoHoy && man) {
+    const prep = PREPARAR[man.fecha] || [];
+    const primero = typeof man.plan[0] === 'string' ? man.plan[0] : man.plan[0].x;
+    h += `<div class="card" style="margin-top:10px;border-color:var(--kin)"><b>🌙 Para mañana: ${esc(man.titulo)}</b>
+      <p class="small muted" style="margin:2px 0 6px">${cap(fmtDate(man.fecha, { weekday: 'long', day: 'numeric', month: 'long' }))}. Lo primero: ${withEur(esc(primero))}</p>
+      ${prep.length ? `<ul class="eat">${prep.map(x => `<li>☐ ${withEur(esc(x))}</li>`).join('')}</ul>` : ''}
+      <div class="btn-row"><button class="btn ghost" data-nav="1">Ver el plan de mañana</button></div></div>`;
+  }
+  if (ph === 'durante') h += gastosCard();
   v.innerHTML = h;
   fillWeather($('[data-wx]', v), dia);
+}
+
+function gastosCard() {
+  const s = gastosStats();
+  const sub = s.days ? (phase() === 'durante'
+    ? `Hoy llevas ${fmtE(s.today)} de unos ${fmtE(s.hoyTope)} al día`
+    : `Unos ${fmtE(s.perDay)} al día durante el viaje`) : `Has gastado ${fmtE(s.spent)}`;
+  return `<a class="card" href="#guia/gastos" style="display:flex;align-items:center;gap:12px;text-decoration:none;margin-top:10px">
+    <span style="font-size:24px">🧾</span><span><b>Te quedan ${fmtE(s.left)} de ${fmtE(s.pres)}</b><br><span class="muted small">${sub}</span></span><span class="chev">›</span></a>`;
 }
 
 /* ---------- RUTA ---------- */
@@ -1213,16 +1446,36 @@ function renderSitios() {
 
   const list = { comer: COMER, compras: COMPRAS, onsen: ONSEN }[sKind];
   const q = sQuery.trim().toLowerCase();
-  const items = list.filter(p => (sCity === 'todas' || p.c === sCity) && (!q || [p.n, p.t, p.d, p.o, p.cat].join(' ').toLowerCase().includes(q)));
-  $('#sitios-list').innerHTML = items.length ? items.map(p => {
+  let items = list.filter(p => (sCity === 'todas' || p.c === sCity) && (!q || [p.n, p.t, p.d, p.o, p.cat].join(' ').toLowerCase().includes(q)));
+  $('#near').setAttribute('aria-pressed', !!sNear);
+  if (sNear) {
+    items = items.map(p => ({ p, g: GEO[p.q] })).map(x => ({ ...x, d: x.g ? km(sNear, x.g) : Infinity }))
+      .sort((a, b) => a.d - b.d).map(x => ({ ...x.p, _d: x.d, _aprox: x.g && x.g[2] }));
+  }
+  $('#sitios-list').innerHTML = (sNear ? `<p class="small muted" style="margin-bottom:8px">Ordenado por distancia a donde estás (en línea recta).</p>` : '') +
+  (items.length ? items.map(p => {
     const c = CIUDADES[p.c];
     const label = p.cat || TAGS[p.tag];
+    const dist = sNear ? (p._d === Infinity ? `<span class="dist muted">Sin ubicación</span>` : `<span class="dist">a ${fmtKm(p._d)}${p._aprox ? ' (zona)' : ''}</span>`) : '';
     return `<div class="card place${p.feat ? ' feat' : ''}">
-      <div class="place-top"><div><div class="place-name">${esc(p.n)}</div><div class="place-type">${esc(p.t)}</div></div>${p.p ? `<div class="place-price">${esc(p.p)}</div>` : ''}</div>
-      <p>${esc(p.d)}</p>${p.o ? `<div class="order"><b>${sKind === 'compras' ? 'Id para' : 'Pedid'}:</b> ${esc(p.o)}</div>` : ''}
-      <div class="place-foot"><span class="pill city" style="background:${c.color}">${c.nombre}</span>${label ? `<span class="pill muted">${esc(label)}</span>` : ''}
+      <div class="place-top"><div><div class="place-name">${esc(p.n)}</div><div class="place-type">${esc(p.t)}</div></div>${p.p ? `<div class="place-price">${withEur(esc(p.p))}</div>` : ''}</div>
+      <p>${withEur(esc(p.d))}</p>${p.o ? `<div class="order"><b>${sKind === 'compras' ? 'Id para' : 'Pedid'}:</b> ${withEur(esc(p.o))}</div>` : ''}
+      <div class="place-foot"><span class="pill city" style="background:${c.color}">${c.nombre}</span>${label ? `<span class="pill muted">${esc(label)}</span>` : ''}${dist}
       <a class="maplink" href="${mapsUrl(p.q)}" target="_blank" rel="noopener">Abrir en Maps ↗</a></div></div>`;
-  }).join('') : `<div class="empty">Nada con “${esc(sQuery)}” aquí. Prueba con otra ciudad o borra la búsqueda.</div>`;
+  }).join('') : `<div class="empty">Nada con “${esc(sQuery)}” aquí. Prueba con otra ciudad o borra la búsqueda.</div>`);
+}
+
+let sNear = null;
+function toggleNear() {
+  if (sNear) { sNear = null; renderSitios(); return; }
+  if (!('geolocation' in navigator)) { toast('Este móvil no permite usar la ubicación'); return; }
+  toast('Buscando dónde estás…');
+  navigator.geolocation.getCurrentPosition(pos => {
+    sNear = [pos.coords.latitude, pos.coords.longitude];
+    sCity = 'todas'; renderSitios(); window.scrollTo(0, 0);
+  }, err => {
+    toast(err.code === 1 ? 'Permite la ubicación para ver lo que hay cerca' : 'No se ha podido saber dónde estás. Prueba otra vez');
+  }, { enableHighAccuracy: true, timeout: 15000, maximumAge: 60000 });
 }
 
 /* ---------- GUÍA ---------- */
@@ -1241,13 +1494,40 @@ function renderGuia() {
   // Conversor
   const rateIn = $('#cv-rate'), yen = $('#cv-yen'), eur = $('#cv-eur');
   rateIn.value = store.get('rate', 170);
-  const num = v => parseFloat(String(v).replace(/\./g, '').replace(',', '.')) || 0;
   const fmt = (n, dec) => n.toLocaleString('es-ES', { maximumFractionDigits: dec });
   const fromYen = () => { eur.value = fmt(num(yen.value) / (num(rateIn.value) || 170), 2); };
   const fromEur = () => { yen.value = fmt(Math.round(num(eur.value) * (num(rateIn.value) || 170)), 0); };
   yen.addEventListener('input', fromYen); eur.addEventListener('input', fromEur);
-  rateIn.addEventListener('input', () => { store.set('rate', num(rateIn.value) || 170); fromYen(); });
+  rateIn.addEventListener('input', () => {
+    const r = num(rateIn.value);
+    if (r < 50 || r > 500) return; // cambio absurdo: no lo guardamos
+    store.set('rate', r); fromYen();
+    // los precios en euros de toda la web dependen del cambio
+    renderSitios(); $$('#ruta-dias .dr-body').forEach(b => { if (!b.closest('details').open) b.innerHTML = ''; });
+  });
   fromYen();
+
+  // Gastos
+  const pres = $('#g-pres');
+  pres.value = store.get('pres', 1100);
+  pres.addEventListener('input', () => { const v = num(pres.value); if (v > 0 && v < 100000) { store.set('pres', v); renderGastos(); } });
+  let cur = 'yen';
+  $$('.cur button').forEach(b => b.addEventListener('click', () => {
+    cur = b.dataset.cur; $$('.cur button').forEach(x => x.setAttribute('aria-pressed', x === b));
+  }));
+  $('#gasto-form').addEventListener('submit', e => {
+    e.preventDefault();
+    const imp = num($('#g-imp').value);
+    if (!(imp > 0) || imp > 10000000) { toast('Escribe un importe válido'); $('#g-imp').focus(); return; }
+    const g = store.get('gastos', []);
+    g.push({ id: Date.now(), fecha: todayISO(), cat: $('#g-cat').value, txt: $('#g-txt').value.trim().slice(0, 60),
+      eur: cur === 'yen' ? imp / rate() : imp, yen: cur === 'yen' ? imp : null });
+    store.set('gastos', g);
+    $('#g-imp').value = ''; $('#g-txt').value = '';
+    toast(`Apuntado: ${cur === 'yen' ? imp.toLocaleString('es-ES') + '¥ ≈ ' : ''}${fmtE(cur === 'yen' ? imp / rate() : imp)}`);
+    renderGastos();
+  });
+  renderGastos();
 
   // Casillas guardadas
   const saved = store.get('checks', {});
@@ -1260,6 +1540,62 @@ function renderGuia() {
     i.addEventListener('change', () => { saved[i.dataset.k] = i.checked; store.set('checks', saved); updProgress(); });
   });
   updProgress();
+}
+
+/* ---------- Gastos ---------- */
+const CAT_ICO = { Comida: '🍜', Transporte: '🚆', Entradas: '🎟️', Compras: '🛍️', Otros: '📦' };
+function gastosStats() {
+  const g = store.get('gastos', []), pres = store.get('pres', 1100);
+  const spent = g.reduce((a, x) => a + x.eur, 0), left = pres - spent;
+  const t = todayISO(), first = '2026-10-31', last = DIAS[DIAS.length - 1].fecha;
+  const days = t < first ? 16 : t > last ? 0 : Math.round((new Date(last + 'T12:00:00') - new Date(t + 'T12:00:00')) / 864e5) + 1;
+  const today = g.filter(x => x.fecha === t).reduce((a, x) => a + x.eur, 0);
+  // lo que toca hoy se calcula con lo que quedaba al empezar el día
+  const hoyTope = days ? (left + today) / days : 0;
+  return { g, pres, spent, left, days, today, hoyTope, perDay: days ? left / days : 0 };
+}
+function renderGastos() {
+  const s = gastosStats();
+  const pct = Math.min(100, s.pres ? s.spent / s.pres * 100 : 0);
+  const durante = phase() === 'durante';
+  let extra = '';
+  if (durante && s.days) {
+    const rest = s.hoyTope - s.today;
+    extra = rest >= 0 ? `Hoy puedes gastar ${fmtE(rest)} más (${fmtE(s.hoyTope)} al día hasta el final).`
+                      : `Hoy te has pasado ${fmtE(-rest)}. Mañana tocarán unos ${fmtE(s.left / Math.max(1, s.days - 1))} al día.`;
+  } else if (s.days) extra = `Son unos ${fmtE(s.perDay)} al día para los 16 días.`;
+  const porCat = Object.keys(CAT_ICO).map(c => [c, s.g.filter(x => x.cat === c).reduce((a, x) => a + x.eur, 0)]).filter(x => x[1] > 0);
+  $('#gastos-resumen').innerHTML = `<div class="gsum">
+    <div class="left" style="color:${s.left < 0 ? 'var(--shu)' : 'inherit'}">${s.left < 0 ? 'Te has pasado ' + fmtE(-s.left) : 'Te quedan ' + fmtE(s.left)}</div>
+    <div class="gbar${s.left < 0 ? ' over' : ''}"><span style="width:${pct}%"></span></div>
+    <div class="small muted">Gastado ${fmtE(s.spent)} de ${fmtE(s.pres)}. ${extra}</div>
+    ${porCat.length ? `<div class="legend" style="margin-top:8px">${porCat.map(([c, v]) => `<span>${CAT_ICO[c]} ${c} ${fmtE(v)}</span>`).join('')}</div>` : ''}</div>`;
+  $('#gastos-sub').textContent = s.g.length ? `Te quedan ${fmtE(s.left)} de ${fmtE(s.pres)}` : 'Apunta lo que gastas y mira lo que te queda';
+  // lista agrupada por día, lo más reciente primero
+  const byDay = {};
+  [...s.g].reverse().forEach(x => (byDay[x.fecha] = byDay[x.fecha] || []).push(x));
+  $('#gastos-lista').innerHTML = Object.keys(byDay).sort().reverse().map(f => {
+    const tot = byDay[f].reduce((a, x) => a + x.eur, 0);
+    return `<div class="gday"><span>${cap(fmtDate(f, { weekday: 'short', day: 'numeric', month: 'short' }))}</span><span>${fmtE(tot)}</span></div>` +
+      byDay[f].map(x => `<div class="gitem"><span>${CAT_ICO[x.cat] || '📦'}</span><span class="gt">${esc(x.txt || x.cat)}${x.txt ? `<small>${esc(x.cat)}</small>` : ''}</span>
+        <span class="ga">${fmtE(x.eur)}${x.yen ? `<small>${x.yen.toLocaleString('es-ES')}¥</small>` : ''}</span>
+        <button class="gdel" data-del="${x.id}" aria-label="Borrar gasto">×</button></div>`).join('');
+  }).join('') || '<p class="small muted" style="margin-top:12px">Todavía no has apuntado nada. Puedes empezar con lo que ya hayas pagado, como la excursión del Fuji.</p>';
+}
+
+/* ---------- Voz en japonés ---------- */
+const canSpeak = 'speechSynthesis' in window;
+const jaVoice = () => canSpeak && speechSynthesis.getVoices().find(v => (v.lang || '').replace('_', '-').toLowerCase().startsWith('ja'));
+if (canSpeak) speechSynthesis.getVoices();
+function speak(text) {
+  if (!canSpeak) { toast('Este móvil no puede leer en voz alta'); return; }
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'ja-JP'; u.rate = 0.85;
+  const v = jaVoice();
+  if (v) u.voice = v;
+  else if (speechSynthesis.getVoices().length) toast('Si no suena en japonés, añade la voz japonesa en los ajustes de voz del móvil');
+  speechSynthesis.speak(u);
 }
 
 /* ---------- SOS ---------- */
@@ -1276,11 +1612,12 @@ function renderSOS() {
         <div class="btn-row">${h.direccion ? `<a class="btn ghost" href="${mapsUrl(h.nombre + ' ' + h.direccion)}" target="_blank" rel="noopener">Cómo llegar</a>` : ''}${h.direccionJa || h.direccion ? `<button class="btn ghost" data-taxi="${i}">Enseñar al taxista</button>` : ''}</div>`
         : `<p class="pending">Pendiente de añadir el hotel.</p>`}</div></div>`;
   }).join('');
-  $('#frases').innerHTML = FRASES.map((f, i) => `<button class="phrase" data-frase="${i}"><span><span class="es">${esc(f.es)}</span><br><span class="ro">${esc(f.ro)}</span></span><span class="show">Mostrar</span></button>`).join('');
+  $('#frases').innerHTML = FRASES.map((f, i) => `<div class="phrase-row"><button class="phrase" data-frase="${i}"><span><span class="es">${esc(f.es)}</span><br><span class="ro">${esc(f.ro)}</span></span><span class="show">Mostrar</span></button>${canSpeak ? `<button class="say" data-say="${i}" aria-label="Escuchar: ${esc(f.es)}">🔊</button>` : ''}</div>`).join('');
 }
 
-function openOverlay(ja, ro, es) {
+function openOverlay(ja, ro, es, audio) {
   $('#ov-ja').textContent = ja; $('#ov-ro').textContent = ro; $('#ov-es').textContent = es;
+  $('#ov-listen').hidden = !(audio && canSpeak);
   $('#overlay').classList.add('open'); $('#overlay-close').focus();
 }
 function closeOverlay() { $('#overlay').classList.remove('open'); }
@@ -1311,12 +1648,20 @@ document.addEventListener('click', e => {
     hoySel = nav.dataset.nav === 'hoy' ? dayIndex(todayISO()) : Math.max(0, Math.min(DIAS.length - 1, hoySel + +nav.dataset.nav));
     renderHoy(); return;
   }
-  const sh = e.target.closest('[data-share]'); if (sh) { shareDay(sh.dataset.share); return; }
   const kind = e.target.closest('.seg button'); if (kind) { sKind = kind.dataset.kind; renderSitios(); return; }
   const city = e.target.closest('[data-city]'); if (city) { sCity = city.dataset.city; renderSitios(); return; }
-  const fr = e.target.closest('[data-frase]'); if (fr) { const f = FRASES[+fr.dataset.frase]; openOverlay(f.ja, f.ro, f.es); return; }
+  if (e.target.closest('#near')) { toggleNear(); return; }
+  const fr = e.target.closest('[data-frase]'); if (fr) { const f = FRASES[+fr.dataset.frase]; openOverlay(f.ja, f.ro, f.es, true); return; }
+  const say = e.target.closest('[data-say]'); if (say) { speak(FRASES[+say.dataset.say].ja); return; }
+  if (e.target.closest('#ov-listen')) { speak($('#ov-ja').textContent); return; }
+  const del = e.target.closest('[data-del]');
+  if (del) {
+    if (!confirm('¿Borrar este gasto?')) return;
+    store.set('gastos', store.get('gastos', []).filter(x => String(x.id) !== del.dataset.del));
+    renderGastos(); return;
+  }
   const tx = e.target.closest('[data-taxi]');
-  if (tx) { const h = HOTELES[+tx.dataset.taxi]; openOverlay(h.direccionJa || h.direccion, h.nombre, 'この住所までお願いします。 A esta dirección, por favor.'); return; }
+  if (tx) { const h = HOTELES[+tx.dataset.taxi]; openOverlay(h.direccionJa || h.direccion, h.nombre, 'この住所までお願いします。 A esta dirección, por favor.', !!h.direccionJa); return; }
   if (e.target.closest('#overlay')) closeOverlay();
 });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeOverlay(); });
