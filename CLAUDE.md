@@ -31,9 +31,10 @@ Se comparte por WhatsApp con el enlace de GitHub Pages y funciona sin internet u
 
 ## Decisiones tomadas
 - Tokio son 6 noches (31 oct – 6 nov), no 7: el original estaba mal contado. Total 15 noches.
-- Día 8: se propone parar en Shirakawa-go en el bus Kanazawa → Takayama (en vez de ida y vuelta desde Takayama); los mercados de Takayama pasan a la mañana del día 9.
+- REGLA: el contenido debe conservar TODA la info del HTML original del usuario (auditado el 2026-10-20: 30 restaurantes, 28 tiendas, 7 onsen, todos los días y consejos). Solo se cambia lo que es incorrecto, y se dice qué se cambió.
+- Día 8: se mantiene el plan original (bus a Takayama + excursión a Shirakawa-go). Parar en Shirakawa-go por el camino va solo como "alternativa" en una nota.
 - Tax Free: desde el 1 nov 2026 es sistema de reembolso (se reclama en KIX antes de facturar). El 31 oct es el último día con descuento en caja.
-- Correcciones respecto al original: edad para beber 20 años; Space Mountain cerrada; Fantasmic! sustituido por Believe! Sea of Dreams; USJ no permite comida de fuera; Kioto→Osaka 30 min; bus a Kegon ~45 min.
+- Correcciones verificadas respecto al original: edad para beber 20 años; Space Mountain cerrada hasta 2027; Fantasmic! → Believe! Sea of Dreams; USJ no permite comida de fuera (sí una bebida cerrada); USJ sin descuento por discapacidad confirmado para extranjeros; Kenroku-en 320¥ (no 800¥); bus Kanazawa→Takayama ~2 h 15 min; Kioto→Osaka JR ~30 min (15 min es en Shinkansen); Kioto→Hiroshima ~1 h 40 min; bus a Kegon ~45 min; Narita Express ~20€; pico de momiji en Kioto a finales de nov/inicio de dic (no 5–20 nov); Shinsaibashi no es la calle cubierta más larga de Japón; la iPhone/Tax Free directa solo el 31 oct; Disney abre normalmente a las 9:00.
 
 ## Pendientes
 - Rellenar `HOTELES` y `SEGURO` cuando estén reservados (y subir `VERSION` en sw.js).

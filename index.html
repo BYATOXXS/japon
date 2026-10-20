@@ -406,7 +406,7 @@ details.acc > summary .sub { display: block; font-weight: 400; font-size: 13px; 
           <li><label><input type="checkbox" data-k="res-tdl"><span><b>Tokyo Disneyland</b> (3 nov) y <b>DisneySea</b> (4 nov). Entradas con fecha en la web o app de Tokyo Disney Resort.</span></label></li>
           <li><label><input type="checkbox" data-k="res-shink"><span><b>Shinkansen Tokio → Kanazawa</b> (6 nov). Web de JR East / JR West o Klook.</span></label></li>
           <li><label><input type="checkbox" data-k="res-nohi"><span><b>Bus Kanazawa → Shirakawa-go → Takayama</b> (7 nov). Nohi Bus, reserva obligatoria en temporada alta.</span></label></li>
-          <li><label><input type="checkbox" data-k="res-te"><span><b>Ceremonia del té</b> en Higashi Chaya, Kanazawa (6 nov).</span></label></li>
+          <li><label><input type="checkbox" data-k="res-te"><span><b>Ceremonia del té</b> en Higashi Chaya, Kanazawa (6 nov). Por el hotel o Klook; dura 45–60 min y la hacen para grupos.</span></label></li>
           <li><label><input type="checkbox" data-k="res-hida"><span><b>Tren Takayama → Kioto</b> (8 nov). Se puede comprar en la estación el día antes.</span></label></li>
           <li><label><input type="checkbox" data-k="res-seguro"><span><b>Seguro de viaje</b> con buena cobertura médica. Apuntad el teléfono en SOS.</span></label></li>
           <li><label><input type="checkbox" data-k="res-esim"><span><b>eSIM de datos</b> (Airalo, Ubigi, Holafly…). Unos 20€ para 16 días.</span></label></li>
@@ -427,6 +427,7 @@ details.acc > summary .sub { display: block; font-weight: 400; font-size: 13px; 
           <li><label><input type="checkbox" data-k="h48-banco"><span>Avisar al banco del viaje para que no bloquee la tarjeta.</span></label></li>
           <li><label><input type="checkbox" data-k="h48-app"><span>Instalar esta web en la pantalla de inicio (ver “Usar sin internet”).</span></label></li>
           <li><label><input type="checkbox" data-k="h48-carga"><span>Cargar todo al 100% y meter cargadores y batería externa en el equipaje de mano.</span></label></li>
+          <li><label><input type="checkbox" data-k="h48-peso"><span>Revisar el peso de las maletas: la aerolínea y el Shinkansen tienen límites distintos.</span></label></li>
         </ul>
       </div>
     </details>
@@ -436,7 +437,7 @@ details.acc > summary .sub { display: block; font-weight: 400; font-size: 13px; 
       <div class="acc-body">
         <h3 class="h" style="margin-top:0">Documentación, en el equipaje de mano</h3>
         <ul class="checks" data-group="eq">
-          <li><label><input type="checkbox" data-k="eq-pas"><span>Pasaporte físico y una foto de él en el móvil</span></label></li>
+          <li><label><input type="checkbox" data-k="eq-pas"><span>Pasaporte físico, una foto de él en el móvil y una fotocopia guardada aparte</span></label></li>
           <li><label><input type="checkbox" data-k="eq-seg"><span>Póliza del seguro accesible sin internet</span></label></li>
           <li><label><input type="checkbox" data-k="eq-res"><span>Reservas de vuelos y hoteles descargadas</span></label></li>
           <li><label><input type="checkbox" data-k="eq-disc"><span>Certificado de discapacidad original (no copia) y una nota en inglés</span></label></li>
@@ -455,7 +456,7 @@ details.acc > summary .sub { display: block; font-weight: 400; font-size: 13px; 
         </ul>
         <h3 class="h">Electrónica</h3>
         <ul class="checks" data-group="eq">
-          <li><label><input type="checkbox" data-k="eq-adapt"><span>Adaptador de enchufe tipo A (clavijas planas), dos por habitación</span></label></li>
+          <li><label><input type="checkbox" data-k="eq-adapt"><span>Adaptador de enchufe tipo A (clavijas planas), dos por habitación. También los venden en Don Quijote</span></label></li>
           <li><label><input type="checkbox" data-k="eq-bat"><span>Batería externa (en cabina, nunca facturada)</span></label></li>
           <li><label><input type="checkbox" data-k="eq-auri"><span>Auriculares para los vuelos</span></label></li>
         </ul>
@@ -465,6 +466,7 @@ details.acc > summary .sub { display: block; font-weight: 400; font-size: 13px; 
           <li><label><input type="checkbox" data-k="eq-est"><span>Algo para el estómago</span></label></li>
           <li><label><input type="checkbox" data-k="eq-tir"><span>Tiritas y desinfectante</span></label></li>
           <li><label><input type="checkbox" data-k="eq-med"><span>Medicación habitual en su envase y con receta o informe en inglés</span></label></li>
+          <li><label><input type="checkbox" data-k="eq-masc"><span>Mascarillas (se siguen usando en el transporte si alguien está resfriado)</span></label></li>
         </ul>
         <h3 class="h">Mochila del día</h3>
         <ul class="checks" data-group="eq">
@@ -513,13 +515,29 @@ details.acc > summary .sub { display: block; font-weight: 400; font-size: 13px; 
       <summary><span class="ico">🚄</span><span>Transporte<span class="sub">Billetes sueltos, Suica y envío de maletas</span></span></summary>
       <div class="acc-body">
         <div id="transport"></div>
-        <div class="note"><b>¿Por qué no el JR Pass?</b>El de 14 días ronda los 480€. Esta ruta en billetes sueltos sale bastante más barata.</div>
+        <div class="note"><b>¿Por qué no el JR Pass?</b>El nacional de 14 días ronda los 480€ por persona. Esta ruta en billetes sueltos (incluyendo la excursión a Hiroshima) sale por unos 290–330€.</div>
+        <div class="note warn"><b>Reservad con antelación</b>Noviembre es temporada alta. Comprad los billetes que se reservan (Shinkansen, Nohi Bus) desde España, 1–2 meses antes si se puede.</div>
         <h3 class="h">Suica</h3>
         <p>Tarjeta para metro, bus, konbinis y máquinas expendedoras. Funciona en Tokio, Kanazawa, Kioto y Osaka. Lo más cómodo es tenerla en Apple Wallet o Google Wallet; si no, se saca en el aeropuerto al llegar.</p>
         <h3 class="h">Takuhaibin: enviar las maletas</h3>
         <p>Desde el hotel o un konbini se envía la maleta grande al siguiente hotel (unos 15–20€ por maleta, llega al día siguiente). Ideal para Tokio → Kanazawa o Kioto, y para viajar solo con mochila por Shirakawa-go y Takayama. Avisad al hotel de destino.</p>
         <h3 class="h">Taquillas (coin lockers)</h3>
         <p>En todas las estaciones grandes, 300–800¥. La app ecbo cloak reserva consigna en tiendas cercanas.</p>
+      </div>
+    </details>
+
+    <details class="acc" id="g-consejos">
+      <summary><span class="ico">💡</span><span>Consejos clave<span class="sub">Lo que marca la diferencia en el viaje</span></span></summary>
+      <div class="acc-body">
+        <ul class="tipl">
+          <li><b>Madrugad para los templos</b><span>Fushimi Inari, Arashiyama y Senso-ji son mágicos antes de las 8:00 y un caos después de las 10:00. En noviembre va muchísima gente.</span></li>
+          <li><b>Calzado cómodo y fácil de quitar</b><span>Caminaréis 15–20 km al día y os descalzaréis a menudo en templos. Mejor sin cordones y con calcetines sin agujeros (se ven).</span></li>
+          <li><b>Mochila pequeña del día</b><span>Con el takuhaibin moviendo las maletas: agua (hay fuentes y máquinas por todas partes), batería externa, bolsa para la basura y las galletas para los ciervos de Nara si las compráis antes.</span></li>
+          <li><b>WiFi gratis</b><span>Además de la eSIM, hay WiFi gratis en estaciones JR, konbinis, Starbucks y muchos espacios públicos (redes tipo “Japan Connected-free Wi-Fi”). Útil si se acaban los datos.</span></li>
+          <li><b>Enchufes de 100 V</b><span>Tipo A, de clavijas planas. Móviles y portátiles funcionan sin problema; secadores y planchas del pelo españoles (230 V) no: usad los del hotel.</span></li>
+          <li><b>Lo que cuesta encontrar allí</b><span>Desodorante en barra o roll-on de marcas occidentales (casi todo es en spray) y tallas grandes de ropa y calzado. El protector solar japonés, en cambio, es de los mejores del mundo.</span></li>
+          <li><b>Pasaporte</b><span>Llevadlo siempre encima (es obligatorio para turistas y necesario para el Tax Free) y una fotocopia guardada aparte.</span></li>
+        </ul>
       </div>
     </details>
 
@@ -533,8 +551,9 @@ details.acc > summary .sub { display: block; font-weight: 400; font-size: 13px; 
           <li><b>Alcohol</b><span>La edad mínima para beber y fumar es <b>20 años</b> (aunque la mayoría de edad es 18). Beber en la calle se tolera en general, pero Shibuya lo prohíbe alrededor de la estación.</span></li>
           <li><b>Fumar</b><span>Prohibido fumar andando en casi todo Tokio y Osaka. Solo en las zonas señalizadas, normalmente junto a las estaciones. Hay multas.</span></li>
           <li><b>Baños</b><span>Botón con icono de chorro para el washlet; el grande y rojo suele ser el de emergencia.</span></li>
-          <li><b>Alergias</b><span>Llevad una tarjeta en japonés (busca “allergy card Japan”). Soja, marisco, gluten y huevo están en casi todo.</span></li>
-          <li><b>Festivo el 3 de noviembre</b><span>Día de la Cultura: más gente local en parques y templos, y Disneyland más lleno.</span></li>
+          <li><b>Alergias</b><span>Llevad una tarjeta en japonés (busca “allergy card Japan”). Soja, marisco, gluten y huevo están en casi todo, y en los locales con máquina de tickets a veces nadie habla inglés.</span></li>
+          <li><b>Festivo el 3 de noviembre</b><span>Día de la Cultura: algunos museos son gratis, pero hay más gente local en templos y parques, y Disneyland estará más lleno.</span></li>
+          <li><b>Frases básicas</b><span>Sumimasen (perdón, disculpe: sirve para todo). Arigatō gozaimasu (gracias). La gente agradece mucho el esfuerzo, aunque sea una palabra. Más frases para enseñar en SOS.</span></li>
         </ul>
       </div>
     </details>
@@ -543,7 +562,7 @@ details.acc > summary .sub { display: block; font-weight: 400; font-size: 13px; 
       <summary><span class="ico">🍁</span><span>Clima y otoño<span class="sub">Qué tiempo hará y cuándo hay momiji</span></span></summary>
       <div class="acc-body">
         <p><b>Tokio y Osaka:</b> 10–18°C de día y 6–8°C de noche. <b>Kanazawa y Takayama:</b> más frío y lluvia frecuente; en Takayama puede helar de noche.</p>
-        <p><b>Momiji (hojas rojas):</b> en Nikko, Takayama y Shirakawa-go os lo encontraréis en su punto. En Kioto y Osaka estará empezando a colorear: el pico suele llegar a finales de noviembre, así que los rincones más altos y sombríos (Tofuku-ji, Arashiyama, Philosopher’s Path) serán los primeros en ponerse rojos.</p>
+        <p><b>Momiji (hojas rojas):</b> en Nikko (zona de templos), Takayama y Shirakawa-go os lo encontraréis en buen momento. En Kioto y Osaka estará empezando: las previsiones de 2026 sitúan el pico de Kioto entre el 24 de noviembre y principios de diciembre, así que veréis los primeros arces rojos (los rincones más altos y sombríos cambian antes), no el pico completo.</p>
         <p>En la pestaña Hoy aparece la previsión real de cada día cuando faltan menos de dos semanas.</p>
       </div>
     </details>
@@ -555,7 +574,8 @@ details.acc > summary .sub { display: block; font-weight: 400; font-size: 13px; 
           <li><b>Visado</b><span>Con pasaporte español no hace falta para turismo de hasta 90 días. El pasaporte debe ser válido toda la estancia.</span></li>
           <li><b>Seguro y sanidad</b><span>La sanidad allí es cara sin seguro. Guardad todos los recibos médicos para el reembolso.</span></li>
           <li><b>Medicamentos</b><span>Algunos medicamentos comunes en España (ciertos antigripales con pseudoefedrina o codeína) están restringidos en Japón. Llevad solo lo necesario, en su caja y con receta.</span></li>
-          <li><b>Accesibilidad</b><span>Llevad el certificado de discapacidad original y una nota en inglés. En USJ, Guest Services ofrece un pase de apoyo para esperar fuera de la cola. En Tokyo Disney, el Disability Access Service permite esperar en otra zona, pero el tiempo de espera es parecido. Preguntad al entrar.</span></li>
+          <li><b>Emergencias</b><span>Policía 110, ambulancia y bomberos 119. Todos los teléfonos y la embajada, en la pestaña SOS.</span></li>
+          <li><b>Accesibilidad</b><span>Llevad siempre el certificado de discapacidad original (no foto ni copia) y una nota o traducción en inglés: ayuda mucho con el personal. En USJ, presentadlo en Guest Services al entrar para pedir el Guest Support Pass (esperáis en otra zona y volvéis a vuestra hora, no es un pase rápido). Para extranjeros lo valoran caso a caso y alguna fuente dice que exigen certificado japonés, así que preguntadles antes por email. No hemos encontrado descuento en la entrada para extranjeros. En Tokyo Disney, el Disability Access Service permite esperar sentados en otra zona, pero el tiempo de espera es parecido.</span></li>
         </ul>
       </div>
     </details>
@@ -571,8 +591,11 @@ details.acc > summary .sub { display: block; font-weight: 400; font-size: 13px; 
           <li><b>Japan Travel by NAVITIME</b><span>Mejor que Google para buses de Takayama y Shirakawa-go.</span></li>
           <li><b>GO</b><span>Taxis en inglés y con tarjeta. Con 5 personas puede salir a cuenta entre todos (necesitaréis 2 coches).</span></li>
           <li><b>Tabelog</b><span>Las reseñas de restaurantes de los japoneses. Un 3,5 ya es excelente.</span></li>
-          <li><b>Safety tips</b><span>App oficial de alertas de terremotos y tifones, en español.</span></li>
-          <li><b>ecbo cloak</b><span>Consigna de maletas por horas, útil el último día en Osaka.</span></li>
+          <li><b>Suica en Wallet</b><span>Añadidla a Apple Wallet o Google Wallet y recargad con tarjeta. Se acerca el móvil al lector, incluso con la pantalla apagada en iPhone.</span></li>
+          <li><b>NERV Disaster Prevention</b><span>Alertas al momento de terremotos, tifones e inundaciones, en inglés, con la intensidad prevista según dónde estéis. Gratis y muy recomendada. Alternativa oficial: Safety tips, en español.</span></li>
+          <li><b>LINE</b><span>El WhatsApp de Japón. No imprescindible, pero útil para hablar con algún alojamiento o hacer una reserva directa.</span></li>
+          <li><b>Klook</b><span>Entradas, excursiones y billetes de tren comprados desde España.</span></li>
+          <li><b>ecbo cloak</b><span>Consigna de maletas por horas cerca de estaciones, útil el último día en Osaka entre el check-out y el vuelo.</span></li>
         </ul>
       </div>
     </details>
@@ -582,7 +605,8 @@ details.acc > summary .sub { display: block; font-weight: 400; font-size: 13px; 
       <div class="acc-body">
         <p><b>iPhone (Safari):</b> botón Compartir → “Añadir a pantalla de inicio”.</p>
         <p><b>Android (Chrome):</b> menú ⋮ → “Instalar aplicación” o “Añadir a pantalla de inicio”.</p>
-        <p>Después de abrirla una vez con internet, funciona en modo avión. Cuando haya cambios se actualiza sola la próxima vez que tengáis conexión.</p>
+        <p class="small muted">Instalad todas las apps y el japonés offline de Google Translate antes de subir al avión: casi todas (Maps, Tabelog, LINE, GO) necesitan internet, así que tened la eSIM activa nada más aterrizar.</p>
+        <p>Esta web, después de abrirla una vez con internet, funciona en modo avión. Cuando haya cambios se actualiza sola la próxima vez que tengáis conexión.</p>
         <div class="btn-row"><button class="btn" id="install-btn" hidden>Instalar ahora</button></div>
       </div>
     </details>
@@ -677,9 +701,10 @@ const DIAS = [
 
   { fecha: '2026-10-31', n: 1, ciudad: 'tokio', tiempo: 'tokio', flag: 'Halloween',
     titulo: 'Llegada y noche de Halloween', resumen: 'Shinjuku y Shibuya disfrazados.',
-    plan: ['Aterrizaje 11:55. Inmigración y aduanas con los QR de Visit Japan Web', 'Narita Express o Skyliner al centro (~1 h)', 'Hotel, ducha y descanso corto, sin dormir', 'Noche en Shinjuku (Kabukicho) y Shibuya', 'Don Quijote para las primeras compras (abre 24 h)'],
+    plan: ['Aterrizaje 11:55. Inmigración y aduanas con los QR de Visit Japan Web', 'Sacar o recargar la Suica en el aeropuerto', 'Narita Express al centro (~1 h, ~20€; vale Suica + billete de asiento). Si llegáis a Haneda, monorraíl o Keikyu (~30 min, ~4€)', 'Check-in en el hotel y descanso corto, sin dormir', 'Shinjuku por la noche: disfraces, ambiente y tiendas abiertas hasta tarde', 'Shibuya y su cruce lleno de gente disfrazada', 'Don Quijote para las primeras compras (abre 24 h)'],
     notas: [
-      { t: 'warn', h: 'Halloween en Shibuya ya no es lo que sale en los vídeos', x: 'Desde 2023 el distrito pide que no se vaya a celebrarlo allí, prohíbe beber en la calle alrededor de la estación y hay mucha policía. Id igual a ver el ambiente, pero el mejor plan es moverse entre Shinjuku y Shibuya disfrazados.' },
+      { t: 'tip', h: 'Disfrazaos', x: 'Aunque sea algo sencillo. La gente interactúa mucho más con vosotros y en grupo es muy divertido.' },
+      { t: 'warn', h: 'Shibuya pide que no se vaya a celebrar Halloween', x: 'Desde 2024 está prohibido beber en la calle alrededor de la estación (cada noche de 18:00 a 5:00) y en Halloween hay mucha seguridad y tiendas que no venden alcohol. Id a ver el ambiente, pero sin botellón.' },
       { t: 'tip', h: 'Último día del Tax Free de siempre', x: 'Hoy es el único día del viaje en que el 10% se descuenta en caja. Si alguien quiere un iPhone o electrónica cara, Yodobashi o Bic Camera hoy.' }],
     comer: ['Omoide Yokocho', 'Ichiran Shibuya'],
     lluvia: 'Shinjuku y Shibuya tienen pasos subterráneos y centros comerciales conectados. Paraguas plegable y listo.',
@@ -688,91 +713,100 @@ const DIAS = [
   { fecha: '2026-11-01', n: 2, ciudad: 'tokio', tiempo: 'hakone', flag: 'Excursión',
     titulo: 'Monte Fuji y Hakone', resumen: 'Excursión organizada, ya pagada (99€).',
     plan: ['Punto de encuentro de la excursión en Tokio (revisad la hora en el bono)', 'Lago Ashi con vistas al Fuji, ya con nieve en la cima', 'Teleférico sobre el valle volcánico de Owakudani', 'Tren de cremallera Hakone Tozan', 'Onsen con vistas, si la excursión lo incluye'],
-    notas: [{ t: 'tip', h: 'El Fuji es caprichoso', x: 'Se ve mejor a primera hora. Si está nublado, Hakone sigue mereciendo la pena.' }],
+    notas: [{ t: 'tip', h: 'El Fuji es caprichoso', x: 'Que se vea depende del tiempo. Noviembre tiene bastantes días despejados y por la mañana se ve mejor. Si está nublado, el resto de Hakone sigue mereciendo mucho la pena.' }],
     comer: [], lluvia: 'La excursión no suele cancelarse. Con nubes no se verá el Fuji, pero el teleférico, el lago y el onsen siguen valiendo la pena.',
     paradas: [{ n: 'Lake Ashi, Hakone', t: 'Vistas al Fuji' }, { n: 'Owakudani, Hakone', t: 'Valle volcánico' }] },
 
   { fecha: '2026-11-02', n: 3, ciudad: 'tokio', tiempo: 'nikko', flag: 'Excursión',
     titulo: 'Nikko', resumen: 'Santuarios dorados en la montaña, rodeados de arces.',
-    plan: ['Tren desde Asakusa (Tobu) a Nikko, unas 2 h (~25€ ida y vuelta)', 'Tosho-gu, el santuario más recargado de Japón', 'Los tres monos sabios originales', 'Puente rojo Shinkyo', 'Cascada Kegon y lago Chuzenji (~45 min en bus, más con atascos en otoño)', 'Vuelta a Tokio por la tarde-noche'],
-    notas: [{ t: 'tip', h: 'Salid temprano', x: 'En temporada de momiji la carretera de curvas Irohazaka se atasca. Si vais justos, quedaos en la zona de templos y dejad la cascada.' }],
+    plan: ['Tren desde Asakusa (Tobu) a Nikko, unas 2 h (~25€ ida y vuelta; más con el expreso Spacia)', 'Tosho-gu, el santuario más ornamentado de Japón, rodeado de arces', 'Los tres monos sabios: el original de “no ver, no oír, no hablar” está aquí', 'Puente rojo Shinkyo', 'Cascada Kegon y lago Chuzenji (~45 min en bus, más con atascos en otoño)', 'Vuelta a Tokio por la tarde-noche'],
+    notas: [
+      { t: 'tip', h: 'Otoño en Nikko', x: 'Es de los mejores sitios de momiji de Japón. Arriba, en el lago Chuzenji, el pico suele ser a finales de octubre; abajo, en los templos, a principios de noviembre, justo cuando vais.' },
+      { t: 'tip', h: 'Salid temprano', x: 'En temporada de momiji la carretera de curvas Irohazaka se atasca. Si vais justos, quedaos en la zona de templos y dejad la cascada.' }],
     comer: ['Yuba (piel de tofu), la especialidad local, en los restaurantes junto a la estación'],
     lluvia: 'Los templos tienen soportales. Si llueve fuerte, centraos en Tosho-gu y dejad la cascada.',
     paradas: [{ n: 'Tobu Nikko Station', t: 'Llegada' }, { n: 'Shinkyo Bridge, Nikko', t: 'Puente rojo' }, { n: 'Nikko Toshogu', t: 'Santuario principal' }, { n: 'Kegon Falls', t: 'Cascada' }] },
 
   { fecha: '2026-11-03', n: 4, ciudad: 'tokio', tiempo: 'urayasu', flag: 'Disney',
     titulo: 'Tokyo Disneyland', resumen: 'El parque clásico, el del castillo.',
-    plan: ['Llegad 45–60 min antes de abrir (mirad el horario del día en la app)', 'Nada más entrar, Premier Access en la app para La Bella y la Bestia', 'Big Thunder Mountain, Splash Mountain, Haunted Mansion y Piratas del Caribe', 'Desfile de día y Electrical Parade Dreamlights por la noche', 'Fantasyland al atardecer y fuegos si los hay'],
+    plan: ['Llegad 45–60 min antes de abrir: suele abrir a las 9:00 (mirad el horario del día en la app)', 'Nada más entrar, Premier Access en la app para La Bella y la Bestia, la más solicitada', 'Big Thunder Mountain y Splash Mountain primero', 'Haunted Mansion y Piratas del Caribe', 'Desfile de mediodía, espectacular en el parque japonés', 'Fantasyland por la tarde, Electrical Parade Dreamlights y fuegos al cierre si los hay'],
     notas: [
-      { t: 'warn', h: 'Es festivo nacional', x: 'El 3 de noviembre (Día de la Cultura) el parque estará muy lleno. Space Mountain está cerrada por reconstrucción.' },
-      { t: 'tip', h: 'App oficial', x: 'Toda la gestión de esperas va por la app de Tokyo Disney Resort. No se puede entrar comida de fuera.' }],
+      { t: 'warn', h: 'Es festivo nacional', x: 'El 3 de noviembre (Día de la Cultura) el parque estará muy lleno. Space Mountain está cerrada por reconstrucción hasta 2027.' },
+      { t: 'tip', h: 'App oficial', x: 'Descargad la app de Tokyo Disney Resort antes de llegar: esperas, Premier Access y Standby Pass van por ahí. No se puede entrar comida de fuera.' }],
     comer: ['Dentro del parque'],
     lluvia: 'Abre igual. Muchas atracciones son cubiertas; los ponchos se venden dentro.',
     paradas: [{ n: 'Tokyo Disneyland', t: 'Maihama' }] },
 
   { fecha: '2026-11-04', n: 5, ciudad: 'tokio', tiempo: 'urayasu', flag: 'Disney',
     titulo: 'Tokyo DisneySea', resumen: 'El parque que solo existe aquí.',
-    plan: ['Llegada antes de la apertura', 'Fantasy Springs (Frozen, Rapunzel, Peter Pan): sacad el Standby Pass o Premier Access en la app nada más entrar', 'Journey to the Center of the Earth y Soaring: Fantastic Flight', 'Tower of Terror e Indiana Jones Adventure', 'Espectáculo nocturno Believe! Sea of Dreams en el puerto'],
-    notas: [{ t: 'tip', h: 'El favorito de los adultos', x: 'Si en algún momento hay que elegir un solo parque, es este.' }],
+    plan: ['Llegada antes de la apertura', 'Fantasy Springs (Frozen, Rapunzel, Peter Pan): sacad el Standby Pass o Premier Access en la app nada más entrar', 'Journey to the Center of the Earth la primera: la cola se dispara rápido', 'Tower of Terror antes de las 10:00', 'Indiana Jones Adventure, Sindbad y Soaring: Fantastic Flight por la mañana', 'Espectáculo nocturno Believe! Sea of Dreams sobre el agua (sustituyó a Fantasmic!)'],
+    notas: [{ t: 'tip', h: 'El favorito de los adultos', x: 'DisneySea solo existe aquí y es el más valorado por adultos. Si hubiera que elegir uno, sería este; con dos días veis los dos con calma.' }],
     comer: ['Dentro del parque'],
     lluvia: 'Abre igual. El espectáculo nocturno puede cancelarse con lluvia fuerte: miradlo en la app.',
     paradas: [{ n: 'Tokyo DisneySea', t: 'Maihama' }] },
 
   { fecha: '2026-11-05', n: 6, ciudad: 'tokio', tiempo: 'tokio',
     titulo: 'Tokyo Tower y Asakusa', resumen: 'Día libre: vistas y el Tokio más clásico.',
-    plan: ['Tokyo Tower por la mañana', 'Azabudai Hills y Roppongi', 'Asakusa por la tarde: Senso-ji y la calle Nakamise', 'Skytree iluminada desde el río Sumida', 'Noche libre: izakaya, karaoke o últimas compras', 'Antes de dormir: enviar las maletas a Kanazawa (takuhaibin)'],
+    plan: ['Tokyo Tower por la mañana: grandes vistas y menos masificada que Skytree', 'Roppongi y Minato, junto a la torre', 'Asakusa por la tarde: Senso-ji y la calle Nakamise', 'Skytree iluminada desde el río Sumida', 'Noche libre: izakaya, karaoke o últimas compras', 'Antes de dormir: enviar las maletas a Kanazawa (takuhaibin)'],
     notas: [{ t: 'tip', h: 'Último día en Tokio', x: 'Mañana salís temprano. Dejad hoy hechas las compras grandes y el envío de maletas desde el hotel.' }],
     comer: ['Sometaro', 'Daikokuya Tempura'],
-    lluvia: 'teamLab Borderless, en Azabudai Hills, al lado de Tokyo Tower, es el plan perfecto con lluvia (comprad entrada antes).',
+    lluvia: 'Tokyo Tower tiene mirador cubierto y Asakusa y Nakamise están en parte techadas. Si llueve mucho, teamLab Borderless (Azabudai Hills, al lado de Tokyo Tower) es el plan perfecto; comprad entrada antes.',
     paradas: [{ n: 'Tokyo Tower', t: 'Vistas' }, { n: 'Azabudai Hills', t: 'teamLab Borderless' }, { n: 'Senso-ji, Asakusa', t: 'El templo más antiguo' }, { n: 'Nakamise Shopping Street', t: 'Souvenirs' }, { n: 'Sumida Park, Tokyo', t: 'Skytree iluminada' }] },
 
   { fecha: '2026-11-06', n: 7, ciudad: 'kanazawa', tiempo: 'kanazawa',
     titulo: 'Kanazawa: jardín, té, geishas y samuráis', resumen: 'Ciudad pequeña, se recorre entera a pie.',
-    plan: ['Primer Shinkansen Hokuriku desde Tokio (2 h 30 min, ~90€)', 'Kenroku-en, uno de los tres jardines más bellos de Japón (320¥)', 'Mercado Omicho para comer marisco', 'Higashi Chaya, el barrio de geishas', 'Ceremonia del té en una casa de té del barrio (reservada)', 'Distrito samurái Nagamachi', 'Cena con cangrejo de nieve'],
+    plan: ['Salida temprana: primer Shinkansen Hokuriku desde Tokio (2 h 30 min, ~90€)', 'Kenroku-en nada más llegar: uno de los tres jardines más bellos de Japón (320¥)', 'Mercado Omicho para comer: el mejor marisco de la región', 'Higashi Chaya, el barrio de geishas mejor conservado', 'Ceremonia del té en una casa de té del barrio (~20–30€, reservada con antelación)', 'Distrito samurái Nagamachi: callejones de adobe de la época Edo, a 15 min andando', 'Cena con cangrejo de nieve (zuwaigani)'],
     notas: [
       { t: 'tip', h: 'Llegáis el día que abre el cangrejo', x: 'La temporada de cangrejo de nieve en Ishikawa empieza el 6 de noviembre. En Kenroku-en estarán colocando los yukitsuri, las cuerdas que protegen los pinos de la nieve.' },
-      { t: 'tip', h: 'Distancias', x: 'Todo está a 15–20 min andando. Si llueve, el bus urbano para en todos estos sitios.' }],
+      { t: 'tip', h: 'Takuhaibin', x: 'Mandad la maleta desde el hotel de Tokio a Kanazawa la noche anterior (~15–20€) y viajad solo con mochila en el Shinkansen.' },
+      { t: 'tip', h: 'Distancias', x: 'Todo está a 15–20 min andando entre sí: es un día completo pero llevadero. Si llueve, el bus urbano para en todos estos sitios.' }],
     comer: ['Kourin Sushi', 'Puestos del Mercado Omicho', 'Mori Mori Sushi Omicho'],
     lluvia: 'Kanazawa es de las ciudades más lluviosas de Japón: paraguas siempre. Omicho está cubierto y Kenroku-en con lluvia también es precioso.',
     paradas: [{ n: 'Kanazawa Station', t: 'Llegada' }, { n: 'Kenrokuen Garden', t: 'Jardín' }, { n: 'Omicho Market', t: 'Comer' }, { n: 'Higashi Chaya District', t: 'Geishas y té' }, { n: 'Nagamachi Samurai District', t: 'Samuráis' }] },
 
-  { fecha: '2026-11-07', n: 8, ciudad: 'takayama', tiempo: 'shirakawa', flag: 'Ruta recomendada',
-    titulo: 'Shirakawa-go de camino a Takayama', resumen: 'El pueblo de tejados de paja, parando en mitad del viaje.',
-    plan: ['Bus Nohi Kanazawa → Shirakawa-go (~1 h 15 min)', 'Dejar mochilas en la consigna de la terminal de bus', 'Paseo por las casas gassho-zukuri y subida al mirador Shiroyama', 'Bus Shirakawa-go → Takayama (~50 min)', 'Sanmachi Suji: calles del s. XVII, sake, miso y dango', 'Bodegas de sake con degustación (bola de cedro verde en la puerta)', 'Cena de Hida beef'],
+  { fecha: '2026-11-07', n: 8, ciudad: 'takayama', tiempo: 'takayama',
+    titulo: 'Takayama, Shirakawa-go y Hida no Sato', resumen: 'El pueblo más auténtico de los Alpes japoneses.',
+    plan: ['Bus Kanazawa → Takayama por la mañana (Nohi Bus, ~2 h 15 min)', 'Mercado matutino Jinya-mae (abre hasta mediodía; cuanto antes, mejor)', 'Sanmachi Suji: calles históricas de la época Edo, sake, miso y dango', 'Bodegas de sake con degustación gratis (buscad la bola de cedro verde en la entrada)', 'Hida no Sato (Folk Village): casas de montaña históricas, a 10 min en bus', 'Excursión a Shirakawa-go (50 min en bus, ~17€ ida y vuelta): casas gassho-zukuri, Patrimonio de la UNESCO', 'Cena de Hida beef: wagyu local, mejor y más barato que en ningún otro sitio'],
     notas: [
-      { t: 'tip', h: 'Por qué así', x: 'El bus de Kanazawa a Takayama pasa por Shirakawa-go. Parando en medio os ahorráis la ida y vuelta desde Takayama. Reservad los dos tramos en Nohi Bus y mandad las maletas por takuhaibin.' },
-      { t: 'tip', h: 'Hida no Sato', x: 'El museo de casas rurales de Takayama es parecido a Shirakawa-go. Solo si sobra tiempo.' }],
-    comer: ['Hidagyu Maruaki', 'Suzuya', 'Hida Kotte Ushi'],
+      { t: 'tip', h: 'Shirakawa-go', x: 'Para muchos viajeros es lo más especial del viaje: tejados de paja enormes que no existen en ningún otro sitio. El bus requiere reserva.' },
+      { t: 'tip', h: 'Alternativa para ganar tiempo', x: 'El bus de Kanazawa a Takayama pasa por Shirakawa-go. Podéis bajaros allí (~1 h 15 min desde Kanazawa, 2.800¥), dejar las mochilas en la consigna de la terminal y seguir a Takayama (~50 min) en otro bus del mismo día. Os ahorráis la ida y vuelta; a cambio, los mercados de Takayama pasan a la mañana del día 9. Reservad los dos tramos en Nohi Bus.' }],
+    comer: ['Hidagyu Maruaki', 'Suzuya', 'Hida Kotte Ushi', 'Matsuki Sushi', 'Heianraku'],
     lluvia: 'Shirakawa-go con lluvia sigue siendo bonito, pero menos cómodo. En Takayama los aleros del casco antiguo cubren bastante.',
-    paradas: [{ n: 'Shirakawa-go Bus Terminal', t: 'Parada intermedia' }, { n: 'Shiroyama Viewpoint, Shirakawa-go', t: 'Mirador' }, { n: 'Takayama Nohi Bus Center', t: 'Llegada' }, { n: 'Sanmachi Suji, Takayama', t: 'Casco antiguo' }] },
+    paradas: [{ n: 'Takayama Nohi Bus Center', t: 'Llegada en bus' }, { n: 'Jinya-mae Morning Market, Takayama', t: 'Mercado matutino' }, { n: 'Sanmachi Suji, Takayama', t: 'Casco histórico' }, { n: 'Hida Folk Village', t: 'Hida no Sato' }, { n: 'Shirakawa-go', t: 'Patrimonio UNESCO' }] },
 
   { fecha: '2026-11-08', n: 9, ciudad: 'kioto', tiempo: 'kioto',
-    titulo: 'Mercados de Takayama y llegada a Kioto', resumen: 'Mañana en Takayama, tarde en Gion.',
-    plan: ['Mercados matutinos Miyagawa y Jinya-mae (desde las 7:00)', 'Tren Takayama → Kioto: Hida hasta Nagoya y Shinkansen (~3 h)', 'Check-in en Kioto', 'Primer paseo por Gion y Hanamikoji al atardecer', 'Cena en una izakaya del barrio'],
-    notas: [{ t: 'warn', h: 'Revisad el precio del tren', x: 'Teníamos apuntados ~39€, pero con Hida + Shinkansen suele rondar los 11.000¥ (~65€). Comprobadlo al comprar.' }],
+    titulo: 'Takayama → Kioto: llegada y Gion', resumen: 'Viaje a Kioto y primer paseo por Gion.',
+    plan: ['Tren Takayama → Kioto (~3 h con cambio en Nagoya)', 'Check-in en el hotel de Kioto', 'Primer paseo por Gion y Hanamikoji por la tarde', 'Cena en una izakaya tradicional del barrio'],
+    notas: [
+      { t: 'warn', h: 'Revisad el precio del tren', x: 'Teníamos apuntados ~39€, pero no hay tren tan barato. Opciones: Hida + Shinkansen vía Nagoya (~3 h, ~10.800¥ ≈ 63€), el Hida directo que va a Kioto (1 al día, ~4 h, ~7.600¥ ≈ 45€) o bus directo (~5 h, 5.500–6.500¥ ≈ 35€).' },
+      { t: 'tip', h: 'Kioto en noviembre', x: 'Los arces empiezan a cambiar: lo más alto y sombrío se pondrá rojo antes, pero el pico en Kioto suele ser a finales de noviembre.' }],
     comer: ['Yagenbori', 'Gion Tanto'],
     lluvia: 'Día de viaje casi entero; poco afectado.',
-    paradas: [{ n: 'Miyagawa Morning Market', t: 'Mercado' }, { n: 'Kyoto Station', t: 'Llegada' }, { n: 'Hanamikoji Street', t: 'Gion' }] },
+    paradas: [{ n: 'Kyoto Station', t: 'Llegada en tren' }, { n: 'Gion, Kyoto', t: 'Barrio de geishas' }, { n: 'Hanamikoji Street', t: 'Paseo de tarde' }] },
 
   { fecha: '2026-11-09', n: 10, ciudad: 'kioto', tiempo: 'miyajima', flag: 'Excursión',
     titulo: 'Hiroshima y Miyajima', resumen: 'Excursión desde Kioto (69€).',
-    plan: ['Shinkansen Kioto → Hiroshima (1 h 40 min)', 'Parque Memorial de la Paz y Museo de la Bomba Atómica', 'Ferry a Miyajima (10 min; la isla cobra 100¥ de tasa)', 'Santuario Itsukushima y el torii en el mar', 'Ciervos sueltos por la isla', 'Vuelta a Kioto por la noche'],
-    notas: [{ t: 'tip', h: 'El torii flotante', x: 'Con marea alta parece flotar; con marea baja se puede llegar andando hasta él. Mirad la tabla de mareas del día.' }],
+    plan: ['Shinkansen Kioto → Hiroshima (~1 h 40 min, incluido en la excursión)', 'Parque Memorial de la Paz y Museo de la Bomba Atómica: muy emocionante', 'Ferry a la isla de Miyajima (10 min; la isla cobra 100¥ de tasa)', 'Santuario Itsukushima, el más fotogénico de Japón, con el torii sobre el mar', 'Ciervos sueltos por la isla, como en Nara', 'Vuelta a Kioto por la tarde-noche'],
+    notas: [
+      { t: 'tip', h: 'El torii flotante', x: 'Con marea alta parece flotar sobre el agua: la foto más icónica del viaje. Con marea baja se puede llegar andando hasta él. Mirad la tabla de mareas del 9 de noviembre.' },
+      { t: 'warn', h: 'Confirmad qué incluye la excursión', x: 'Solo el Shinkansen de ida y vuelta Kioto–Hiroshima ya cuesta unos 22.000¥ (~130€). Si la excursión de 69€ va en bus, el viaje será bastante más largo.' }],
     comer: ['Okonomiyaki estilo Hiroshima (con fideos) y ostras a la brasa en Miyajima'],
     lluvia: 'El museo es cubierto. Miyajima con lluvia y niebla también es preciosa.',
     paradas: [{ n: 'Hiroshima Peace Memorial Park', t: 'Memorial' }, { n: 'Miyajimaguchi Ferry Terminal', t: 'Ferry' }, { n: 'Itsukushima Shrine', t: 'Torii flotante' }] },
 
   { fecha: '2026-11-10', n: 11, ciudad: 'kioto', tiempo: 'nara',
     titulo: 'Fushimi Inari y Nara', resumen: 'Los mil torii naranjas y los ciervos que hacen reverencias.',
-    plan: ['Fushimi Inari a las 7:00, sin gente (gratis, abierto 24 h)', 'Tren JR a Nara (45 min, ~720¥)', 'Parque de Nara y sus ciervos: galletas shika senbei (~200¥)', 'Todai-ji, el Buda gigante de 15 m', 'Vuelta a Kioto y cena en Gion'],
-    notas: [{ t: 'tip', h: 'Ciervos', x: 'Haced una reverencia y os la devolverán. Cuando veáis que no os queda galleta, enseñad las manos vacías o os perseguirán.' }],
+    plan: ['Fushimi Inari a las 7:00: miles de torii naranjas sin gente (gratis, abierto 24 h)', 'Tren a Nara (45 min, ~720¥)', 'Parque de Nara y sus ciervos sagrados sueltos', 'Galletas shika senbei (~200¥): los ciervos se inclinan para pedíroslas', 'Todai-ji: uno de los mayores edificios de madera del mundo, con un Buda de 15 m', 'Vuelta a Kioto para cenar en Gion'],
+    notas: [
+      { t: 'tip', h: 'Orden', x: 'Fushimi Inari primero, madrugando, y Nara por la mañana-mediodía. Así evitáis las masas en los dos sitios.' },
+      { t: 'tip', h: 'Ciervos', x: 'Cuando se os acaben las galletas, enseñad las manos vacías o os seguirán.' }],
     comer: ['Restaurantes junto a la estación de Nara', 'Mercado de Nishiki por la tarde'],
     lluvia: 'Los torii de Fushimi Inari cubren algo. En Nara, Todai-ji es interior.',
     paradas: [{ n: 'Fushimi Inari Taisha', t: 'Torii' }, { n: 'Nara Park', t: 'Ciervos' }, { n: 'Todai-ji', t: 'Gran Buda' }] },
 
   { fecha: '2026-11-11', n: 12, ciudad: 'kioto', tiempo: 'kioto',
     titulo: 'Arashiyama, Kiyomizudera y Gion', resumen: 'El Kioto de las fotos.',
-    plan: ['Bosque de bambú de Arashiyama antes de las 8:00', 'Jardín zen de Tenryu-ji', 'Kiyomizudera y sus cuestas de Sannenzaka', 'Gion al atardecer por Hanamikoji', 'Cena en Gion o Pontocho'],
+    plan: ['Bosque de bambú de Arashiyama antes de las 8:00 (después es un caos)', 'Tenryu-ji: jardín zen con estanque, de los más bellos de Japón', 'Kiyomizudera, el templo sobre la ladera, y sus cuestas de Sannenzaka', 'Gion al atardecer: Hanamikoji, la calle de las geishas', 'Cena en un restaurante tradicional o izakaya de Gion'],
     notas: [{ t: 'tip', h: 'Madrugad', x: 'Arashiyama y Kiyomizudera en noviembre están entre los sitios más llenos de Japón. Antes de las 8:00 es otra experiencia.' }],
     comer: ['Yudofu Sagano', 'Gion Tanto', 'Ramen en Pontocho'],
     lluvia: 'Tenryu-ji tiene salas interiores preciosas. Si llueve fuerte, cambiad el orden y dejad el bambú para cuando escampe.',
@@ -780,7 +814,7 @@ const DIAS = [
 
   { fecha: '2026-11-12', n: 13, ciudad: 'osaka', tiempo: 'kioto',
     titulo: 'Kinkaku-ji y paso a Osaka', resumen: 'Última mañana en Kioto, noche de neones en Dotonbori.',
-    plan: ['Kinkaku-ji, el pabellón dorado, a primera hora', 'Philosopher’s Path entre arces', { x: 'Tofuku-ji, si sobra tiempo (está al sur, cerca de la estación)', opt: true }, 'Tren a Osaka (JR, 30 min, ~4€) a mediodía', 'Castillo de Osaka por la tarde', 'Dotonbori de noche'],
+    plan: ['Kinkaku-ji, el pabellón dorado, temprano', 'Philosopher’s Path: canal con arces, el koyo de Kioto con calma', { x: 'Tofuku-ji, si da tiempo: menos conocido y de los mejores momiji de Kioto (está al sur, cerca de la estación)', opt: true }, 'Tren a Osaka a mediodía (JR, ~30 min, ~4€; en Shinkansen 15 min, ~9€)', 'Castillo de Osaka por la tarde', 'Dotonbori al atardecer y de noche'],
     notas: [{ t: 'tip', h: 'Guardad energía', x: 'El canal de Dotonbori con los neones es mucho mejor de noche. Enviad las maletas de Kioto a Osaka la noche anterior.' }],
     comer: ['Mercado de Nishiki', 'Mizuno', 'Takoyaki Wanaka'],
     lluvia: 'Kinkaku-ji con lluvia se refleja igual de bien. Dotonbori tiene galerías cubiertas.',
@@ -788,7 +822,7 @@ const DIAS = [
 
   { fecha: '2026-11-13', n: 14, ciudad: 'osaka', tiempo: 'osaka',
     titulo: 'Namba, Shinsaibashi y Shinsekai', resumen: 'Comer, comprar y salir.',
-    plan: ['Mercado Kuromon por la mañana', 'Shinsaibashi-suji, 600 m de calle comercial cubierta', 'Amerikamura: vintage y streetwear', 'Den Den Town si buscáis figuras o electrónica', 'Shinsekai al anochecer: kushikatsu', 'Karaoke en Big Echo o recreativos en Round1'],
+    plan: ['Mercado Kuromon por la mañana: el mejor de Osaka para comer', 'Shinsaibashi-suji: casi 600 m de calle comercial cubierta', 'Amerikamura: ropa vintage, streetwear japonés y tiendas alternativas', 'Den Den Town si buscáis figuras o electrónica', 'Shinsekai: barrio retro y los mejores kushikatsu de la ciudad', 'Noche: karaoke en Big Echo (cabinas privadas, bebida, hasta de madrugada) o Round1 (grúas, purikura, máquinas de ritmo)'],
     notas: [{ t: 'tip', h: 'Kushikatsu', x: 'Regla sagrada: no se moja dos veces en la salsa común. Para echar más, usad un trozo de col.' }],
     comer: ['Kushikatsu Daruma', 'Chitose', 'Takoyaki Wanaka', 'Mercado Kuromon Ichiba'],
     lluvia: 'Shinsaibashi-suji y casi todo Namba están techados: es el día perfecto si llueve.',
@@ -796,109 +830,123 @@ const DIAS = [
 
   { fecha: '2026-11-14', n: 15, ciudad: 'osaka', tiempo: 'osaka', flag: 'Universal',
     titulo: 'Universal Studios Japan', resumen: 'Super Nintendo World y Harry Potter.',
-    plan: ['Llegad 1 h antes de abrir', 'Con la app de USJ, sacad la entrada con hora a Super Nintendo World (si no lleváis Express Pass)', 'Mario Kart, Yoshi y Donkey Kong Country', 'Mundo de Harry Potter antes de las 11:00', 'Flying Dinosaur, Minions y el resto por la tarde'],
+    plan: ['Llegad 1 h antes de abrir (suele abrir entre 8:30 y 9:00): con grupo grande es imprescindible', 'Super Nintendo World primero: con la app de USJ, sacad la entrada con hora si no lleváis Express Pass', 'Mario Kart, Yoshi y Donkey Kong Country', 'Mundo de Harry Potter antes de las 11:00', 'Minions, Jurassic Park, Flying Dinosaur y el resto por la tarde'],
     notas: [
-      { t: 'warn', h: 'Sábado', x: 'Fin de semana en noviembre: colas de 2 h o más. El Express Pass (desde ~100€) es lo que más cambia el día.' },
-      { t: 'tip', h: 'Comida', x: 'No se permite entrar comida de fuera. Comed fuerte antes o dentro del parque.' }],
+      { t: 'warn', h: 'Sábado', x: 'Fin de semana en noviembre: colas de 2 h o más. El Express Pass (~100–150€ por persona) es lo que más cambia el día, sobre todo para Nintendo World.' },
+      { t: 'warn', h: 'Entradas ya', x: 'Comprad desde España en la web oficial (en inglés), Klook o GetYourGuide. Se agotan semanas antes.' },
+      { t: 'tip', h: 'Comida', x: 'No se permite entrar comida de fuera (sí una botella de bebida cerrada). Comed fuerte antes o dentro del parque.' }],
     comer: ['Dentro del parque o en Universal CityWalk'],
     lluvia: 'Abre igual; hay zonas cubiertas. Poncho de casa, dentro es más caro.',
     paradas: [{ n: 'Universal Studios Japan', t: 'Parque' }] },
 
   { fecha: '2026-11-15', n: 16, ciudad: 'osaka', tiempo: 'osaka',
     titulo: 'Últimas compras y vuelo', resumen: 'Umeda, Namba y al aeropuerto de Kansai.',
-    plan: ['Check-out y consigna de maletas (hotel o ecbo cloak)', 'Umeda Sky Building: el mirador circular', 'Namba Parks, Shinsaibashi y Don Quijote', 'Tren Nankai desde Namba al aeropuerto (KIX), ~40 min', 'Antes de facturar: quiosco de Tax Free con el pasaporte'],
+    plan: ['Check-out y consigna de maletas (hotel, taquillas o ecbo cloak)', 'Umeda Sky Building: dos torres unidas por una terraza circular, vistas únicas de Osaka', 'Namba Parks y últimas compras en Shinsaibashi', 'Don Quijote: últimos souvenirs, cosmética y snacks japoneses', 'Tren Nankai desde Namba al aeropuerto de Kansai (KIX), 35–45 min', 'Antes de facturar: quiosco de Tax Free con el pasaporte'],
     notas: [{ t: 'warn', h: 'Tax Free en el aeropuerto', x: 'Todo lo comprado desde el 1 de noviembre se reclama hoy en KIX, antes de facturar. Llevad las compras a mano y sin abrir y contad 30–45 min más.' }],
     comer: ['Aizuya', 'Takoyaki Wanaka'],
     lluvia: 'Día de compras bajo techo. Sin problema.',
     paradas: [{ n: 'Umeda Sky Building', t: 'Mirador' }, { n: 'Namba Parks', t: 'Compras' }, { n: 'Kansai International Airport', t: 'Vuelo' }] },
 ];
 
+const MOMENTOS = [
+  { f: '2026-10-31', i: '🎃', t: 'Halloween en Shinjuku y Shibuya', x: '31 oct' },
+  { f: '2026-11-01', i: '🗻', t: 'Monte Fuji con nieve', x: '1 nov, excursión de 99€' },
+  { f: '2026-11-03', i: '🎢', t: 'Disneyland y DisneySea', x: '3 y 4 nov' },
+  { f: '2026-11-06', i: '🍵', t: 'Ceremonia del té en el barrio de geishas de Kanazawa', x: '6 nov' },
+  { f: '2026-11-07', i: '🏡', t: 'Shirakawa-go', x: '7 nov' },
+  { f: '2026-11-09', i: '☮️', t: 'Hiroshima y Miyajima', x: '9 nov, excursión de 69€ desde Kioto' },
+  { f: '2026-11-14', i: '🎮', t: 'Universal Studios Japan', x: '14 nov, Nintendo World y Harry Potter' },
+];
+
 const TAGS = { local: 'De locales', turistico: 'Turístico pero bueno', mixto: 'Mixto', excursion: 'Excursión', tattoo: 'Acepta tatuajes', privado: 'Privado', preguntar: 'Preguntar antes' };
 
 const COMER = [
   { c: 'tokio', n: 'Omoide Yokocho', t: 'Callejón de izakayas, Shinjuku', p: '2.000–3.500¥', tag: 'local', d: 'Callejón diminuto de tabernas humeantes, la vieja Tokio. Se ha puesto de moda y han subido precios, pero merece la pena.', o: 'Yakitori, curry rice y katsu.', q: 'Omoide Yokocho Shinjuku' },
-  { c: 'tokio', n: 'Ichiran Shibuya', t: 'Ramen tonkotsu en cabinas individuales', p: '~1.000¥', tag: 'local', d: 'El ramen más famoso fuera de Japón. Se pide en máquina y se come en cabinas separadas, sin hablar con nadie.', o: 'Ramen clásico; ajustad intensidad, grasa y picante en la hoja.', q: 'Ichiran Shibuya' },
-  { c: 'tokio', n: 'Sometaro', t: 'Okonomiyaki en tatami, Asakusa', p: '1.500–2.000¥', tag: 'turistico', d: 'Local con encanto donde os cocináis el okonomiyaki en mesas bajas. Carta en inglés. Abre a las 12:00: llegad 15–20 min antes.', o: 'Okonomiyaki clásico de cerdo o el de marisco.', q: 'Sometaro Asakusa' },
-  { c: 'tokio', n: 'Daikokuya Tempura', t: 'Tempura tradicional junto a Senso-ji', p: '1.500–2.500¥', tag: 'local', d: 'Local pequeño de toda la vida cerca del templo.', o: 'Tendon (bol de tempura con arroz) y sopa miso.', q: 'Daikokuya Tempura Asakusa' },
+  { c: 'tokio', n: 'Ichiran Shibuya', t: 'Ramen tonkotsu en cabinas individuales', p: '1.000–1.400¥', tag: 'local', d: 'El ramen japonés más famoso fuera de Japón. Se pide en máquina y se come en cabinas separadas, sin interacción con nadie.', o: 'El ramen clásico tonkotsu; personalizad intensidad de sabor, grasa y picante en la hoja.', q: 'Ichiran Shibuya' },
+  { c: 'tokio', n: 'Sometaro', t: 'Okonomiyaki en tatami, Asakusa', p: '1.500–2.000¥', tag: 'turistico', d: 'Local con mucho encanto donde os cocináis el okonomiyaki en mesas bajas, sentados en tatami. Carta en inglés. Abre a las 12:00: llegad 15–20 min antes o esperaréis 1–2 h.', o: 'Okonomiyaki clásico de cerdo o el mixto de marisco.', q: 'Sometaro Asakusa' },
+  { c: 'tokio', n: 'Daikokuya Tempura', t: 'Tempura tradicional junto a Senso-ji', p: '1.500–2.500¥', tag: 'local', d: 'Local pequeño y escondido cerca del templo, tempura auténtica sin pretensiones.', o: 'Tempura mixta con arroz y sopa miso, o el tendon (bol de tempura sobre arroz), su plato estrella.', q: 'Daikokuya Tempura Asakusa' },
   { c: 'tokio', n: 'Afuri Harajuku', t: 'Ramen ligero con yuzu', p: '1.100–1.300¥', tag: 'mixto', d: 'Caldo claro y cítrico, lo contrario al tonkotsu. Bien si buscáis algo menos pesado.', o: 'Yuzu shio ramen.', q: 'Afuri Harajuku' },
   { c: 'tokio', n: 'Tenka Sushi Otsuka', t: 'Sushi con cola de locales', p: '1.500–2.000¥', tag: 'local', d: 'Frecuentado por japoneses, sushi recién hecho a buen precio.', o: 'El surtido de nigiri del chef.', q: 'Tenka Sushi Otsuka' },
 
-  { c: 'kanazawa', n: 'Kourin Sushi', t: 'Sushi entre el mercado y el castillo', p: '1.320–2.000¥', tag: 'local', d: 'De los mejores sushi de Kanazawa a precio razonable, carta en varios idiomas. Reservad el día antes (el hotel os ayuda).', o: 'Set de 10 nigiri.', q: 'Kourin Sushi Kanazawa' },
+  { c: 'kanazawa', n: 'Kourin Sushi', t: 'Sushi entre el mercado y el castillo', p: '1.320–2.000¥', tag: 'local', d: 'De los mejores sushi de Kanazawa a precio muy razonable, carta en varios idiomas. Reservad el día antes o pedid al hotel que lo gestione.', o: 'Set de 10 nigiri (1.100–1.320¥): increíble relación calidad-precio.', q: 'Kourin Sushi Kanazawa' },
   { c: 'kanazawa', n: 'Puestos del Mercado Omicho', t: '“La cocina de Kanazawa”', p: '2.000–3.800¥', tag: 'turistico', d: 'La comida imprescindible de la ciudad.', o: 'Kaisendon (bol de marisco), erizo, gamba dulce y cangrejo de nieve, recién empezada la temporada.', q: 'Omicho Market Kanazawa' },
-  { c: 'kanazawa', n: 'Mori Mori Sushi Omicho', t: 'Sushi en cinta, junto al mercado', p: '1.500–2.500¥', tag: 'mixto', d: 'Pedido por tablet y producto del mismo mercado. Muy popular: id fuera de horas punta.', o: 'Nodoguro (pescado local de lujo), gamba dulce y cangrejo.', q: 'Mori Mori Sushi Omicho' },
-  { c: 'kanazawa', n: 'Fuwari', t: 'Izakaya cerca de Omicho', p: '3.000–4.000¥', tag: 'local', d: 'Producto de temporada a la brasa.', o: 'Pollo a la brasa, sashimi y verduras Kaga.', q: 'Fuwari Kanazawa izakaya' },
-  { c: 'kanazawa', n: 'Hakuichi', t: 'Helado con pan de oro', p: '~1.000¥', tag: 'turistico', d: 'El helado envuelto en una lámina de oro, especialidad de Kanazawa. Turistada divertida para la foto.', o: 'El helado de oro, claro.', q: 'Hakuichi Higashiyama Kanazawa' },
+  { c: 'kanazawa', n: 'Mori Mori Sushi Omicho', t: 'Sushi en cinta, junto al mercado', p: '1.500–2.500¥', tag: 'mixto', d: 'Sushi en cinta moderno con pedido por tablet; llega recién hecho. Muy popular entre locales y turistas: id fuera de horas punta.', o: 'El set de 3 piezas con nodoguro (pescado local de lujo), gamba y cangrejo de temporada.', q: 'Mori Mori Sushi Omicho' },
+  { c: 'kanazawa', n: 'Fuwari', t: 'Izakaya cerca de Omicho', p: '3.000–4.000¥', tag: 'local', d: 'Izakaya local centrada en producto de temporada a la brasa.', o: 'Pollo a la brasa (cuello de pollo), sashimi fresco y verduras locales Kaga.', q: 'Fuwari Kanazawa izakaya' },
+  { c: 'kanazawa', n: 'Hakuichi', t: 'Helado con pan de oro', p: '~1.000¥', tag: 'turistico', d: 'El helado cubierto con una lámina de pan de oro, especialidad única de Kanazawa. Turistada divertida, perfecta para una foto y un capricho.', o: 'El helado de oro, claro.', q: 'Hakuichi Higashiyama Kanazawa' },
 
-  { c: 'takayama', n: 'Hidagyu Maruaki', t: 'Yakiniku de Hida beef con granja propia', p: '4.000–8.000¥', tag: 'local', d: 'El más famoso de Takayama para Hida beef. No reservan: apuntaos en la lista al llegar.', o: 'Surtido de cortes de Hida beef a la parrilla.', q: 'Hidagyu Maruaki Takayama' },
-  { c: 'takayama', n: 'Suzuya', t: 'Hoba miso, ambiente tradicional', p: '2.500–3.500¥', tag: 'local', d: 'Acogedor y con personal que habla inglés.', o: 'Hida beef hoba miso: la carne con miso sobre hoja de magnolia, a la brasa en vuestra mesa.', q: 'Suzuya Takayama' },
-  { c: 'takayama', n: 'Hida Kotte Ushi', t: 'Nigiri de Hida beef para llevar', p: '700–1.000¥', tag: 'turistico', d: 'En pleno Sanmachi, bocado rápido de pie.', o: 'Nigiri de Hida beef flambeado, con o sin yema.', q: 'Hida Kotte Ushi Takayama' },
-  { c: 'takayama', n: 'Matsuki Sushi', t: 'Sushi y Hida beef en barra', p: '3.000–5.000¥', tag: 'local', d: 'Algo más caro, calidad excelente; veis al chef trabajar.', o: 'Combinado de sushi con Hida beef a la plancha.', q: 'Matsuki Sushi Takayama' },
-  { c: 'takayama', n: 'Heianraku', t: 'Casera chino-japonesa junto a la estación', p: '1.500–2.800¥', tag: 'local', d: 'Lo lleva una pareja encantadora que habla inglés. Hay opciones vegetarianas.', o: 'Menú con gyozas, arroz frito o fideos, té y postre.', q: 'Heianraku Takayama' },
+  { c: 'takayama', n: 'Hidagyu Maruaki', t: 'Yakiniku de Hida beef con granja propia', p: '4.000–8.000¥', tag: 'local', d: 'El más famoso de Takayama para Hida beef. No aceptan reservas: apuntaos en la lista al llegar.', o: 'El surtido de Hida beef (del sirloin al ribeye) o el corte premium A5 a la parrilla.', q: 'Hidagyu Maruaki Takayama' },
+  { c: 'takayama', n: 'Suzuya', t: 'Hoba miso, ambiente tradicional', p: '2.500–3.500¥', tag: 'local', d: 'Acogedor, con personal muy amable que habla inglés.', o: 'Hida beef hoba miso: carne con miso casero sobre hoja de magnolia, a la brasa en vuestra mesa. El plato más típico de la región.', q: 'Suzuya Takayama' },
+  { c: 'takayama', n: 'Hida Kotte Ushi', t: 'Nigiri de Hida beef para llevar', p: '700–1.000¥', tag: 'turistico', d: 'En pleno casco histórico Sanmachi, perfecto para un bocado rápido (de pie junto al puesto).', o: 'Nigiri de Hida beef flambeado o con yema de huevo encima: espectaculares por poco dinero.', q: 'Hida Kotte Ushi Takayama' },
+  { c: 'takayama', n: 'Matsuki Sushi', t: 'Sushi y Hida beef en barra, centro', p: '3.000–5.000¥', tag: 'local', d: 'Algo más caro pero de calidad excelente; veis al chef preparar en la barra.', o: 'El combinado de sushi con Hida beef sirloin a la plancha y donburi de carne.', q: 'Matsuki Sushi Takayama' },
+  { c: 'takayama', n: 'Heianraku', t: 'Casera chino-japonesa junto a la estación', p: '1.500–2.800¥', tag: 'local', d: 'Lo lleva una pareja encantadora que habla un inglés perfecto. Comida casera y saludable, con opciones vegetarianas.', o: 'El menú con 5 gyozas, arroz frito o fideos, té y postre (2.800¥).', q: 'Heianraku Takayama' },
 
-  { c: 'kioto', n: 'Mercado de Nishiki', t: '“La cocina de Kioto”, 400 años', p: '1.500–3.000¥', tag: 'turistico', d: 'Pasaje techado con decenas de puestos. Se come de pie junto al puesto, no andando.', o: 'Tamagoyaki, pulpito con huevo de codorniz, mochi y croquetas de yuba.', q: 'Nishiki Market Kyoto' },
-  { c: 'kioto', n: 'Yagenbori', t: 'Kaiseki accesible en Gion', p: '3.000–5.000¥', tag: 'local', d: 'Antigua casa de té, ingredientes de calidad en vajilla artesanal.', o: 'Hoba miso con setas o shabu-shabu de verduras.', q: 'Yagenbori Gion Kyoto' },
-  { c: 'kioto', n: 'Yudofu Sagano', t: 'Tofu hervido junto a Arashiyama', p: '3.500–6.000¥', tag: 'local', d: 'El plato más kiotense, nacido en los templos budistas.', o: 'Menú yudofu completo.', q: 'Yudofu Sagano Arashiyama' },
-  { c: 'kioto', n: 'Gion Tanto', t: 'Okonomiyaki junto al río', p: '2.500–4.000¥', tag: 'mixto', d: 'Mesas con plancha, ambiente animado.', o: 'Okonomiyaki o yakisoba hechos en la mesa.', q: 'Gion Tanto Kyoto' },
-  { c: 'kioto', n: 'Ramen en Pontocho', t: 'Entre Pontocho y Nishiki', p: '1.100–1.350¥', tag: 'local', d: 'Suele haber cola; mejor fuera de horas punta. Solo efectivo.', o: 'Ramen de miso con gyozas.', q: 'ramen Pontocho Kyoto' },
-  { c: 'kioto', n: 'Omi Beef Kubotaya', t: 'Excursión a Omihachiman (35 min en tren)', p: '30–50€', tag: 'excursion', feat: true, d: 'La carne de Omi es una de las tres grandes wagyu certificadas de Japón (con Kobe y Matsusaka), con menos turismo y mejor precio. Reservad.', o: 'Sukiyaki o yakiniku de Omi beef; la hamburguesa es la opción barata.', q: 'Kubotaya Omihachiman' },
+  { c: 'kioto', n: 'Mercado de Nishiki', t: '“La cocina de Kioto”, 400 años de historia', p: '1.500–3.000¥', tag: 'turistico', d: 'Pasaje techado con decenas de puestos. Recordad que no se come andando: se come de pie junto a cada puesto.', o: 'Tamagoyaki (tortilla dulce), brochetas de pulpo con huevo de codorniz, mochi fresco y croquetas de yuba (piel de tofu).', q: 'Nishiki Market Kyoto' },
+  { c: 'kioto', n: 'Yagenbori', t: 'Kaiseki accesible en una casa de té histórica, Gion', p: '3.000–5.000¥', tag: 'local', d: 'Ambiente informal pero con ingredientes de calidad en vajilla artesanal.', o: 'Hoba miso con setas kinoko o shabu-shabu de verduras de temporada.', q: 'Yagenbori Gion Kyoto' },
+  { c: 'kioto', n: 'Yudofu Sagano', t: 'Tofu hervido junto a Arashiyama', p: '3.500–6.000¥', tag: 'local', d: 'El plato más emblemático de Kioto, nacido en los templos budistas.', o: 'El menú yudofu completo: tofu fresco hervido en caldo de kombu con verduras de temporada.', q: 'Yudofu Sagano Arashiyama' },
+  { c: 'kioto', n: 'Gion Tanto', t: 'Teppanyaki y okonomiyaki junto al río', p: '2.500–4.000¥', tag: 'mixto', d: 'Sentados alrededor de una plancha central, ambiente animado de Gion.', o: 'Okonomiyaki al estilo Kioto o yakisoba hechos en vuestra mesa.', q: 'Gion Tanto Kyoto' },
+  { c: 'kioto', n: 'Sushi giratorio cerca de Gion', t: 'Kaiten-zushi económico', p: '1.500–2.500¥', tag: 'turistico', d: 'Sushi en cinta de toda la vida: calidad correcta sin ser excepcional, con buen ambiente.', o: 'Platos variados (150–500¥ cada uno según el pescado); probad el atún graso (otoro, ~900¥).', q: 'kaiten sushi Gion Kyoto' },
+  { c: 'kioto', n: 'Ramen en Pontocho', t: 'Local pequeño entre Pontocho y Nishiki', p: '1.100–1.350¥', tag: 'local', d: 'Suele tener cola de turistas y locales: mejor fuera de horas punta. Solo efectivo.', o: 'El set de ramen de miso con gyozas (1.350¥).', q: 'ramen Pontocho Kyoto' },
+  { c: 'kioto', n: 'Omi Beef Kubotaya', t: 'Excursión a Omihachiman (30–40 min en tren)', p: '30–50€', tag: 'excursion', feat: true, d: 'Restaurante en el casco antiguo de Omihachiman. La carne de Omi es una de las tres grandes wagyu certificadas de Japón, con 400 años de tradición: nivel Kobe, pero normalmente más barata y con menos turismo. Reservad con antelación, sobre todo siendo varios.', o: 'Sukiyaki o yakiniku de Omi beef; la hambagu (hamburguesa japonesa) de la misma carne es la opción económica.', q: 'Kubotaya Omihachiman' },
 
-  { c: 'osaka', n: 'Mizuno', t: 'Okonomiyaki desde 1945, Dotonbori', p: '1.200–1.600¥', tag: 'turistico', d: 'Bib Gourmand Michelin. Id pronto: por la noche hay cola.', o: 'Yamaimo-yaki o el mixto de cerdo, gamba y calamar.', q: 'Mizuno Okonomiyaki Dotonbori' },
-  { c: 'osaka', n: 'Kushikatsu Daruma', t: 'El kushikatsu más famoso, Shinsekai', p: '1.800–2.500¥', tag: 'local', d: 'El del cocinero enfadado en la puerta.', o: 'Set de brochetas variadas y doteyaki (tendón guisado en miso).', q: 'Kushikatsu Daruma Shinsekai' },
-  { c: 'osaka', n: 'Takoyaki Wanaka', t: 'Takoyaki de referencia', p: '650–900¥', tag: 'turistico', d: 'Crujiente por fuera, cremoso por dentro.', o: 'Ración de 8.', q: 'Takoyaki Wanaka Sennichimae' },
-  { c: 'osaka', n: 'Aizuya', t: 'El takoyaki original', p: '~600¥', tag: 'local', d: 'Se presentan como los inventores del takoyaki. Masa fina con caldo dashi y sin salsa encima. Favorito de los locales.', o: 'Ración clásica.', q: 'Aizuya Namba' },
-  { c: 'osaka', n: 'Mercado Kuromon Ichiba', t: '170 puestos, “la cocina de Osaka”', p: '2.000–3.000¥', tag: 'turistico', d: 'Mejor por la mañana, con el producto más fresco.', o: 'Atún recién cortado, vieira a la plancha y fruta.', q: 'Kuromon Ichiba Market' },
-  { c: 'osaka', n: 'Chitose', t: 'Okonomiyaki de barrio, Shinsekai', p: '900–1.500¥', tag: 'local', d: 'Más de 60 años, más pequeño y barato que los de Dotonbori.', o: 'Okonomiyaki mixto o modan-yaki (con yakisoba dentro).', q: 'Chitose okonomiyaki Osaka' },
-  { c: 'osaka', n: 'Steakland Kobe-kan', t: 'Excursión a Kobe (30 min de Umeda)', p: '20–40€', tag: 'excursion', feat: true, d: 'La forma segura de probar carne de Kobe certificada: restaurante proveedor oficial, teppanyaki delante de vosotros. Id a comer (el menú de mediodía es mucho más barato que la cena) sobre las 11:30.', o: 'Menú de mediodía de carne de Kobe con sopa, arroz y verduras.', q: 'Steakland Kobe-kan Sannomiya' },
+  { c: 'osaka', n: 'Mizuno', t: 'Okonomiyaki desde 1945, Dotonbori', p: '1.200–1.600¥', tag: 'turistico', d: 'Bib Gourmand Michelin y el okonomiyaki de referencia de Osaka, cocinado delante de vosotros. Id pronto para evitar la cola de la noche.', o: 'El mixto de cerdo, gamba y calamar, el más representativo; o su yamaimo-yaki.', q: 'Mizuno Okonomiyaki Dotonbori' },
+  { c: 'osaka', n: 'Kushikatsu Daruma', t: 'El kushikatsu más famoso, Shinsekai', p: '1.800–2.500¥', tag: 'local', d: 'Se reconoce por la figura del cocinero enfadado en la entrada; cuna del kushikatsu en Osaka. Regla de oro: solo se moja una vez en la salsa.', o: 'El “Shinsekai Set” de 9 brochetas variadas (~1.800¥) y el doteyaki (tendón de ternera guisado en miso).', q: 'Kushikatsu Daruma Shinsekai' },
+  { c: 'osaka', n: 'Takoyaki Wanaka', t: 'Uno de los mejores takoyaki de la ciudad', p: '650–900¥', tag: 'turistico', d: 'Exterior crujiente e interior cremoso: referencia de Osaka.', o: 'La ración estándar de 8, para picar por Dotonbori (de pie junto al puesto).', q: 'Takoyaki Wanaka Sennichimae' },
+  { c: 'osaka', n: 'Aizuya', t: 'El takoyaki original', p: '~600¥', tag: 'local', d: 'Se presentan como los inventores del takoyaki. Masa más fina y delicada que la competencia, con caldo dashi intenso y menos dulce. Favorito de los locales.', o: '6 piezas por ~600¥, de los más baratos y mejor valorados de la zona.', q: 'Aizuya Namba' },
+  { c: 'osaka', n: 'Mercado Kuromon Ichiba', t: '170 puestos, “la cocina de Osaka”', p: '2.000–3.000¥', tag: 'turistico', d: 'Ideal para desayunar o picar variado por la mañana, cuando el producto está más fresco.', o: 'Sashimi de atún recién cortado, vieira a la plancha, tamagoyaki y fruta cortada.', q: 'Kuromon Ichiba Market' },
+  { c: 'osaka', n: 'Chitose', t: 'Okonomiyaki local, Shinsekai', p: '900–1.500¥', tag: 'local', d: 'Más pequeño y auténtico que los de Dotonbori, con más de 60 años de historia y precios algo más bajos.', o: 'Okonomiyaki clásico mixto, y probad el modan-yaki (con yakisoba dentro).', q: 'Chitose okonomiyaki Osaka' },
+  { c: 'osaka', n: 'Steakland Kobe-kan', t: 'Excursión a Kobe: 30 min en tren desde Umeda', p: '20–40€', tag: 'excursion', feat: true, d: 'La forma 100% segura de probar carne de Kobe certificada (la raza Tajima-gyū de Hyōgo) es ir a Kobe: 30 min en tren (línea Kobe) desde Osaka-Umeda o 13 min en Shinkansen hasta Shin-Kobe. Este restaurante, cerca de la estación de Sannomiya, es proveedor certificado oficial y cocina en teppanyaki delante de vosotros. Al mediodía los menús van de ~3.200 a 6.000¥ (el de Kobe certificado es el más caro); por la noche suben hasta ~13.000¥. Id a comer, no a cenar, sobre las 11:30 para evitar 20–40 min de cola.', o: 'Menú de mediodía de Kobe beef con sopa miso, arroz, encurtidos, ensalada y verduras.', q: 'Steakland Kobe-kan Sannomiya' },
 ];
 
 const COMPRAS = [
-  { c: 'tokio', n: 'Yodobashi Camera Akiba', cat: 'Electrónica', t: 'Electrónica y cámaras, varias plantas', d: 'Si solo entráis en una tienda de electrónica, que sea esta. Gadgets que no existen fuera de Japón y Tax Free.', q: 'Yodobashi Akiba' },
-  { c: 'tokio', n: 'Mandarake', cat: 'Figuras y anime', t: 'Manga, figuras y coleccionismo (Akihabara y Shibuya)', d: 'El templo otaku: figuras, manga descatalogado, cartas Pokémon de edición japonesa.', q: 'Mandarake Complex Akihabara' },
-  { c: 'tokio', n: 'Don Quijote', cat: 'De todo', t: 'Bazar caótico 24 h', d: 'Snacks raros, cosmética, souvenirs baratos y disfraces (en Akihabara, una planta entera de cosplay).', q: 'Don Quijote Shibuya' },
-  { c: 'tokio', n: 'Shibuya 109', cat: 'Moda', t: 'Moda joven japonesa', d: 'Más de 100 tiendas de las marcas que marcan tendencia en Japón.', q: 'Shibuya 109' },
-  { c: 'tokio', n: '2nd Street', cat: 'Segunda mano', t: 'Ropa de segunda mano casi nueva (Harajuku, Shibuya)', d: 'Marcas de diseño, zapatillas y bolsos a precio de ganga. El lujo de segunda mano en Japón pasa controles de autenticidad muy estrictos. También hace Tax Free. Para gama alta, Komehyo (Ginza, Shinjuku).', q: '2nd Street Harajuku' },
-  { c: 'tokio', n: 'Tokyu Hands / HANDS', cat: 'Diseño', t: 'Variedades, papelería y cocina', d: 'Regalos originales, cuchillos, papelería kawaii y gadgets para casa.', q: 'Shibuya Hands' },
-  { c: 'tokio', n: 'Map Camera', cat: 'Cámaras', t: 'Cámaras de segunda mano, Shinjuku', d: 'Equipos casi nuevos a muy buen precio, analógicas y digitales.', q: 'Map Camera Shinjuku' },
+  { c: 'tokio', n: 'Yodobashi Camera Akiba', cat: 'Electrónica', t: 'La tienda de electrónica y cámaras más grande de la zona', d: 'Si solo entráis en una tienda de electrónica en todo el viaje, que sea esta. Varias plantas de cámaras, móviles, ordenadores, electrodomésticos y gadgets rarísimos que no existen fuera de Japón. Hace Tax Free y vende el iPhone al precio oficial (la Apple Store no hace Tax Free desde 2022).', o: 'Cámaras, auriculares y gadgets para llevar a casa.', q: 'Yodobashi Akiba' },
+  { c: 'tokio', n: 'Mandarake', cat: 'Figuras y anime', t: '8 plantas de manga, figuras y coleccionismo (Akihabara y Shibuya)', d: 'El templo otaku de Japón: cómics nuevos y antiguos, figuras, ropa y accesorios de cosplay, cartas Pokémon y Magic de edición solo japonesa.', o: 'Figuras de colección, manga raro o descatalogado y cartas de edición japonesa.', q: 'Mandarake Complex Akihabara' },
+  { c: 'tokio', n: 'Don Quijote', cat: 'De todo', t: 'Bazar caótico 24 h (Akihabara, Shibuya, Shinjuku)', d: 'El de Akihabara tiene una planta entera de cosplay con disfraces de anime y manga. En todos hay comida, cosmética, electrónica y souvenirs baratos, con Tax Free.', o: 'Souvenirs de última hora, snacks raros, disfraces y cosmética barata.', q: 'Don Quijote Shibuya' },
+  { c: 'tokio', n: 'Shibuya 109', cat: 'Moda', t: 'Más de 100 tiendas de moda joven, icono de Shibuya', d: 'El centro comercial vertical más icónico de la moda joven japonesa, con marcas que marcan tendencia en todo el país.', o: 'Streetwear, marcas japonesas jóvenes y accesorios kawaii.', q: 'Shibuya 109' },
+  { c: 'tokio', n: '2nd Street', cat: 'Segunda mano', t: 'Ropa casi nueva y lujo a precio bajo (Harajuku, Shibuya)', d: 'Tienda enorme con mucha ropa prácticamente sin usar: con suerte, marcas de diseño, zapatillas y bolsos de piel desde 5€. Hace Tax Free igual que una tienda normal (desde 5.000¥ el mismo día, con pasaporte). El lujo de segunda mano en Japón pasa controles de autenticidad muy estrictos. Para gama alta, Komehyo (Ginza, Shinjuku), con cupones extra para turistas.', o: 'Moda vintage y marcas de lujo de segunda mano a precio de ganga.', q: '2nd Street Harajuku' },
+  { c: 'tokio', n: 'Tokyu Hands / HANDS', cat: 'Diseño', t: 'Variedades con diseño y artesanía (Shibuya, Shinjuku)', d: 'Productos con carácter, de cuchillos japoneses de cocina a papelería de diseño. La de Shibuya Scramble Square tiene acceso directo desde la estación.', o: 'Regalos originales, papelería kawaii, utensilios de cocina y gadgets para casa.', q: 'Shibuya Hands' },
+  { c: 'tokio', n: 'Map Camera', cat: 'Cámaras', t: '4 plantas de cámaras de segunda mano, Shinjuku', d: 'Los japoneses venden sus cámaras casi nuevas cuando se compran otra, así que hay equipos en perfecto estado a precio de ganga.', o: 'Cámaras analógicas o digitales y objetivos de segunda mano.', q: 'Map Camera Shinjuku' },
 
-  { c: 'kanazawa', n: 'Kanazawa Crafts Hirosaka', cat: 'Artesanía', t: 'Artesanía local, junto al Museo del s. XXI', d: 'Toda la artesanía de Kanazawa en un sitio, piezas pequeñas para la maleta.', q: 'Kanazawa Crafts Hirosaka' },
-  { c: 'kanazawa', n: 'Sakuda Kinpaku', cat: 'Pan de oro', t: 'Kanazawa produce casi todo el oro en lámina de Japón', d: 'Tienda-taller con la pared de oro. Cosmética y objetos decorados, más baratos de lo que parece.', q: 'Sakuda Gold Leaf Kanazawa' },
-  { c: 'kanazawa', n: 'Cerámica Kutani', cat: 'Cerámica', t: 'Kutani-yaki, la porcelana de colores de Kanazawa', d: 'Piezas hechas a mano y otras más comerciales, todas típicas de la zona.', q: 'Kutani ware shop Kanazawa' },
-  { c: 'kanazawa', n: 'Hyakubangai (estación)', cat: 'Souvenirs', t: 'Todo lo local dentro de la estación', d: 'Dulces, sake, artesanía y chocolate de Kanazawa antes de coger el bus.', q: 'Kanazawa Hyakubangai' },
-  { c: 'kanazawa', n: 'Tiendas de Higashi Chaya', cat: 'Artesanía', t: 'Casas de geishas convertidas en tiendas', d: 'Mezcla de técnica tradicional y diseño moderno. Desde fuera no se sabe qué venden: entrad.', q: 'Higashi Chaya District' },
+  { c: 'kanazawa', n: 'Kanazawa Crafts Hirosaka', cat: 'Artesanía', t: 'Galería de artesanía tradicional, junto al Museo de Arte Contemporáneo', d: 'Toda la artesanía de Kanazawa centralizada en un sitio. Piezas pequeñas y económicas, perfectas para la maleta.', o: 'Artesanía tradicional variada de Kanazawa.', q: 'Kanazawa Crafts Hirosaka' },
+  { c: 'kanazawa', n: 'Kinpakuya Sakuda', cat: 'Pan de oro', t: 'Distrito samurái. Kanazawa produce casi todo el pan de oro de Japón', d: 'Tienda-taller con la famosa pared de pan de oro, donde veis el proceso artesanal. Desde cosmética con oro hasta objetos decorados, más baratos de lo que parece porque la lámina es finísima.', o: 'Souvenirs de pan de oro, cosmética con oro y decoración.', q: 'Sakuda Gold Leaf Kanazawa' },
+  { c: 'kanazawa', n: 'Kutaniyaki-Goo y talleres Kutani', cat: 'Cerámica', t: 'Kutani-yaki, la cerámica que patrocinaban los señores de Kanazawa', d: 'Piezas hechas a mano y otras más comerciales, con los trabajos más elaborados expuestos al fondo de la tienda.', o: 'Vajilla y cerámica japonesa auténtica, piezas decorativas únicas.', q: 'Kutani ware shop Kanazawa' },
+  { c: 'kanazawa', n: 'Hyakubangai / Anto (estación)', cat: 'Souvenirs', t: 'Todas las marcas locales en la estación de Kanazawa', d: 'Para las compras de última hora antes del bus: dulces locales, sake, artesanía y chocolate artesanal de Kanazawa (FilFil). Rinto tiene moda y Anto Nishi, súper y farmacia.', o: 'Souvenirs gastronómicos, sake y dulces tradicionales, todo en un sitio antes de salir hacia Takayama.', q: 'Kanazawa Hyakubangai' },
+  { c: 'kanazawa', n: 'Tiendas de Higashi Chaya', cat: 'Artesanía', t: 'Antiguas casas de geishas convertidas en tiendas', d: 'Desde fuera no siempre se sabe qué venden, y ese es el encanto: entrad y mirad. Mezclan artesanía tradicional con diseño moderno.', o: 'Souvenirs con más personalidad que los de un bazar, accesorios y objetos de diseño artesano.', q: 'Higashi Chaya District' },
 
-  { c: 'takayama', n: 'Tallas Ichii Itto-bori', cat: 'Artesanía', t: 'Madera de tejo tallada a mano', d: 'Figuras y máscaras con técnica centenaria de Hida; a veces veis al artesano trabajar.', q: 'Ichii Ittobori Takayama' },
-  { c: 'takayama', n: 'Lacas Hida Shunkei', cat: 'Artesanía', t: 'Lacado ámbar tradicional', d: 'Bandejas, vasos y bentos. Regalo especial.', q: 'Hida Shunkei Takayama' },
-  { c: 'takayama', n: 'Sarubobo', cat: 'Souvenirs', t: 'Las muñecas rojas de Takayama', d: 'Cada color tiene un significado (amor, salud, dinero). Baratas y fáciles de llevar.', q: 'Sarubobo shop Takayama' },
-  { c: 'takayama', n: 'Bodegas de sake de Sanmachi', cat: 'Sake', t: 'Degustación en la propia tienda', d: 'Buscad la bola de cedro (sugidama) en la puerta. También hay tiendas de miso y soja artesanos.', q: 'Sake breweries Sanmachi Takayama' },
+  { c: 'takayama', n: 'Tallas Ichii Itto-bori', cat: 'Artesanía', t: 'Madera de tejo tallada a mano, técnica centenaria de Hida', d: 'Figuras de animales y máscaras talladas a mano con técnicas que pasan de generación en generación. En las tiendas del casco antiguo a veces veis al artesano trabajar.', o: 'Piezas decorativas únicas, no producidas en serie.', q: 'Ichii Ittobori Takayama' },
+  { c: 'takayama', n: 'Lacas Hida Shunkei', cat: 'Artesanía', t: 'Lacado ámbar tradicional sobre ciprés japonés', d: 'Lacado elegante y discreto en bandejas, vasos y cajas bento. Técnica centenaria propia de Hida.', o: 'Vajilla japonesa de lujo auténtica y regalos especiales.', q: 'Hida Shunkei Takayama' },
+  { c: 'takayama', n: 'Sarubobo', cat: 'Souvenirs', t: 'Las muñecas rojas de tela, símbolo de Takayama', d: 'Las hacían las abuelas para sus nietos; ahora hay de todos los tamaños y colores, cada uno con un significado (amor, salud, fortuna). Las encontráis por todo el casco antiguo.', o: 'El souvenir más típico de Takayama: barato y fácil de llevar.', q: 'Sarubobo shop Takayama' },
+  { c: 'takayama', n: 'Bodegas de sake y tienda de miso', cat: 'Sake', t: 'Degustación gratis en las propias tiendas del casco antiguo', d: 'Buscad la bola de cedro verde (sugidama) colgada en la entrada: indica degustación. La tienda tradicional de miso también vende salsa de soja artesana con mucha historia.', o: 'Sake local junmai o daiginjo, miso y soja artesanos para llevar.', q: 'Sake breweries Sanmachi Takayama' },
 
-  { c: 'kioto', n: 'Shinshoen', cat: 'Kimono', t: 'Kimono nuevo y de segunda mano a buen precio', d: 'Donde compran los japoneses, nada pensado para turistas. Os ayudan a combinar.', q: 'Shinshoen Kyoto kimono' },
-  { c: 'kioto', n: 'Alquiler de kimono en Gion', cat: 'Kimono', t: 'Wargo, Okamoto y similares', d: 'Kimono completo con peinado para pasear por Gion y Kiyomizudera. Desde ~3.000¥, reservad online.', q: 'Okamoto kimono rental Kiyomizu' },
-  { c: 'kioto', n: 'Maisendo', cat: 'Abanicos', t: 'Abanicos tradicionales, Gion', d: 'Desde los prácticos hasta piezas decorativas. Regalo ligero y elegante.', q: 'Maisendo Gion' },
-  { c: 'kioto', n: 'Kasagen', cat: 'Sombrillas', t: 'Sombrillas de papel desde hace 160 años', d: 'Las mismas que usan las geishas. Una pieza que dura años.', q: 'Kasagen Gion' },
-  { c: 'kioto', n: 'Cerámica de Kiyomizu', cat: 'Cerámica', t: 'Kiyomizu-yaki, en las cuestas del templo', d: 'Combinadlo con la visita del día 12.', q: 'Kiyomizu ware Gojozaka' },
-  { c: 'kioto', n: 'Ippodo y Nishiki', cat: 'Té y cocina', t: 'Té matcha y cuchillos', d: 'Ippodo vende té desde el s. XVIII. En Nishiki hay cuchillos (Aritsugu) y dulces yatsuhashi.', q: 'Ippodo Tea Kyoto' },
-  { c: 'kioto', n: 'Calle Teramachi', cat: 'Moda', t: 'Vintage y boutiques', d: 'Más local que Nishiki, con cafés curiosos.', q: 'Teramachi Kyoto' },
+  { c: 'kioto', n: 'Shinshoen', cat: 'Kimono', t: 'Donde compran kimono los propios japoneses (Nishikikoji-dori y Muromachi-dori)', d: 'Buenos precios y género de calidad real, nada pensado solo para turistas. Los dueños os ayudan a combinar las prendas al estilo japonés.', o: 'Kimono auténtico barato, de mujer, hombre y niño.', q: 'Shinshoen Kyoto kimono' },
+  { c: 'kioto', n: 'Wargo / Okamoto Kimono Rental', cat: 'Kimono', t: 'Alquiler completo con peinado, Gion', d: 'Alquiláis el kimono completo, os peinan y tenéis 1,5 h o más para pasear y haceros fotos por las calles históricas. Desde ~3.000¥; reservad online con antelación.', o: 'Pasear vestidos de kimono por Gion y Kiyomizudera.', q: 'Okamoto kimono rental Kiyomizu' },
+  { c: 'kioto', n: 'Maisendo Gion', cat: 'Abanicos', t: 'Abanicos (sensu) tradicionales y decorativos', d: 'De los prácticos de verano a piezas decorativas elaboradas, todo hecho en Japón.', o: 'El abanico japonés más auténtico: regalo elegante y ligero.', q: 'Maisendo Gion' },
+  { c: 'kioto', n: 'Kasagen', cat: 'Sombrillas', t: 'Sombrillas de papel desde 1861, Gion', d: 'Sombrillas de papel aceitado, como las que usan las geishas para proteger el kimono. Calidad y durabilidad excepcionales.', o: 'Un souvenir realmente especial con historia detrás.', q: 'Kasagen Gion' },
+  { c: 'kioto', n: 'Tiendas junto a Kiyomizudera', cat: 'Cerámica', t: 'Kiyomizu-yaki, la cerámica de la zona (Higashiyama)', d: 'Las cuestas que suben al templo están llenas de tiendas tradicionales de cerámica. Combinadlo con la visita del 11 de noviembre.', o: 'Cerámica japonesa de calidad, comprada donde se hace.', q: 'Kiyomizu ware Gojozaka' },
+  { c: 'kioto', n: 'Mercado de Nishiki (tiendas)', cat: 'Té y cocina', t: 'Además de comida: cuchillos, té, cerámica y dulces', d: 'Hay tiendas de cuchillos japoneses, cerámica y dulces para llevar. Para té, Ippodo, especialistas desde el s. XVIII, muy cerca.', o: 'Matcha de calidad, cuchillos de cocina y dulces típicos como el yatsuhashi.', q: 'Ippodo Tea Kyoto' },
+  { c: 'kioto', n: 'Calle Teramachi', cat: 'Moda', t: 'Tiendas vintage y boutiques modernas', d: 'Más local y menos turística que Nishiki, con cafés curiosos para descansar entre tiendas.', o: 'Moda vintage japonesa y accesorios únicos.', q: 'Teramachi Kyoto' },
 
-  { c: 'osaka', n: 'Den Den Town', cat: 'Electrónica', t: 'El Akihabara de Osaka', d: 'Electrónica, manga y figuras usadas, sin las multitudes de Tokio.', q: 'Den Den Town Osaka' },
-  { c: 'osaka', n: 'Shinsaibashi-suji', cat: 'De todo', t: 'Calle comercial cubierta', d: 'Moda asequible, cosmética japonesa y souvenirs, pegada a Dotonbori.', q: 'Shinsaibashi-suji' },
-  { c: 'osaka', n: 'Avenida Midosuji', cat: 'Lujo', t: 'Chanel, Louis Vuitton, Dior…', d: 'La avenida de las grandes marcas.', q: 'Midosuji Avenue Osaka' },
-  { c: 'osaka', n: 'Doguya-suji', cat: 'Cocina', t: 'Material de hostelería al por menor', d: 'Planchas de takoyaki, cuchillos y utensilios profesionales. Poco turístico.', q: 'Sennichimae Doguyasuji' },
-  { c: 'osaka', n: 'Don Quijote Dotonbori', cat: 'De todo', t: 'El más grande de la ciudad', d: 'Abierto hasta la madrugada, perfecto para el último día.', q: 'Don Quijote Dotonbori' },
+  { c: 'osaka', n: 'Den Den Town', cat: 'Electrónica', t: 'El “Akihabara de Osaka”: electrónica y cultura otaku', d: 'Menos masificado que el de Tokio y con la misma esencia: electrónica, manga, figuras y productos usados en callejuelas con un encanto algo destartalado.', o: 'Electrónica más barata que en zonas turísticas, figuras y manga de segunda mano.', q: 'Den Den Town Osaka' },
+  { c: 'osaka', n: 'Avenida Midosuji', cat: 'Lujo', t: 'Chanel, Cartier, Gucci, Louis Vuitton, Dior', d: 'La gran avenida del lujo de Osaka, su equivalente a los Campos Elíseos.', o: 'Moda y complementos de marca internacional, con Tax Free en compras grandes.', q: 'Midosuji Avenue Osaka' },
+  { c: 'osaka', n: 'Shinsaibashi-suji', cat: 'De todo', t: 'Casi 600 m de calle comercial cubierta', d: 'Marcas internacionales, moda joven japonesa, cosmética y souvenirs, conectada directamente con Dotonbori. (La calle cubierta más larga de Japón también está en Osaka: Tenjinbashi-suji, 2,6 km).', o: 'De todo un poco: moda asequible, cosmética japonesa y souvenirs.', q: 'Shinsaibashi-suji' },
+  { c: 'osaka', n: 'Doguya-suji (Sennichimae)', cat: 'Cocina', t: 'Decenas de tiendas de hostelería que también venden al por menor', d: 'Si queréis una plancha de takoyaki de verdad o utensilios de cocina profesional, es aquí. Poco turístico y muy auténtico.', o: 'Planchas de takoyaki, cuchillos profesionales y moldes.', q: 'Sennichimae Doguyasuji' },
+  { c: 'osaka', n: 'Don Quijote Dotonbori', cat: 'De todo', t: 'El más grande de la ciudad, con Tax Free', d: 'Varias plantas de absolutamente todo y abierto hasta la madrugada: perfecto para el último día.', o: 'Compras de última hora, snacks japoneses y souvenirs baratos.', q: 'Don Quijote Dotonbori' },
 ];
 
 const ONSEN = [
-  { c: 'tokio', n: 'Aqua Higashi Nakano', t: 'Sento moderno con baño exterior', p: '~550–1.000¥', tag: 'tattoo', d: 'De los sento más completos de Tokio y sin problemas con tatuajes. Baño de nanoburbujas y carbonatado.', q: 'Aqua Higashinakano sento' },
-  { c: 'tokio', n: 'Komae-yu', t: 'Sento de barrio', p: '~550¥', tag: 'tattoo', d: 'Experiencia auténtica de barrio, lejos de las zonas turísticas.', q: 'Komaeyu sento' },
-  { c: 'kioto', n: 'Funaoka Onsen', t: 'De los sento más antiguos de Kioto', p: '~500¥', tag: 'tattoo', d: 'Cerca de Kinkaku-ji. Baños calientes, fríos y una pequeña zona exterior.', q: 'Funaoka Onsen Kyoto' },
-  { c: 'kioto', n: 'Kurama Onsen', t: 'Montañas al norte, baño exterior', p: '1.000–2.500¥', tag: 'preguntar', d: 'Acepta tatuajes si se pregunta antes. Ideal tras la ruta Kibune–Kurama.', q: 'Kurama Onsen' },
-  { c: 'kioto', n: 'Hanaikada', t: 'Arashiyama, vistas al puente Togetsukyo', p: '1.500–3.000¥', tag: 'preguntar', d: 'Para combinar con el día de Arashiyama.', q: 'Hanaikada Arashiyama' },
-  { c: 'kanazawa', n: 'Kaga Onsen', t: 'Pueblos termales a 30–40 min', p: 'Variable', tag: 'excursion', d: 'Con una sola noche en Kanazawa es difícil encajarlo.', q: 'Yamanaka Onsen' },
-  { c: 'osaka', n: 'Arima Onsen', t: 'Uno de los tres onsen más antiguos', p: 'Variable', tag: 'excursion', d: 'A 1 h 15 min en bus desde Osaka, cerca de Kobe. Muchos ryokan ofrecen baño privado.', q: 'Arima Onsen' },
+  { c: 'tokio', n: 'Aqua Higashi Nakano', t: 'Sento moderno con rotenburo (baño exterior)', p: '~800–1.500¥', tag: 'tattoo', d: 'De los sento más completos de Tokio y especialmente valorado por aceptar tatuajes sin problemas. Baño de nanoburbujas y baño carbonatado. Ideal como primer baño público japonés.', q: 'Aqua Higashinakano sento' },
+  { c: 'tokio', n: 'Komae-yu', t: 'Sento de barrio, lejos de las zonas turísticas', p: '~500–800¥', tag: 'tattoo', d: 'Experiencia auténtica de barrio, sin multitudes. Acepta tatuajes con normalidad.', q: 'Komaeyu sento' },
+  { c: 'kioto', n: 'Funaoka Onsen', t: 'Uno de los sento más antiguos de Kioto', p: '~500–700¥', tag: 'tattoo', d: 'Cerca de Kinkaku-ji, para combinar con la visita del 12 de noviembre. Baños interiores variados (caliente, muy caliente, helado) y una pequeña piscina exterior.', q: 'Funaoka Onsen Kyoto' },
+  { c: 'kioto', n: 'Kurama Onsen', t: 'Montañas al norte de Kioto, baño exterior con vistas', p: '~2.000–2.500¥', tag: 'preguntar', d: 'Acepta tatuajes si se pregunta antes. Si hacéis la ruta de senderismo Kibune–Kurama, terminar aquí es un planazo. Tiene restaurante.', q: 'Kurama Onsen' },
+  { c: 'kioto', n: 'Hanaikada', t: 'Arashiyama, baño exterior con vistas al puente Togetsukyo', p: '~1.500–3.000¥', tag: 'preguntar', d: 'Onsen separado por sexos con vistas al río Oi y al monte Atago. Para combinar con el día de Arashiyama.', q: 'Hanaikada Arashiyama' },
+  { c: 'kanazawa', n: 'Kaga Onsen', t: 'Pueblos de onsen a 30–40 min en tren de Kanazawa', p: 'Variable', tag: 'excursion', d: 'Conjunto de aldeas termales. Con una sola noche en Kanazawa es complicado encajarlo.', q: 'Kaga Onsen' },
+  { c: 'osaka', n: 'Arima Onsen', t: 'Uno de los tres pueblos de onsen más antiguos de Japón', p: 'Variable', tag: 'excursion', d: 'A 1 h 15 min en bus desde Osaka, cerca de Kobe (se puede combinar con la carne de Kobe). Famoso por sus aguas doradas y plateadas; muchos ryokan aceptan tatuajes en sus baños privados.', q: 'Arima Onsen' },
 ];
 
 const FRASES = [
   { ja: '5人です。', ro: 'Go-nin desu.', es: 'Somos cinco.' },
+  { ja: '英語は大丈夫ですか？', ro: 'Eigo wa daijōbu desu ka?', es: '¿Habla inglés?' },
   { ja: '英語のメニューはありますか？', ro: 'Eigo no menyū wa arimasu ka?', es: '¿Tienen carta en inglés?' },
+  { ja: 'これをください。', ro: 'Kore o kudasai.', es: 'Esto, por favor (señalando).' },
   { ja: 'おすすめは何ですか？', ro: 'Osusume wa nan desu ka?', es: '¿Qué nos recomienda?' },
   { ja: 'お会計をお願いします。', ro: 'Okaikei o onegaishimasu.', es: 'La cuenta, por favor.' },
   { ja: 'カードは使えますか？', ro: 'Kādo wa tsukaemasu ka?', es: '¿Se puede pagar con tarjeta?' },
@@ -912,11 +960,12 @@ const FRASES = [
 
 const PRESUPUESTO = [
   { g: 'Transporte', items: [
-    ['Narita Express o Skyliner', 18],
+    ['Narita Express (aeropuerto → centro)', 20],
     ['Tren a Nikko, ida y vuelta', 25],
     ['Shinkansen Tokio → Kanazawa', 90],
-    ['Bus Kanazawa → Shirakawa-go → Takayama', 36],
-    ['Tren Takayama → Kioto', 39, 'Puede rondar 65€, revisadlo'],
+    ['Bus Kanazawa → Takayama', 19, 'Comprobad el precio en Nohi Bus'],
+    ['Bus Takayama ↔ Shirakawa-go', 17],
+    ['Tren Takayama → Kioto', 39, 'En tren es más: 45–63€. 39€ se acerca al bus'],
     ['Tren Kioto ↔ Nara', 10],
     ['Tren Kioto → Osaka', 4],
     ['Tren Namba → aeropuerto de Kansai', 8],
@@ -924,32 +973,34 @@ const PRESUPUESTO = [
   ]},
   { g: 'Entradas y excursiones', items: [
     ['Excursión Fuji y Hakone', 99, 'Ya pagada'],
-    ['Tokyo Disneyland', 65],
-    ['Tokyo DisneySea', 65],
-    ['Excursión Hiroshima y Miyajima', 69],
-    ['Universal Studios Japan', 65, 'Sin Express Pass'],
-    ['Ceremonia del té', 25],
-    ['Templos y jardines', 35],
+    ['Tokyo Disneyland', 65, 'Temporada alta (festivo)'],
+    ['Tokyo DisneySea', 65, 'Temporada alta'],
+    ['Excursión Hiroshima y Miyajima', 69, 'Desde Kioto'],
+    ['Universal Studios Japan', 65, 'Entrada básica, sin Express Pass'],
+    ['Ceremonia del té (Kanazawa)', 25, 'Estimado'],
+    ['Templos y jardines', 35, 'Kenroku-en, Kinkaku-ji, Kiyomizudera…'],
   ]},
   { g: 'Comida, 16 días', items: [
-    ['Desayunos en konbini', 64, '4€ al día'],
+    ['Desayuno en konbini', 64, '3–5€ al día'],
     ['Comidas: ramen, sushi, teishoku', 160, '10€ al día'],
     ['Cenas: izakayas y restaurantes', 320, '20€ al día'],
     ['Snacks y comida callejera', 80, '5€ al día'],
   ]},
 ];
-const EXTRAS = [['Express Pass de USJ', 'desde ~100€'], ['Envío de maletas (takuhaibin)', '~15–20€ por envío'], ['Excursión de carne de Kobe u Omi', '20–50€']];
+const EXTRAS = [['Express Pass de USJ', '~100–150€'], ['Envío de maletas (takuhaibin)', '~15–20€ por maleta'], ['Excursión de carne de Kobe u Omi', '20–50€'], ['eSIM de datos', '~20€']];
 
 const TRANSPORTE = [
-  { d: 'Día 1', r: 'Aeropuerto → Tokio', m: 'Narita Express o Skyliner', t: '~1 h', p: '~18€', donde: 'En el aeropuerto al llegar, o con Suica.' },
+  { d: 'Día 1', r: 'Aeropuerto → Tokio', m: 'Narita Express (o monorraíl/Keikyu si es Haneda)', t: '~1 h', p: '~20€', donde: 'En el aeropuerto al llegar. Vale Suica + billete de asiento.' },
+  { d: 'Día 2', r: 'Hakone', m: 'Hakone Freepass, incluido en la excursión', t: '', p: 'Ya pagado', donde: 'Va con la excursión.' },
   { d: 'Día 3', r: 'Tokio ↔ Nikko', m: 'Tren Tobu desde Asakusa', t: '~2 h', p: '~25€', donde: 'En la estación de Asakusa ese mismo día.' },
-  { d: 'Día 7', r: 'Tokio → Kanazawa', m: 'Shinkansen Hokuriku', t: '2 h 30 min', p: '~90€', donde: 'Online (JR East / JR West) o Klook, con antelación.' },
-  { d: 'Día 8', r: 'Kanazawa → Shirakawa-go → Takayama', m: 'Bus Nohi', t: '~2 h + parada', p: '~36€', donde: 'Web de Nohi Bus. Reserva obligatoria en temporada alta.' },
-  { d: 'Día 9', r: 'Takayama → Kioto', m: 'Tren Hida + Shinkansen desde Nagoya', t: '~3 h', p: '39–65€', donde: 'En la estación de Takayama el día antes, u online.' },
-  { d: 'Día 10', r: 'Kioto ↔ Hiroshima', m: 'Incluido en la excursión', t: '1 h 40 min', p: 'Incluido', donde: 'Ya en el bono de la excursión.' },
+  { d: 'Día 7', r: 'Tokio → Kanazawa', m: 'Shinkansen Hokuriku', t: '2 h 30 min', p: '~90€', donde: 'Online (JR East / JR West) o Klook, con 1–2 meses de antelación: es temporada de momiji y se llena.' },
+  { d: 'Día 8', r: 'Kanazawa → Takayama', m: 'Bus Nohi', t: '~2 h 15 min', p: '~19€ (comprobadlo)', donde: 'Web de Nohi Bus. Reserva obligatoria en temporada alta: hacedlo en cuanto tengáis fechas.' },
+  { d: 'Día 8', r: 'Takayama ↔ Shirakawa-go', m: 'Bus Nohi', t: '50 min', p: '~17€', donde: 'Web de Nohi Bus, con reserva.' },
+  { d: 'Día 9', r: 'Takayama → Kioto', m: 'Tren Hida + Shinkansen desde Nagoya, o Hida directo', t: '3–4 h', p: '45–63€', donde: 'En la estación de Takayama el día antes, u online. El bus directo (~35€) tarda unas 5 h.' },
+  { d: 'Día 10', r: 'Kioto ↔ Hiroshima', m: 'Shinkansen', t: '~1 h 40 min', p: 'En la excursión (69€)', donde: 'Klook o GetYourGuide; confirmad que incluye el Shinkansen.' },
   { d: 'Día 11', r: 'Kioto ↔ Nara', m: 'JR Nara Line', t: '45 min', p: '~10€', donde: 'Con Suica, sin comprar billete.' },
-  { d: 'Día 13', r: 'Kioto → Osaka', m: 'JR', t: '30 min', p: '~4€', donde: 'Con Suica.' },
-  { d: 'Día 16', r: 'Namba → aeropuerto', m: 'Nankai', t: '~40 min', p: '~8€', donde: 'Con Suica, o el Rapi:t con reserva.' },
+  { d: 'Día 13', r: 'Kioto → Osaka', m: 'JR (o Shinkansen, 15 min, ~9€)', t: '~30 min', p: '~4€', donde: 'Con Suica.' },
+  { d: 'Día 16', r: 'Namba → aeropuerto', m: 'Nankai', t: '35–45 min', p: '~8€', donde: 'Con Suica, o el Rapi:t con asiento reservado.' },
 ];
 
 /* =========================================================
@@ -1116,7 +1167,10 @@ function renderRuta() {
   const cities = Object.entries(CIUDADES).filter(([, c]) => c.noches);
   $('#ruta-resumen').innerHTML = `<b>${total} noches en 5 ciudades</b>
     <div class="strip" role="img" aria-label="Reparto de noches">${cities.map(([, c]) => `<span style="flex:${c.noches};background:${c.color}"></span>`).join('')}</div>
-    <div class="legend">${cities.map(([, c]) => `<span><i style="background:${c.color}"></i>${c.nombre} ${c.noches}</span>`).join('')}</div>`;
+    <div class="legend">${cities.map(([, c]) => `<span><i style="background:${c.color}"></i>${c.nombre} ${c.noches}</span>`).join('')}</div>
+    <div class="sec"><h4>Momentos especiales</h4><ul class="eat">${MOMENTOS.map(m =>
+      `<li><a href="#ruta/${m.f}" style="text-decoration:none">${m.i} <b>${esc(m.t)}</b></a> <span class="muted small">${esc(m.x)}</span></li>`).join('')}</ul></div>
+    <div class="note rain"><b>Temporada de koyo</b>Viajáis en pleno otoño japonés. Nikko, Takayama y Shirakawa-go estarán en buen momento; en Kioto y Osaka empezará el rojo de los arces (su pico suele llegar a finales de noviembre).</div>`;
 
   const groups = [];
   DIAS.forEach(d => { const g = groups[groups.length - 1]; if (g && g.ciudad === d.ciudad) g.dias.push(d); else groups.push({ ciudad: d.ciudad, dias: [d] }); });
@@ -1146,10 +1200,16 @@ function renderSitios() {
 
   const intro = $('#sitios-intro');
   if (sKind === 'onsen') {
-    intro.innerHTML = `<div class="note"><b>Onsen con tatuajes</b>Muchos baños tradicionales aún no admiten tatuajes, pero hay salidas: sitios que los aceptan (buscad en tattoofriendlyonsen.com), parches color piel para tatuajes pequeños (en farmacias y konbinis, puestos antes de llegar) o un baño privado (kashikiri) por horas, ideal para el grupo. Si os piden salir, salid sin discutir.</div>`;
+    intro.innerHTML = `<div class="note"><b>Onsen y tatuajes</b>La prohibición viene de la asociación de los tatuajes con la yakuza y sigue siendo estricta en más de la mitad de los onsen tradicionales. Pero ha cambiado mucho: la Agencia de Turismo pide flexibilidad, cada vez hay más japoneses jóvenes tatuados y hay directorios con cientos de sitios que los aceptan. Llevar tatuajes no es ilegal en ningún sitio; solo afecta a onsen, piscinas y gimnasios.</div>
+      <div class="card" style="margin-top:10px"><b>Tres soluciones si hay tatuajes en el grupo</b><ul class="tipl">
+        <li><b>Onsen “tattoo friendly”</b><span>Sitios que los aceptan sin taparlos. Buscad en tattoofriendlyonsen.com antes de ir.</span></li>
+        <li><b>Parches cubre-tatuajes</b><span>Apósitos color piel (marca habitual: Aqua) en konbinis y farmacias como Matsumoto Kiyoshi. Para tatuajes pequeños; ponéoslos antes de llegar, no en el vestuario.</span></li>
+        <li><b>Baño privado (kashikiri)</b><span>Reserváis el baño entero para el grupo por horas. Con 5 personas es lo más cómodo; muchos ryokan lo ofrecen.</span></li></ul></div>
+      <div class="note warn"><b>Norma de oro</b>Si un onsen os pide que os vayáis por los tatuajes, hacedlo sin discutir. Antes de reservar un ryokan con onsen privado, confirmad por email o teléfono que acepta tatuajes.</div>`;
   } else if (sKind === 'comer') {
-    intro.innerHTML = sCity === 'todas' || sCity === 'osaka' || sCity === 'kioto' ? `<div class="note"><b>Wagyu de verdad</b>Mucha “carne de Kobe” barata en zonas turísticas no es Kobe certificada. Las certificadas que tenéis cerca: Hida beef en Takayama (día 8, sin desviaros), Omi beef a 35 min de Kioto y Kobe a 30 min de Osaka.</div>` : '';
-  } else intro.innerHTML = '';
+    intro.innerHTML = `<div class="note"><b>Cómo leer la lista</b><b style="display:inline">De locales</b>: lo frecuentan japoneses, más auténtico. <b style="display:inline">Turístico pero bueno</b>: conocido y con cola, pero de calidad real, no una trampa. <b style="display:inline">Mixto</b>: equilibrio entre los dos. Precios por persona y orientativos. Donde no se reserva (la mayoría), llegad 15–20 min antes de abrir o evitad las 13–14 h y las 19–20 h para no esperar mucho siendo 5.</div>` +
+      (sCity === 'todas' || sCity === 'osaka' || sCity === 'kioto' || sCity === 'takayama' ? `<div class="note warn"><b>Ojo con el “Kobe” o “wagyu A5” barato</b>Muchos restaurantes turísticos de Tokio y Osaka anuncian Kobe beef que no es certificado: solo una pequeña parte del ganado Tajima-gyū de Hyōgo recibe la certificación cada año. Será wagyu rico, pero no lo mismo. Kobe no es una raza, sino una denominación de origen muy exclusiva dentro del wagyu. Las tres grandes wagyu certificadas son <b style="display:inline">Kobe, Matsusaka y Omi</b>. Las que os pillan cerca: <b style="display:inline">Hida beef</b> en Takayama (denominación oficial de Gifu, el día 8, sin desviaros; hay quien la prefiere a Kobe), <b style="display:inline">Omi beef</b> a 30–40 min de Kioto y <b style="display:inline">Kobe</b> a 30 min de Osaka.</div>` : '');
+  } else intro.innerHTML = `<div class="note"><b>Tax Free</b>Desde 5.000¥ en la misma tienda y el mismo día, con el pasaporte físico. Desde el 1 de noviembre se paga entero y se reclama en el aeropuerto (detalles en Guía, Dinero). Funciona en Don Quijote, grandes almacenes, Yodobashi, Bic Camera y la mayoría de tiendas grandes.</div>`;
 
   const list = { comer: COMER, compras: COMPRAS, onsen: ONSEN }[sKind];
   const q = sQuery.trim().toLowerCase();
@@ -1159,7 +1219,7 @@ function renderSitios() {
     const label = p.cat || TAGS[p.tag];
     return `<div class="card place${p.feat ? ' feat' : ''}">
       <div class="place-top"><div><div class="place-name">${esc(p.n)}</div><div class="place-type">${esc(p.t)}</div></div>${p.p ? `<div class="place-price">${esc(p.p)}</div>` : ''}</div>
-      <p>${esc(p.d)}</p>${p.o ? `<div class="order"><b>Pedid:</b> ${esc(p.o)}</div>` : ''}
+      <p>${esc(p.d)}</p>${p.o ? `<div class="order"><b>${sKind === 'compras' ? 'Id para' : 'Pedid'}:</b> ${esc(p.o)}</div>` : ''}
       <div class="place-foot"><span class="pill city" style="background:${c.color}">${c.nombre}</span>${label ? `<span class="pill muted">${esc(label)}</span>` : ''}
       <a class="maplink" href="${mapsUrl(p.q)}" target="_blank" rel="noopener">Abrir en Maps ↗</a></div></div>`;
   }).join('') : `<div class="empty">Nada con “${esc(sQuery)}” aquí. Prueba con otra ciudad o borra la búsqueda.</div>`;
@@ -1176,7 +1236,7 @@ function renderGuia() {
     <h3 class="h">No incluido</h3><ul class="rows">${EXTRAS.map(e => `<li><span>${e[0]}</span><span class="r-amt">${e[1]}</span></li>`).join('')}</ul>`;
 
   $('#transport').innerHTML = `<ul class="tipl">${TRANSPORTE.map(t => `<li><b>${t.r} <span class="muted" style="font-weight:400">· ${t.d}</span></b>
-    <span>${t.m}, ${t.t}. <b style="display:inline;color:var(--shu)">${t.p}</b><br>${t.donde}</span></li>`).join('')}</ul>`;
+    <span>${t.m}${t.t ? ', ' + t.t : ''}. <b style="display:inline;color:var(--shu)">${t.p}</b><br>${t.donde}</span></li>`).join('')}</ul>`;
 
   // Conversor
   const rateIn = $('#cv-rate'), yen = $('#cv-yen'), eur = $('#cv-eur');
