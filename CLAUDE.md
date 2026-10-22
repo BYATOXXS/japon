@@ -24,6 +24,7 @@ Se comparte por WhatsApp con el enlace de GitHub Pages y funciona sin internet u
 - "Cerca de mí" (Sitios): ordena por distancia con el GPS usando `GEO` (coordenadas de OpenStreetMap; las marcadas con 1 son zona aproximada; Kutani sin ubicación).
 - Paradas con horario y precio (`VISITAS`, comprobado en oct 2026) y "Antes de salir" / "Para mañana" (`PREPARAR`).
 - Frases con audio (speechSynthesis ja-JP; si el móvil no tiene voz japonesa, avisa).
+- Hoteles (investigados el 2026-10-22, webs oficiales + webs de reservas): Metropolitan Edmont (Iidabashi), Hotel Kanazawa (ホテル金沢, salida Este de la estación), Oyado Koto no Yume (ryokan, Takayama; cierra la puerta a las 23:00 y check-out a las 10:00), Kyoto Tokyu (lanzadera gratis desde Kyoto Hachijo), Monterey Grasmere Osaka (JR Namba, junto a OCAT). Ficha completa en Ruta → "Dónde dormimos" (`#ruta/hotel-<id>`), tarjeta "Esta noche dormís en" en Hoy y datos rápidos en SOS. Cada hotel es también parada en su día de llegada.
 - Quitado el botón "Enviar por WhatsApp" de los días: el usuario lo considera innecesario (todos tienen la web y viajan juntos).
 
 ## Archivos clave
@@ -43,6 +44,7 @@ Se comparte por WhatsApp con el enlace de GitHub Pages y funciona sin internet u
 - Correcciones verificadas respecto al original: edad para beber 20 años; Space Mountain cerrada hasta 2027; Fantasmic! → Believe! Sea of Dreams; USJ no permite comida de fuera (sí una bebida cerrada); USJ sin descuento por discapacidad confirmado para extranjeros; Kenroku-en 320¥ (no 800¥); bus Kanazawa→Takayama ~2 h 15 min; Kioto→Osaka JR ~30 min (15 min es en Shinkansen); Kioto→Hiroshima ~1 h 40 min; bus a Kegon ~45 min; Narita Express ~20€; pico de momiji en Kioto a finales de nov/inicio de dic (no 5–20 nov); Shinsaibashi no es la calle cubierta más larga de Japón; la iPhone/Tax Free directa solo el 31 oct; Disney abre normalmente a las 9:00.
 
 ## Pendientes
-- Rellenar `HOTELES` y `SEGURO` cuando estén reservados (y subir `VERSION` en sw.js).
+- Rellenar en `HOTELES` el tipo de habitación reservada (`habitacion`) y el nº de reserva (`reserva`), y `SEGURO` (y subir `VERSION` en sw.js).
+- Confirmar con Koto no Yume si aceptan tatuajes en el onsen y la hora exacta del desayuno.
 - Verificar precios dudosos: tren Takayama→Kioto (39€ apuntado vs ~65€ reales con Shinkansen) y la excursión Hiroshima a 69€ (el Shinkansen ida y vuelta solo ya cuesta más).
 - Confirmar aeropuerto de llegada (Narita vs Haneda) y horario exacto del vuelo.

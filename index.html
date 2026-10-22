@@ -319,6 +319,7 @@ details.acc > summary .sub { display: block; font-weight: 400; font-size: 13px; 
 .call .num.s { font-size: 18px; }
 .call .who { font-weight: 650; }
 .call .how { font-size: 13.5px; color: var(--muted); }
+.card.hotel { align-items: flex-start; }
 .hotel h4 { font-size: 16px; font-weight: 650; }
 .hotel .when { font-size: 13.5px; color: var(--muted); }
 .hotel dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; font-size: 14.5px; margin-top: 8px; }
@@ -343,6 +344,8 @@ details.acc > summary .sub { display: block; font-weight: 400; font-size: 13px; 
 .overlay .hint { position: absolute; bottom: calc(24px + env(safe-area-inset-bottom)); font-size: 13px; color: var(--muted); }
 
 .overlay .listen { margin-top: 26px; }
+.overlay .ja { white-space: pre-line; }
+.overlay .ja.long { font-size: clamp(22px, 6.5vw, 38px); }
 
 /* ---------- Euros, visitas, cerca de mí ---------- */
 .eur { color: var(--muted); font-weight: 400; font-size: .88em; white-space: nowrap; }
@@ -377,6 +380,31 @@ details.acc > summary .sub { display: block; font-weight: 400; font-size: 13px; 
 .gitem .ga { font-weight: 700; white-space: nowrap; text-align: right; }
 .gitem .ga small { display: block; font-weight: 400; color: var(--muted); font-size: 12px; }
 .gitem .gdel { width: 36px; height: 36px; border-radius: 50%; color: var(--muted); font-size: 18px; flex-shrink: 0; }
+
+/* ---------- Hoteles ---------- */
+details.hotel-d { background: var(--card); border: 1px solid var(--line); border-radius: 14px; margin-bottom: 8px; }
+details.hotel-d[open] { border-color: var(--ink); }
+details.hotel-d > summary { list-style: none; display: flex; gap: 14px; align-items: center; padding: 14px; cursor: pointer; }
+details.hotel-d > summary::-webkit-details-marker { display: none; }
+.h-name { font-family: var(--serif); font-weight: 700; font-size: 18px; line-height: 1.25; }
+.h-ja { font-size: 13px; color: var(--muted); }
+.h-meta { font-size: 13.5px; color: var(--muted); margin-top: 2px; }
+.stars { color: var(--kin); letter-spacing: 1px; font-size: 14px; }
+.h-body { padding: 0 14px 16px; }
+.h-body > p { font-size: 15px; }
+.kfs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+.kf { background: var(--paper); border-radius: 10px; padding: 9px 11px; }
+.kf small { display: block; font-size: 12px; color: var(--muted); }
+.kf b { font-size: 17px; }
+.kf.wide { grid-column: 1 / -1; }
+.kf.wide b { font-size: 14.5px; font-weight: 500; }
+.amens { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.am { font-size: 13px; padding: 4px 10px; border-radius: 999px; background: var(--matcha-soft); color: var(--ink); }
+.am.no { background: var(--paper); color: var(--muted); text-decoration: line-through; }
+.am.ask { background: var(--kin-soft); }
+.am-legend { font-size: 12.5px; color: var(--muted); margin-top: 6px; }
+.hlink { display: inline-block; font-size: 14px; font-weight: 600; text-decoration: none; color: var(--ink); margin: -2px 0 8px; }
+.mine { border: 1.5px dashed var(--line); border-radius: 10px; padding: 10px 12px; margin-top: 12px; font-size: 14.5px; }
 
 /* ---------- Frases con audio ---------- */
 .phrase-row { display: flex; align-items: center; border-bottom: 1px solid var(--line); }
@@ -416,6 +444,9 @@ details.acc > summary .sub { display: block; font-weight: 400; font-size: 13px; 
     <h1 class="v-title">La ruta</h1>
     <p class="v-sub">30 de octubre al 15 de noviembre. Toca un día para ver el plan completo.</p>
     <div class="card" id="ruta-resumen"></div>
+    <h2 class="h">Dónde dormimos</h2>
+    <div id="ruta-hoteles"></div>
+    <h2 class="h" style="margin-bottom:0">Día a día</h2>
     <div id="ruta-dias"></div>
   </section>
 
@@ -733,13 +764,137 @@ details.acc > summary .sub { display: block; font-weight: 400; font-size: 13px; 
    DATOS DEL VIAJE — para cambiar algo, edita solo esta parte
    ========================================================= */
 
-// Hoteles: rellenad los datos en cuanto los tengáis. "direccionJa" es la dirección en japonés para enseñar al taxista.
+// Hoteles: datos de la web oficial de cada hotel y de webs de reservas (comprobado en octubre de 2026).
+// "habitacion" y "reserva": rellenad lo que tengáis reservado. "direccionJa" es la que se enseña al taxista.
 const HOTELES = [
-  { ciudad: 'tokio',    fechas: '31 oct – 6 nov · 6 noches', nombre: '', direccion: '', direccionJa: '', telefono: '', reserva: '' },
-  { ciudad: 'kanazawa', fechas: '6 – 7 nov · 1 noche',       nombre: '', direccion: '', direccionJa: '', telefono: '', reserva: '' },
-  { ciudad: 'takayama', fechas: '7 – 8 nov · 1 noche',       nombre: '', direccion: '', direccionJa: '', telefono: '', reserva: '' },
-  { ciudad: 'kioto',    fechas: '8 – 12 nov · 4 noches',     nombre: '', direccion: '', direccionJa: '', telefono: '', reserva: '' },
-  { ciudad: 'osaka',    fechas: '12 – 15 nov · 3 noches',    nombre: '', direccion: '', direccionJa: '', telefono: '', reserva: '' },
+  { id: 'tokio', ciudad: 'tokio', entra: '2026-10-31', sale: '2026-11-06', fechas: '31 oct – 6 nov', noches: 6,
+    nombre: 'Hotel Metropolitan Edmont Tokyo', nombreJa: 'ホテルメトロポリタン エドモント',
+    estrellas: 4, nota: '9,4–9,6/10 en webs de reservas',
+    tipo: 'Gran hotel urbano (665 habitaciones) de la cadena de JR East, en Iidabashi: barrio tranquilo, céntrico y muy bien comunicado.',
+    direccion: '3-10-8 Iidabashi, Chiyoda-ku, Tokio 102-8130', direccionJa: '〒102-8130 東京都千代田区飯田橋3-10-8',
+    telefono: '+81 3-3237-1111', q: 'Hotel Metropolitan Edmont Tokyo',
+    estacion: '5 min andando de JR Iidabashi (salida Este) y de JR Suidobashi (salida Oeste). En Iidabashi también hay metro: líneas Tozai, Yurakucho, Namboku y Oedo.',
+    checkin: '15:00', checkout: '11:00',
+    desayuno: 'De pago, en el café Belltempo (planta 1 del edificio East Wing): continental, americano o bufé. No se reserva.',
+    habitaciones: ['Superior Twin: 26 m², dos camas de 110 × 200 cm, edificio principal', 'Hay habitaciones estándar, superiores, deluxe y familiares, repartidas entre el edificio principal y el East Wing'],
+    incluye: {
+      si: ['Cepillo de dientes', 'Champú, acondicionador y gel', 'Pijama de dos piezas', 'Zapatillas', 'Toallas', 'Secador', 'Bañera', 'Cafetera Nespresso', 'Hervidor y té', 'Nevera', '2 botellas de agua por persona', 'Wi-Fi gratis', 'Caja fuerte', 'Humidificador'],
+      no: [],
+      pedir: ['Kit de cosmética básica (gratis en recepción)', 'Pijama infantil'],
+    },
+    servicios: [
+      ['Consigna', 'En el bell desk de la planta 1, antes del check-in y después del check-out, desde primera hora.'],
+      ['Envío de maletas', 'Mostrador de mensajería junto al bell desk (planta 1). Venden cajas. Perfecto para mandar las maletas a Kanazawa el 5 de noviembre.'],
+      ['Lavandería', 'Planta 4 del edificio principal, 24 h (8 máquinas). Lavar y secar 600¥ (hasta 3 kg). Solo monedas de 100¥ o pago con QR, no hay cambio.'],
+      ['Konbinis', 'FamilyMart y 7-Eleven 24 h justo enfrente de la entrada, y un NewDays dentro del hotel.'],
+      ['Fumar', 'Todo es para no fumadores; hay zonas de fumadores en la planta B1.'],
+    ],
+    consejos: [
+      { t: 'warn', h: 'Colas a las 15:00', x: 'El check-in es a las 15:00 en punto y a esa hora hay colas (dan número). Si llegáis antes, dejad las maletas en consigna y salid a comer.' },
+      { t: 'tip', h: 'Desde aquí', x: 'Shinjuku: ~15 min en la línea JR Chuo-Sobu. Desde Narita: Narita Express hasta Tokyo o Shinjuku y de ahí la JR Chuo-Sobu hasta Iidabashi. Disney: unos 45 min (línea Keiyo desde Tokyo).' }],
+    habitacion: '', reserva: '' },
+
+  { id: 'kanazawa', ciudad: 'kanazawa', entra: '2026-11-06', sale: '2026-11-07', fechas: '6 – 7 nov', noches: 1,
+    nombre: 'Hotel Kanazawa', nombreJa: 'ホテル金沢',
+    estrellas: 4, nota: '9,0/10 en webs de reservas',
+    tipo: 'Hotel urbano delante de la estación, con todas las habitaciones renovadas en 2022.',
+    direccion: '1-1 Horikawa-shinmachi, Kanazawa, Ishikawa 920-0849', direccionJa: '〒920-0849 石川県金沢市堀川新町1-1',
+    telefono: '+81 76-223-1111', q: 'Hotel Kanazawa Horikawashinmachi',
+    estacion: '1 min andando de la salida Este (Kenrokuen) de la estación de Kanazawa, junto a la parada 1 de la terminal de autobuses.',
+    checkin: '15:00', checkout: '11:00',
+    desayuno: 'Bufé de cocina japonesa y occidental con más de 40 platos.',
+    habitaciones: ['Standard Twin: 22 m², dos camas de 102 cm', 'Twin Plus: 29 m², hasta 3 personas', 'Family Room: 44 m², hasta 4 personas', 'Premier Four: 60 m², hasta 4 personas'],
+    incluye: {
+      si: ['Cepillo de dientes', 'Champú, acondicionador y gel', 'Yukata para dormir', 'Zapatillas', 'Toallas', 'Secador', 'Cafetera de cápsulas', 'Hervidor', 'Nevera', 'Wi-Fi gratis', 'Maquinilla de afeitar y cepillo'],
+      no: ['Pijama (en su lugar, yukata)', 'Baño grande u onsen'],
+      pedir: ['Plancha', 'Humidificador', 'Lámpara de escritorio'],
+    },
+    servicios: [
+      ['Envío de maletas', 'Os gestionan el envío (takuhaibin): ideal para mandarlas directamente a Kioto.'],
+      ['Lavandería', 'Servicio de lavandería de pago.'],
+      ['Otros', 'Máquina de cambio de divisas, máquinas de hielo (plantas 7 y 11) y máquinas de bebidas.'],
+    ],
+    consejos: [
+      { t: 'tip', h: 'Al lado de todo', x: 'Para el bus del día siguiente no hace falta madrugar de más: la terminal de autobuses de la estación está en la puerta.' }],
+    habitacion: '', reserva: '' },
+
+  { id: 'takayama', ciudad: 'takayama', entra: '2026-11-07', sale: '2026-11-08', fechas: '7 – 8 nov', noches: 1,
+    nombre: 'Oyado Koto no Yume', nombreJa: 'おやど 古都の夢',
+    estrellas: 4, nota: '9,5–9,6/10 en webs de reservas. Aparece en la Guía Verde Michelin',
+    tipo: 'Ryokan moderno con onsen natural de Hida Takayama: tatami, yukata y baños termales, a dos pasos de la estación.',
+    direccion: '6-11 Hanasato-machi, Takayama, Gifu 506-0026', direccionJa: '〒506-0026 岐阜県高山市花里町6-11',
+    telefono: '+81 577-32-0427', q: 'Oyado Koto no Yume Takayama',
+    estacion: '2 min andando de la salida Este de la estación JR de Takayama. La terminal de autobuses Nohi está junto a la estación.',
+    checkin: '15:00', checkout: '10:00',
+    desayuno: 'A elegir entre japonés y occidental, en el comedor Kagura. Según la web, de 7:00 a 8:00 (confirmad la hora al llegar). No sirven cena: cenad fuera Hida beef.',
+    habitaciones: ['Habitación japonesa de 8 o 10 tatamis, con futones', 'Familiar japonesa-occidental: 2 camas + 2 futones', 'Dormitorio japonés moderno con 2 camas (solo hay uno, en la última planta)', 'Junior suite y habitación especial con irori'],
+    incluye: {
+      si: ['Cepillo de dientes', 'Champú, acondicionador y gel', 'Yukata', 'Toallas (llevad la de baño al onsen)', 'Secador', 'Wi-Fi gratis', 'Onsen natural con baño exterior', 'Alquiler de yukatas de colores'],
+      no: ['Pijama (se duerme en yukata)', 'Cena'],
+      pedir: ['Baño privado (de pago, reservar en recepción)'],
+    },
+    servicios: [
+      ['Onsen', 'Baños grandes «Nonoka» (hombres) y «Hananoka» (mujeres), ambos con baño exterior. De 15:00 a 23:00 y de 6:00 a 9:00. Gratis.'],
+      ['Baño privado', '«Hoshi no yu», planta 5: 3.300¥ por 40 min, de 1 a 3 personas (siendo 5, reservad dos turnos). De 16:00 a 22:00; reserva en recepción. No es agua de onsen.'],
+      ['Lavandería', 'Planta 3, de 10:00 a 21:00. Gratis; solo se paga el detergente.'],
+      ['Ambiente', 'Vestíbulo con irori (hogar tradicional) y jazz por la noche. Tienda de recuerdos de 8:00 a 21:00.'],
+    ],
+    consejos: [
+      { t: 'warn', h: 'La puerta se cierra a las 23:00', x: 'Es un ryokan: después de las 23:00 no se puede entrar. Y el check-out es a las 10:00, una hora antes que en los hoteles.' },
+      { t: 'tip', h: 'Tatuajes', x: 'La web no dice nada. Preguntad en recepción; si hay problema, el baño privado es la solución.' },
+      { t: 'tip', h: 'Sin maletas grandes', x: 'Las habitaciones tienen poco sitio para maletas: mejor llegar solo con mochila y mandar las maletas de Kanazawa a Kioto.' }],
+    habitacion: '', reserva: '' },
+
+  { id: 'kioto', ciudad: 'kioto', entra: '2026-11-08', sale: '2026-11-12', fechas: '8 – 12 nov', noches: 4,
+    nombre: 'Kyoto Tokyu Hotel', nombreJa: '京都東急ホテル',
+    estrellas: 4.5, nota: '9,2/10 en webs de reservas',
+    tipo: 'Gran hotel clásico de la cadena Tokyu, con un jardín interior con cascada y bambú. Junto al templo Nishi Hongan-ji.',
+    direccion: '580 Kakimoto-cho, Horikawa-dori Gojo-sagaru, Shimogyo-ku, Kioto 600-8519', direccionJa: '〒600-8519 京都府京都市下京区堀川通五条下ル柿本町580',
+    telefono: '+81 75-341-2411', q: 'Kyoto Tokyu Hotel',
+    estacion: 'No está en la estación: hay un bus lanzadera gratis desde la salida Hachijo de la estación de Kioto (~10 min). En bus urbano 9, 28 o 75 hasta Horikawa Gojo (3 min andando). Metro Gojo a 8 min.',
+    checkin: '14:00', checkout: '11:00',
+    desayuno: 'Bufé de pago en el restaurante del hotel (tiene 3 restaurantes).',
+    habitaciones: ['Superior Twin: 24–27 m², camas de 110–120 cm', 'Superior Triple: 27–29 m², 3 camas', 'Superior Force: 31 m², hasta 4 personas', 'Function Room: 46–50 m², 4 camas'],
+    incluye: {
+      si: ['Cepillo de dientes', 'Champú, acondicionador y gel', 'Pijama', 'Zapatillas', 'Toallas', 'Secador', 'Hervidor', 'Nevera', 'Caja fuerte', 'Wi-Fi gratis'],
+      no: [],
+      pedir: [],
+    },
+    servicios: [
+      ['Bus lanzadera', 'Gratis entre el hotel y la salida Hachijo de la estación de Kioto: es un autobús marrón que para en la zona de buses de hoteles (al salir por Hachijo, a la izquierda). Pasa cada ~30 min, aprox. de 8:00 a 21:00; con tráfico puede retrasarse o ir lleno.'],
+      ['Consigna', 'Sí, antes y después de la estancia.'],
+      ['Cambio de divisas', 'Máquina 24 h en la planta B1, con 12 monedas.'],
+      ['Fumar', 'Todas las habitaciones son para no fumadores.'],
+    ],
+    consejos: [
+      { t: 'tip', h: 'Moverse desde aquí', x: 'Para Fushimi Inari y Nara: lanzadera a la estación y tren JR Nara. Para Gion y Kiyomizudera, el bus urbano 9/28/75 o un taxi entre cinco sale barato.' },
+      { t: 'tip', h: 'Al lado', x: 'Nishi Hongan-ji, Patrimonio de la Humanidad y gratis, está a 7 min andando.' }],
+    habitacion: '', reserva: '' },
+
+  { id: 'osaka', ciudad: 'osaka', entra: '2026-11-12', sale: '2026-11-15', fechas: '12 – 15 nov', noches: 3,
+    nombre: 'Hotel Monterey Grasmere Osaka', nombreJa: 'ホテルモントレ グラスミア大阪',
+    estrellas: 4, nota: '9,0–9,2/10 en webs de reservas',
+    tipo: 'Hotel en lo alto de un rascacielos, decorado al estilo de una casa de campo inglesa. Habitaciones entre las plantas 24 y 31, con vistas de Osaka.',
+    direccion: '1-2-3 Minatomachi, Naniwa-ku, Osaka 556-0017', direccionJa: '〒556-0017 大阪府大阪市浪速区湊町1-2-3',
+    telefono: '+81 6-6645-7111', q: 'Hotel Monterey Grasmere Osaka',
+    estacion: 'Conectado con la estación JR Namba y a 1 min de Namba (metro Midosuji, Yotsubashi y Sennichimae; Kintetsu, Hanshin y Nankai). Dotonbori está a unos 10 min andando.',
+    checkin: '15:00', checkout: '11:00',
+    desayuno: 'Bufé japonés y occidental de 6:30 a 10:00 (última entrada 9:30): 4.500¥ por persona.',
+    habitaciones: ['Standard Twin y Standard Double', 'Deluxe Twin y Corner Twin', 'Triple', 'Junior Suite: 59 m²'],
+    incluye: {
+      si: ['Champú, acondicionador y gel', 'Pijama', 'Zapatillas', 'Toallas', 'Secador', 'Hervidor', 'Nevera', 'Purificador y humidificador', 'Bañera', 'Smart TV (podéis enviar desde el móvil)', 'Wi-Fi gratis'],
+      no: [],
+      pedir: ['Cepillo de dientes, peine y maquinilla (en recepción)'],
+    },
+    servicios: [
+      ['Recepción', 'En la planta 22, donde también están los tres restaurantes (francés, teppanyaki y japonés) y el salón de té.'],
+      ['Al aeropuerto', 'Junto al hotel está OCAT, la terminal de autobuses al aeropuerto de Kansai (~50 min, unos 1.100¥). Alternativa cómoda al tren el último día.'],
+      ['Consigna y lavandería', 'Consigna de equipaje y servicio de lavandería de pago.'],
+    ],
+    consejos: [
+      { t: 'tip', h: 'Cepillo de dientes', x: 'Desde 2022 no los dejan en la habitación: pedidlos en recepción (planta 22) al hacer el check-in.' },
+      { t: 'tip', h: 'Último día', x: 'Podéis dejar las maletas en consigna después del check-out, ir de compras por Namba y volver a por ellas antes de coger el bus a Kansai en OCAT.' }],
+    habitacion: '', reserva: '' },
 ];
 const SEGURO = { compania: '', telefono: '', poliza: '' };
 
@@ -778,7 +933,7 @@ const DIAS = [
       { t: 'tip', h: 'Último día del Tax Free de siempre', x: 'Hoy es el único día del viaje en que el 10% se descuenta en caja. Si alguien quiere un iPhone o electrónica cara, Yodobashi o Bic Camera hoy.' }],
     comer: ['Omoide Yokocho', 'Ichiran Shibuya'],
     lluvia: 'Shinjuku y Shibuya tienen pasos subterráneos y centros comerciales conectados. Paraguas plegable y listo.',
-    paradas: [{ n: 'Narita International Airport', t: 'Llegada' }, { n: 'Kabukicho, Shinjuku, Tokyo', t: 'Noche de Halloween' }, { n: 'Shibuya Scramble Crossing', t: 'El cruce' }, { n: 'Don Quijote Shibuya', t: 'Compras 24 h' }] },
+    paradas: [{ n: 'Narita International Airport', t: 'Llegada' }, { n: 'Hotel Metropolitan Edmont Tokyo', t: 'Hotel · check-in 15:00' }, { n: 'Kabukicho, Shinjuku, Tokyo', t: 'Noche de Halloween' }, { n: 'Shibuya Scramble Crossing', t: 'El cruce' }, { n: 'Don Quijote Shibuya', t: 'Compras 24 h' }] },
 
   { fecha: '2026-11-01', n: 2, ciudad: 'tokio', tiempo: 'hakone', flag: 'Excursión',
     titulo: 'Monte Fuji y Hakone', resumen: 'Excursión organizada, ya pagada (99€).',
@@ -832,7 +987,7 @@ const DIAS = [
       { t: 'tip', h: 'Distancias', x: 'Todo está a 15–20 min andando entre sí: es un día completo pero llevadero. Si llueve, el bus urbano para en todos estos sitios.' }],
     comer: ['Kourin Sushi', 'Puestos del Mercado Omicho', 'Mori Mori Sushi Omicho'],
     lluvia: 'Kanazawa es de las ciudades más lluviosas de Japón: paraguas siempre. Omicho está cubierto y Kenroku-en con lluvia también es precioso.',
-    paradas: [{ n: 'Kanazawa Station', t: 'Llegada' }, { n: 'Kenrokuen Garden', t: 'Jardín' }, { n: 'Omicho Market', t: 'Comer' }, { n: 'Higashi Chaya District', t: 'Geishas y té' }, { n: 'Nagamachi Samurai District', t: 'Samuráis' }] },
+    paradas: [{ n: 'Kanazawa Station', t: 'Llegada' }, { n: 'Hotel Kanazawa (ホテル金沢)', t: 'Hotel · dejar maletas, check-in 15:00' }, { n: 'Kenrokuen Garden', t: 'Jardín' }, { n: 'Omicho Market', t: 'Comer' }, { n: 'Higashi Chaya District', t: 'Geishas y té' }, { n: 'Nagamachi Samurai District', t: 'Samuráis' }] },
 
   { fecha: '2026-11-07', n: 8, ciudad: 'takayama', tiempo: 'takayama',
     titulo: 'Takayama, Shirakawa-go y Hida no Sato', resumen: 'El pueblo más auténtico de los Alpes japoneses.',
@@ -842,7 +997,7 @@ const DIAS = [
       { t: 'tip', h: 'Alternativa para ganar tiempo', x: 'El bus de Kanazawa a Takayama pasa por Shirakawa-go. Podéis bajaros allí (~1 h 15 min desde Kanazawa, 2.800¥), dejar las mochilas en la consigna de la terminal y seguir a Takayama (~50 min) en otro bus del mismo día. Os ahorráis la ida y vuelta; a cambio, los mercados de Takayama pasan a la mañana del día 9. Reservad los dos tramos en Nohi Bus.' }],
     comer: ['Hidagyu Maruaki', 'Suzuya', 'Hida Kotte Ushi', 'Matsuki Sushi', 'Heianraku'],
     lluvia: 'Shirakawa-go con lluvia sigue siendo bonito, pero menos cómodo. En Takayama los aleros del casco antiguo cubren bastante.',
-    paradas: [{ n: 'Takayama Nohi Bus Center', t: 'Llegada en bus' }, { n: 'Jinya-mae Morning Market, Takayama', t: 'Mercado matutino' }, { n: 'Sanmachi Suji, Takayama', t: 'Casco histórico' }, { n: 'Hida Folk Village', t: 'Hida no Sato' }, { n: 'Shirakawa-go', t: 'Patrimonio UNESCO' }] },
+    paradas: [{ n: 'Takayama Nohi Bus Center', t: 'Llegada en bus' }, { n: 'Oyado Koto no Yume, Takayama', t: 'Ryokan · dejar mochilas, check-in 15:00' }, { n: 'Jinya-mae Morning Market, Takayama', t: 'Mercado matutino' }, { n: 'Sanmachi Suji, Takayama', t: 'Casco histórico' }, { n: 'Hida Folk Village', t: 'Hida no Sato' }, { n: 'Shirakawa-go', t: 'Patrimonio UNESCO' }] },
 
   { fecha: '2026-11-08', n: 9, ciudad: 'kioto', tiempo: 'kioto',
     titulo: 'Takayama → Kioto: llegada y Gion', resumen: 'Viaje a Kioto y primer paseo por Gion.',
@@ -852,7 +1007,7 @@ const DIAS = [
       { t: 'tip', h: 'Kioto en noviembre', x: 'Los arces empiezan a cambiar: lo más alto y sombrío se pondrá rojo antes, pero el pico en Kioto suele ser a finales de noviembre.' }],
     comer: ['Yagenbori', 'Gion Tanto'],
     lluvia: 'Día de viaje casi entero; poco afectado.',
-    paradas: [{ n: 'Kyoto Station', t: 'Llegada en tren' }, { n: 'Gion, Kyoto', t: 'Barrio de geishas' }, { n: 'Hanamikoji Street', t: 'Paseo de tarde' }] },
+    paradas: [{ n: 'Kyoto Station', t: 'Llegada en tren' }, { n: 'Kyoto Tokyu Hotel', t: 'Hotel · check-in 14:00 (lanzadera gratis desde Hachijo)' }, { n: 'Gion, Kyoto', t: 'Barrio de geishas' }, { n: 'Hanamikoji Street', t: 'Paseo de tarde' }] },
 
   { fecha: '2026-11-09', n: 10, ciudad: 'kioto', tiempo: 'miyajima', flag: 'Excursión',
     titulo: 'Hiroshima y Miyajima', resumen: 'Excursión desde Kioto (69€).',
@@ -888,7 +1043,7 @@ const DIAS = [
     notas: [{ t: 'tip', h: 'Guardad energía', x: 'El canal de Dotonbori con los neones es mucho mejor de noche. Enviad las maletas de Kioto a Osaka la noche anterior.' }],
     comer: ['Mercado de Nishiki', 'Mizuno', 'Takoyaki Wanaka'],
     lluvia: 'Kinkaku-ji con lluvia se refleja igual de bien. Dotonbori tiene galerías cubiertas.',
-    paradas: [{ n: 'Kinkaku-ji', t: 'Pabellón dorado' }, { n: 'Philosopher\'s Path, Kyoto', t: 'Paseo' }, { n: 'Osaka Castle', t: 'Castillo' }, { n: 'Dotonbori', t: 'Neones' }] },
+    paradas: [{ n: 'Kinkaku-ji', t: 'Pabellón dorado' }, { n: 'Philosopher\'s Path, Kyoto', t: 'Paseo' }, { n: 'Hotel Monterey Grasmere Osaka', t: 'Hotel · dejar maletas, check-in 15:00' }, { n: 'Osaka Castle', t: 'Castillo' }, { n: 'Dotonbori', t: 'Neones' }] },
 
   { fecha: '2026-11-13', n: 14, ciudad: 'osaka', tiempo: 'osaka',
     titulo: 'Namba, Shinsaibashi y Shinsekai', resumen: 'Comer, comprar y salir.',
@@ -1186,17 +1341,17 @@ const PREPARAR = {
   '2026-11-02': ['Salir temprano hacia Asakusa (tren Tobu)', 'Calzado cómodo: hay cuestas y escaleras', 'Efectivo para las entradas (Tosho-gu 1.600¥)'],
   '2026-11-03': ['Entradas de Disneyland descargadas y app de Tokyo Disney Resort con sesión iniciada', 'Batería externa', 'Salir para estar 45–60 min antes de abrir'],
   '2026-11-04': ['Entradas de DisneySea descargadas', 'Batería externa', 'Misma hora de salida que ayer'],
-  '2026-11-05': ['Si llueve: comprar entradas de teamLab Borderless', 'Por la noche: maletas listas para enviarlas a Kanazawa'],
-  '2026-11-06': ['Maletas enviadas a Kanazawa la noche antes (takuhaibin)', 'Billetes del Shinkansen', 'Paraguas: Kanazawa es muy lluviosa', 'Confirmar la hora de la ceremonia del té'],
-  '2026-11-07': ['Billetes del bus Nohi (Kanazawa → Takayama y Shirakawa-go)', 'Maletas grandes: enviadlas desde Kanazawa directamente al hotel de Kioto y viajad dos días con mochila', 'Abrigo: Takayama es la noche más fría del viaje', 'Efectivo para mercados y degustaciones'],
-  '2026-11-08': ['Billete de tren a Kioto (se puede comprar en la estación el día antes)', 'Si enviasteis las maletas, avisad al hotel de Kioto'],
+  '2026-11-05': ['Si llueve: comprar entradas de teamLab Borderless', 'Por la noche: enviar las maletas a Kanazawa desde el mostrador de mensajería del Edmont (planta 1, junto al bell desk; venden cajas)'],
+  '2026-11-06': ['Maletas enviadas a Kanazawa la noche antes (takuhaibin)', 'Check-out del Edmont antes de las 11:00 (si salís muy temprano, dejad la llave en recepción)', 'Billetes del Shinkansen', 'Paraguas: Kanazawa es muy lluviosa', 'Confirmar la hora de la ceremonia del té'],
+  '2026-11-07': ['Billetes del bus Nohi (Kanazawa → Takayama y Shirakawa-go); el bus sale de la terminal que está en la puerta del Hotel Kanazawa', 'Maletas grandes: enviadlas desde el Hotel Kanazawa directamente al Kyoto Tokyu y viajad dos días con mochila', 'Abrigo: Takayama es la noche más fría del viaje', 'Efectivo para mercados y degustaciones', 'Koto no Yume cierra la puerta a las 23:00: no os alarguéis cenando'],
+  '2026-11-08': ['Check-out de Koto no Yume a las 10:00 (antes que en los hoteles)', 'Billete de tren a Kioto (se puede comprar en la estación el día antes)', 'Si enviasteis las maletas, avisad al Kyoto Tokyu', 'En Kioto: lanzadera gratis al hotel desde la salida Hachijo de la estación'],
   '2026-11-09': ['Bono de la excursión y punto de encuentro', 'Mirar la tabla de mareas de Miyajima', 'Monedas: 100¥ de tasa de la isla'],
   '2026-11-10': ['Despertador temprano: Fushimi Inari a las 7:00', 'Monedas para las galletas de los ciervos', 'Calzado cómodo: en Fushimi Inari todo son escaleras'],
   '2026-11-11': ['Salir antes de las 8:00 hacia Arashiyama', 'Si alquiláis kimono, reserva hecha'],
   '2026-11-12': ['Maletas a Osaka por takuhaibin la noche antes, o en consigna', 'Check-out del hotel de Kioto'],
   '2026-11-13': ['Efectivo para el mercado y el kushikatsu', 'Bolsa plegable para las compras'],
   '2026-11-14': ['Entradas de USJ y app oficial con sesión iniciada', 'Express Pass, si lo comprasteis', 'Batería externa', 'Salir para estar 1 h antes de abrir'],
-  '2026-11-15': ['Pasaporte y todos los recibos de Tax Free', 'Compras con Tax Free a mano y sin abrir, no en la maleta facturada', 'Estar en el aeropuerto 3 h antes + 30–45 min para el Tax Free'],
+  '2026-11-15': ['Pasaporte y todos los recibos de Tax Free', 'Compras con Tax Free a mano y sin abrir, no en la maleta facturada', 'Check-out del Monterey antes de las 11:00 y maletas en su consigna', 'Al aeropuerto: bus desde OCAT, al lado del hotel (~50 min), o tren Nankai desde Namba', 'Estar en el aeropuerto 3 h antes + 30–45 min para el Tax Free'],
 };
 
 /* =========================================================
@@ -1280,7 +1435,7 @@ function fillWeather(el, dia) {
   getForecast(dia.tiempo).then(d => {
     if (!d) return;
     const i = d.time.indexOf(dia.fecha);
-    if (i < 0) return;
+    if (i < 0 || d.temperature_2m_max[i] == null || d.temperature_2m_min[i] == null || d.weather_code[i] == null) return;
     const [ico, txt] = WMO(d.weather_code[i]);
     const rain = d.precipitation_probability_max[i];
     el.innerHTML = `<span class="ico">${ico}</span><span><b>${Math.round(d.temperature_2m_max[i])}° / ${Math.round(d.temperature_2m_min[i])}°</b> ${txt} en ${LUGARES_TIEMPO[dia.tiempo][2]}${rain != null ? `<br><span class="muted small">${rain}% de probabilidad de lluvia</span>` : ''}</span>`;
@@ -1380,7 +1535,13 @@ function renderHoy() {
       ${prep.length ? `<ul class="eat">${prep.map(x => `<li>☐ ${withEur(esc(x))}</li>`).join('')}</ul>` : ''}
       <div class="btn-row"><button class="btn ghost" data-nav="1">Ver el plan de mañana</button></div></div>`;
   }
-  if (ph === 'durante') h += gastosCard();
+  if (ph === 'durante') {
+    const hot = hotelHoy();
+    if (hot) h += `<div class="card" style="margin-top:10px"><div style="display:flex;gap:12px;align-items:center">${hanko(hot.ciudad)}
+      <div><span class="small muted">Esta noche dormís en</span><div class="h-name">${esc(hot.nombre)}</div>
+      <a class="small" href="#ruta/hotel-${hot.id}">Ver la ficha del hotel</a></div></div>${hotelActions(hot, HOTELES.indexOf(hot))}</div>`;
+    h += gastosCard();
+  }
   v.innerHTML = h;
   fillWeather($('[data-wx]', v), dia);
 }
@@ -1394,8 +1555,58 @@ function gastosCard() {
     <span style="font-size:24px">🧾</span><span><b>Te quedan ${fmtE(s.left)} de ${fmtE(s.pres)}</b><br><span class="muted small">${sub}</span></span><span class="chev">›</span></a>`;
 }
 
+/* ---------- HOTELES ---------- */
+const starsTxt = n => '★'.repeat(Math.floor(n)) + (n % 1 ? '½' : '');
+const telHref = t => 'tel:' + t.replace(/[^\d+]/g, '');
+const hotelHoy = () => HOTELES.find(h => h.entra <= todayISO() && todayISO() < h.sale);
+
+function hotelActions(h, i) {
+  return `<div class="btn-row">
+    <a class="btn" href="${mapsUrl(h.q)}" target="_blank" rel="noopener">Cómo llegar</a>
+    <button class="btn ghost" data-taxi="${i}">Enseñar al taxista</button>
+    <a class="btn ghost" href="${telHref(h.telefono)}">Llamar</a></div>`;
+}
+
+function hotelFicha(h, i) {
+  const c = CIUDADES[h.ciudad];
+  const am = (arr, cls) => arr.map(x => `<span class="am ${cls}">${cls === 'no' ? '' : cls === 'ask' ? '☎ ' : '✓ '}${esc(x)}</span>`).join('');
+  const t = todayISO();
+  return `<details class="hotel-d" id="h-${h.id}">
+    <summary>${hanko(h.ciudad, t >= h.sale ? 'done' : '')}<span style="flex:1;min-width:0">
+      <span class="h-name" style="display:block">${esc(h.nombre)}</span>
+      <span class="h-meta" style="display:block"><span class="stars" aria-label="${h.estrellas} estrellas">${starsTxt(h.estrellas)}</span> · ${c.nombre} · ${esc(h.fechas)} · ${h.noches} ${h.noches === 1 ? 'noche' : 'noches'}</span>
+    </span><span class="chev" aria-hidden="true">›</span></summary>
+    <div class="h-body">
+      <div class="h-ja">${esc(h.nombreJa)} · ${esc(h.nota)}</div>
+      <p style="margin-top:8px">${esc(h.tipo)}</p>
+      <div class="kfs">
+        <div class="kf"><small>Check-in</small><b>${esc(h.checkin)}</b></div>
+        <div class="kf"><small>Check-out</small><b>${esc(h.checkout)}</b></div>
+        <div class="kf wide"><small>Cómo llegar</small><b>${esc(h.estacion)}</b></div>
+        <div class="kf wide"><small>Dirección</small><b>${esc(h.direccion)}</b><br><b>${esc(h.direccionJa)}</b></div>
+        <div class="kf wide"><small>Desayuno</small><b>${withEur(esc(h.desayuno))}</b></div>
+      </div>
+      ${hotelActions(h, i)}
+      <div class="sec"><h4>En la habitación</h4>
+        <div class="amens">${am(h.incluye.si, 'si')}${am(h.incluye.no, 'no')}${am(h.incluye.pedir, 'ask')}</div>
+        <p class="am-legend">✓ incluido · tachado: no hay · ☎ se pide en recepción</p></div>
+      <div class="sec"><h4>Habitaciones del hotel</h4><ul class="eat">${h.habitaciones.map(x => `<li>${esc(x)}</li>`).join('')}</ul>
+        <div class="mine">${h.habitacion || h.reserva
+          ? `<b>La nuestra:</b> ${esc(h.habitacion)}${h.reserva ? ` · Reserva <b>${esc(h.reserva)}</b>` : ''}`
+          : '<span class="muted">Nuestra habitación y nº de reserva: pendientes de añadir.</span>'}</div></div>
+      <div class="sec"><h4>Servicios</h4><ul class="tipl">${h.servicios.map(([a, b]) => `<li><b>${esc(a)}</b><span>${withEur(esc(b))}</span></li>`).join('')}</ul></div>
+      ${h.consejos.map(n => `<div class="note ${n.t === 'warn' ? 'warn' : ''}"><b>${esc(n.h)}</b>${withEur(esc(n.x))}</div>`).join('')}
+      <p class="small muted" style="margin-top:10px">Datos de la web oficial del hotel y de webs de reservas, octubre de 2026. Las estrellas son las de las webs de reservas (en Japón no hay clasificación oficial).</p>
+    </div></details>`;
+}
+
+function renderHoteles() {
+  $('#ruta-hoteles').innerHTML = HOTELES.map(hotelFicha).join('');
+}
+
 /* ---------- RUTA ---------- */
 function renderRuta() {
+  renderHoteles();
   const total = Object.values(CIUDADES).reduce((a, c) => a + (c.noches || 0), 0);
   const cities = Object.entries(CIUDADES).filter(([, c]) => c.noches);
   $('#ruta-resumen').innerHTML = `<b>${total} noches en 5 ciudades</b>
@@ -1411,7 +1622,9 @@ function renderRuta() {
   $('#ruta-dias').innerHTML = groups.map(g => {
     const c = CIUDADES[g.ciudad];
     const sub = g.ciudad === 'vuelo' ? '' : `${c.noches} ${c.noches === 1 ? 'noche' : 'noches'}`;
+    const hot = HOTELES.find(h => h.ciudad === g.ciudad);
     return `<div class="city-group"><h3><span style="color:${c.color}">${c.kanji}</span> ${c.nombre} <small>${sub}</small></h3>
+      ${hot ? `<a class="hlink" href="#ruta/hotel-${hot.id}">🏨 ${esc(hot.nombre)} ›</a>` : ''}
       ${g.dias.map(d => `<details class="dayrow${d.fecha === t ? ' today' : ''}" id="d-${d.fecha}" data-fecha="${d.fecha}">
         <summary>${hanko(d.ciudad, d.fecha < t ? 'done' : '')}<span><span class="dr-date">${cap(fmtDate(d.fecha, { weekday: 'short', day: 'numeric', month: 'short' }))} · Día ${d.n}</span>
         <span class="dr-title" style="display:block">${esc(d.titulo)}</span>${d.flag ? `<span class="dr-flag">${esc(d.flag)}</span>` : ''}</span><span class="chev" aria-hidden="true">›</span></summary>
@@ -1605,18 +1818,17 @@ function renderSOS() {
     : `<b>Seguro de viaje</b><p class="muted small">Pendiente de añadir el teléfono de la póliza.</p>`;
   $('#hoteles').innerHTML = HOTELES.map((h, i) => {
     const c = CIUDADES[h.ciudad];
-    const filled = h.nombre || h.direccion;
     return `<div class="card hotel" style="display:flex;gap:14px">${hanko(h.ciudad)}<div style="flex:1;min-width:0">
-      <h4>${filled ? esc(h.nombre) : 'Hotel en ' + c.nombre}</h4><div class="when">${filled ? c.nombre + ' · ' : ''}${esc(h.fechas)}</div>
-      ${filled ? `<dl>${h.direccion ? `<dt>Dirección</dt><dd>${esc(h.direccion)}</dd>` : ''}${h.telefono ? `<dt>Teléfono</dt><dd><a href="tel:${esc(h.telefono.replace(/\s/g, ''))}">${esc(h.telefono)}</a></dd>` : ''}${h.reserva ? `<dt>Reserva</dt><dd>${esc(h.reserva)}</dd>` : ''}</dl>
-        <div class="btn-row">${h.direccion ? `<a class="btn ghost" href="${mapsUrl(h.nombre + ' ' + h.direccion)}" target="_blank" rel="noopener">Cómo llegar</a>` : ''}${h.direccionJa || h.direccion ? `<button class="btn ghost" data-taxi="${i}">Enseñar al taxista</button>` : ''}</div>`
-        : `<p class="pending">Pendiente de añadir el hotel.</p>`}</div></div>`;
+      <h4>${esc(h.nombre)}</h4><div class="when">${c.nombre} · ${esc(h.fechas)}</div>
+      <dl><dt>Dirección</dt><dd>${esc(h.direccion)}</dd><dt>Teléfono</dt><dd><a href="${telHref(h.telefono)}">${esc(h.telefono)}</a></dd>${h.reserva ? `<dt>Reserva</dt><dd>${esc(h.reserva)}</dd>` : ''}</dl>
+      <div class="btn-row"><button class="btn ghost" data-taxi="${i}">Enseñar al taxista</button><a class="btn ghost" href="#ruta/hotel-${h.id}">Ver ficha</a></div></div></div>`;
   }).join('');
   $('#frases').innerHTML = FRASES.map((f, i) => `<div class="phrase-row"><button class="phrase" data-frase="${i}"><span><span class="es">${esc(f.es)}</span><br><span class="ro">${esc(f.ro)}</span></span><span class="show">Mostrar</span></button>${canSpeak ? `<button class="say" data-say="${i}" aria-label="Escuchar: ${esc(f.es)}">🔊</button>` : ''}</div>`).join('');
 }
 
 function openOverlay(ja, ro, es, audio) {
   $('#ov-ja').textContent = ja; $('#ov-ro').textContent = ro; $('#ov-es').textContent = es;
+  $('#ov-ja').classList.toggle('long', ja.length > 22);
   $('#ov-listen').hidden = !(audio && canSpeak);
   $('#overlay').classList.add('open'); $('#overlay-close').focus();
 }
@@ -1631,7 +1843,7 @@ function route() {
   $$('.tab').forEach(t => t.dataset.tab === v ? t.setAttribute('aria-current', 'page') : t.removeAttribute('aria-current'));
   if (v === 'hoy') renderHoy();
   if (v === 'ruta' && sub) {
-    const det = $('#d-' + sub);
+    const det = sub.startsWith('hotel-') ? $('#h-' + sub.slice(6)) : $('#d-' + sub);
     if (det) { det.open = true; requestAnimationFrame(() => det.scrollIntoView({ block: 'start' })); return; }
   }
   if (v === 'guia' && sub) {
@@ -1661,7 +1873,7 @@ document.addEventListener('click', e => {
     renderGastos(); return;
   }
   const tx = e.target.closest('[data-taxi]');
-  if (tx) { const h = HOTELES[+tx.dataset.taxi]; openOverlay(h.direccionJa || h.direccion, h.nombre, 'この住所までお願いします。 A esta dirección, por favor.', !!h.direccionJa); return; }
+  if (tx) { const h = HOTELES[+tx.dataset.taxi]; openOverlay(`${h.nombreJa}\n${h.direccionJa}\nこの住所までお願いします。`, h.nombre, 'A esta dirección, por favor.', true); return; }
   if (e.target.closest('#overlay')) closeOverlay();
 });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeOverlay(); });
