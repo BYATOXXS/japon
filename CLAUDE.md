@@ -21,6 +21,7 @@ Se comparte por WhatsApp con el enlace de GitHub Pages y funciona sin internet u
 - "Moverse" (nueva, 2026-10-26): reglas de taxi siendo 5 (máx. 4 por taxi → 2 coches), calculadora de taxi por persona con las tarifas oficiales 2026 (`TAXI`), tabla rápida, Suica/ICOCA/tarjeta contactless (dónde vale y dónde no), pases (`PASES`), cómo leer Google Maps, normas, cada trayecto con opciones (`TRAYECTOS`, sustituye al antiguo `TRANSPORTE`) y envío de maletas.
 - Maleta (Guía): la aerolínea solo deja MOCHILA en cabina + 1 maleta facturada de 25 kg. Estrategia: mochila a tope, maleta casi vacía para volver con compras. Plan recomendado: la noche del 5 nov, maleta de Tokio directa al Kyoto Tokyu (Kanazawa y Takayama solo con mochila).
 - "Mis gastos": lo que queda, el gasto del día, los totales y cada gasto se ven en € y en ¥ (`eurYen`, al cambio del conversor).
+- "Cerca de mí" (`CERCA`, `CERCA_SOS`): botones que abren Google Maps buscando lo más cercano (cajero 7-Eleven, konbini, baño, taquillas, farmacia, lavandería, estación, taxis; en SOS además hospital, kōban, cambio y comer). Búsquedas en japonés para que Maps acierte en Japón. En Hoy solo durante el viaje; en SOS siempre.
 - Sitios: cada sitio tiene "Mapa" y "🚇 Cómo llegar" (ruta en transporte público desde donde estés). "Cómo llegar" de los hoteles también es en transporte público.
 - Casillas (reservas, maleta, 48 h) y cambio €/¥ se guardan en localStorage de cada móvil (no se comparten entre amigos).
 - `?fecha=2026-11-07` en la URL simula un día concreto (para probar).
