@@ -31,6 +31,7 @@ Se comparte por WhatsApp con el enlace de GitHub Pages y funciona sin internet u
 - Paradas con horario y precio (`VISITAS`, comprobado en oct 2026) y "Antes de salir" / "Para mañana" (`PREPARAR`).
 - Frases con audio (speechSynthesis ja-JP; si el móvil no tiene voz japonesa, avisa).
 - Hoteles (investigados el 2026-10-22, webs oficiales + webs de reservas): Metropolitan Edmont (Iidabashi), Hotel Kanazawa (ホテル金沢, salida Este de la estación), Oyado Koto no Yume (ryokan, Takayama; cierra la puerta a las 23:00 y check-out a las 10:00), Kyoto Tokyu (lanzadera gratis desde Kyoto Hachijo), Monterey Grasmere Osaka (JR Namba, junto a OCAT). Ficha completa en Ruta → "Dónde dormimos" (`#ruta/hotel-<id>`), tarjeta "Esta noche dormís en" en Hoy y datos rápidos en SOS. Cada hotel es también parada en su día de llegada.
+- Sección privada del usuario: 5 toques rápidos en el título "Japón 2026" → contraseña → contenido cifrado (AES-GCM, PBKDF2) en `NOTAS_PRIV`. Se regenera con `node privado/cifrar.js "contraseña"` (la carpeta `privado/` y el documento fuente son locales y están en .git/info/exclude). NUNCA poner su contenido en claro en este repo (es público), ni en commits ni aquí.
 - Quitado el botón "Enviar por WhatsApp" de los días: el usuario lo considera innecesario (todos tienen la web y viajan juntos).
 
 ## Archivos clave
