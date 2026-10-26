@@ -41,6 +41,7 @@ Se comparte por WhatsApp con el enlace de GitHub Pages y funciona sin internet u
 ## Configuración crítica
 - Las meta `og:image` / `og:url` apuntan a https://byatoxxs.github.io/japon/ — si cambia el repo o el usuario, actualizarlas.
 - WhatsApp cachea la vista previa del enlace; tras cambiar `og.png` puede tardar en verse.
+- Actualizaciones (arreglado el 2026-10-26): al volver a la app desde segundo plano el móvil no recarga la página. Por eso, en `visibilitychange` se llama a `reg.update()`; si hay `sw.js` nuevo (VERSION distinta) toma el control y la página se recarga sola (`controllerchange`). La navegación usa `cache: 'no-cache'` porque GitHub Pages manda `max-age=600`. Sin subir `VERSION`, los móviles NO se recargan solos.
 
 ## Decisiones tomadas
 - El desayuno NO va incluido en ningún hotel (dicho por el usuario el 2026-10-26): en `PRESU_DIA` todos los días cuentan desayuno de konbini (~500¥).
