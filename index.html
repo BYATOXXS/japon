@@ -2718,7 +2718,26 @@ $('#theme-btn').addEventListener('click', e => {
 let installEvt = null;
 window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); installEvt = e; $('#install-btn').hidden = false; });
 $('#install-btn').addEventListener('click', async () => { if (!installEvt) return; installEvt.prompt(); await installEvt.userChoice; installEvt = null; $('#install-btn').hidden = true; });
-if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js');
+// Al volver a la app (estaba en segundo plano) el móvil no recarga la página: buscamos versión nueva
+// y, si la hay, el service worker nuevo toma el control y recargamos solos.
+if ('serviceWorker' in navigator && location.protocol === 'https:') {
+  const hadCtrl = !!navigator.serviceWorker.controller;
+  navigator.serviceWorker.register('sw.js').then(reg => {
+    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') reg.update().catch(() => {}); });
+  });
+  let reloading = false;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (!hadCtrl || reloading) return; // primera instalación: no hace falta recargar
+    reloading = true; toast('Actualizando la web…'); setTimeout(() => location.reload(), 400);
+  });
+}
+// Si se vuelve a la app otro día, Hoy salta al día nuevo
+let lastDay = todayISO();
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState !== 'visible' || todayISO() === lastDay) return;
+  lastDay = todayISO(); hoySel = phase() === 'durante' ? dayIndex(lastDay) : 0;
+  renderStatus(); renderHoy();
+});
 
 // En el viaje, Sitios abre filtrado por la ciudad del día
 if (phase() === 'durante') { const c = DIAS[dayIndex(todayISO())].ciudad; if (CIUDADES[c].noches) sCity = c; }

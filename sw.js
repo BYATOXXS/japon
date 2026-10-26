@@ -1,10 +1,11 @@
 // Guarda la web en el móvil para que funcione sin internet.
 // Sube VERSION cada vez que cambies index.html para forzar la actualización.
-const VERSION = 'japon-v8';
+const VERSION = 'japon-v9';
 const SHELL = ['./', './index.html', './manifest.webmanifest', './icon.svg', './icon-192.png', './icon-512.png', './icon-180.png'];
 
 self.addEventListener('install', e => {
-  e.waitUntil(caches.open(VERSION).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
+  // cache: 'reload' para no guardar copias viejas de la caché del navegador (GitHub Pages las guarda 10 min)
+  e.waitUntil(caches.open(VERSION).then(c => c.addAll(SHELL.map(u => new Request(u, { cache: 'reload' })))).then(() => self.skipWaiting()));
 });
 
 self.addEventListener('activate', e => {
@@ -18,10 +19,15 @@ self.addEventListener('fetch', e => {
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
 
-  // Página: primero red (para ver cambios), si no hay conexión, la copia guardada
+  // Página: primero red, preguntando siempre al servidor (no-cache), y si no hay conexión, la copia guardada
   if (req.mode === 'navigate') {
-    e.respondWith(fetch(req)
-      .then(res => { const copy = res.clone(); caches.open(VERSION).then(c => c.put('./index.html', copy)); return res; })
+    e.respondWith(fetch(req.url, { cache: 'no-cache', credentials: 'same-origin' })
+      .then(res => {
+        // una navegación no acepta respuestas redirigidas: se reenvía al navegador como redirección normal
+        if (res.redirected) return Response.redirect(res.url, 302);
+        if (res.ok) { const copy = res.clone(); caches.open(VERSION).then(c => c.put('./index.html', copy)); }
+        return res;
+      })
       .catch(() => caches.match('./index.html')));
     return;
   }
