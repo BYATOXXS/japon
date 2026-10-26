@@ -110,10 +110,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   background: var(--card); border-top: 1px solid var(--line);
   padding-bottom: env(safe-area-inset-bottom);
 }
-.tabbar .wrap { display: grid; grid-template-columns: repeat(5, 1fr); height: var(--nav-h); padding: 0 4px; }
+.tabbar .wrap { display: grid; grid-template-columns: repeat(6, 1fr); height: var(--nav-h); padding: 0 2px; }
 .tab {
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
-  font-size: 11.5px; font-weight: 500; color: var(--muted); text-decoration: none; position: relative;
+  font-size: 11px; font-weight: 500; color: var(--muted); text-decoration: none; position: relative;
 }
 .tab svg { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 .tab[aria-current="page"] { color: var(--shu); }
@@ -420,6 +420,87 @@ details.hotel-d > summary::-webkit-details-marker { display: none; }
 .toast.show { opacity: 1; }
 .foot { text-align: center; font-size: 12.5px; color: var(--muted); margin-top: 36px; }
 
+/* ---------- Hoy: selector de días, ahora, datos rápidos ---------- */
+.dchips { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; margin: 0 -16px 10px; padding: 2px 16px 4px; }
+.dchips::-webkit-scrollbar { display: none; }
+.dchip { flex-shrink: 0; min-width: 52px; border: 1.5px solid var(--line); background: var(--card); border-radius: 12px; padding: 5px 6px; text-align: center; line-height: 1.15; }
+.dchip small { display: block; font-size: 11px; color: var(--muted); }
+.dchip b { font-size: 15px; }
+.dchip i { display: block; height: 3px; border-radius: 2px; margin-top: 4px; background: var(--c); font-style: normal; }
+.dchip.today { border-color: var(--shu); }
+.dchip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--card); }
+.dchip[aria-pressed="true"] small { color: inherit; opacity: .8; }
+.nowb { background: var(--ink); color: var(--card); border-radius: 14px; padding: 14px 16px; margin-bottom: 10px; }
+.nowb .lbl { font-size: 12px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; opacity: .75; }
+.nowb .what { font-family: var(--serif); font-weight: 700; font-size: 19px; line-height: 1.25; margin: 1px 0 8px; }
+.nowb .nx { font-size: 14.5px; border-top: 1px solid color-mix(in srgb, var(--card) 25%, transparent); padding-top: 8px; }
+.nowb a { color: inherit; font-weight: 700; }
+.qf { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 14px; }
+.qf div { background: var(--paper); border-radius: 10px; padding: 8px 10px; font-size: 14px; line-height: 1.35; min-width: 0; }
+.qf small { display: block; font-size: 12px; color: var(--muted); }
+.qf .w { grid-column: 1 / -1; }
+
+/* ---------- Hora a hora ---------- */
+.tl { list-style: none; margin-top: 6px; }
+.tl > li { position: relative; padding: 0 0 14px 64px; }
+.tl > li::before { content: ''; position: absolute; left: 52px; top: 6px; bottom: -6px; width: 2px; background: var(--line); }
+.tl > li:last-child::before { display: none; }
+.tl .hr { position: absolute; left: 0; top: 1px; width: 44px; text-align: right; font-weight: 700; font-size: 14px; font-variant-numeric: tabular-nums; }
+.tl .dot { position: absolute; left: 47px; top: 5px; width: 12px; height: 12px; border-radius: 50%; background: var(--card); border: 2.5px solid var(--ink); z-index: 1; }
+.tl .st { font-weight: 650; font-size: 15.5px; line-height: 1.3; }
+.tl .sx { font-size: 14.5px; color: var(--muted); margin-top: 2px; }
+.tl .sx b { color: var(--ink); }
+.tl .smap { font-size: 13.5px; font-weight: 600; color: var(--shu); text-decoration: none; display: inline-block; margin-top: 3px; }
+.tl li.opt .st { color: var(--muted); }
+.tl li.opt .dot { border-style: dashed; border-color: var(--muted); }
+.tl li.now .dot { background: var(--shu); border-color: var(--shu); box-shadow: 0 0 0 4px var(--shu-soft); }
+.tl li.now .hr { color: var(--shu); }
+.tl li.past { opacity: .55; }
+.ir { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 9px 11px; margin: 0 0 10px; font-size: 14px; }
+.ir-top { display: flex; gap: 8px; align-items: flex-start; }
+.ir-ico { font-size: 17px; line-height: 1.2; }
+.ir-top b { font-size: 14.5px; line-height: 1.35; }
+.ir-meta { font-size: 13.5px; font-weight: 600; margin: 3px 0 0 26px; }
+.ir-x { margin: 4px 0 0 26px; color: var(--muted); font-size: 13.5px; }
+.ir-x b { color: var(--ink); }
+.ir-go { display: inline-block; margin: 6px 0 0 26px; font-weight: 700; font-size: 13.5px; color: var(--shu); text-decoration: none; }
+details.plain { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 12px; }
+details.plain > summary { cursor: pointer; font-size: 14px; font-weight: 700; list-style: none; display: flex; align-items: center; gap: 6px; }
+details.plain > summary::-webkit-details-marker { display: none; }
+details.plain > summary::after { content: '›'; margin-left: auto; color: var(--muted); transition: transform .2s; }
+details.plain[open] > summary::after { transform: rotate(90deg); }
+
+/* ---------- Moverse ---------- */
+.mv-opts { display: grid; gap: 8px; margin-top: 8px; }
+.mv-opt { border: 1px solid var(--line); border-radius: 10px; padding: 9px 11px; background: var(--paper); font-size: 14px; }
+.mv-opt.rec { border: 2px solid var(--matcha); }
+.mv-opt .on { display: flex; justify-content: space-between; gap: 10px; font-weight: 650; font-size: 14.5px; }
+.mv-opt .on span:last-child { color: var(--shu); white-space: nowrap; }
+.mv-opt .om { font-size: 13px; color: var(--muted); }
+.mv-opt .badge { font-size: 11px; font-weight: 700; background: var(--matcha); color: var(--card); padding: 1px 6px; border-radius: 5px; margin-left: 6px; vertical-align: 1px; }
+.mv-leg { margin-top: 10px; }
+.mv-leg h3 { font-size: 15.5px; font-weight: 700; display: flex; justify-content: space-between; gap: 8px; }
+.mv-leg h3 small { font-weight: 400; color: var(--muted); font-size: 13px; white-space: nowrap; }
+.tcalc { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+.tcalc label { font-size: 12.5px; color: var(--muted); display: block; margin-bottom: 3px; }
+.tcalc input, .tcalc select { width: 100%; font: inherit; font-size: 16px; padding: 9px 10px; border-radius: 10px; border: 1.5px solid var(--line); background: var(--paper); color: var(--ink); min-height: 44px; }
+.tcalc .chk { grid-column: 1 / -1; display: flex; gap: 8px; align-items: center; font-size: 14.5px; }
+.tcalc .chk input { width: 20px; min-height: 0; height: 20px; }
+.tres { margin-top: 12px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; text-align: center; }
+.tres div { background: var(--paper); border-radius: 10px; padding: 8px 4px; }
+.tres small { display: block; font-size: 11.5px; color: var(--muted); }
+.tres b { font-size: 17px; }
+.tres .pp { background: var(--ink); color: var(--card); }
+.tres .pp small { color: inherit; opacity: .75; }
+.verd { margin-top: 10px; font-size: 14.5px; padding: 10px 12px; border-radius: 10px; background: var(--matcha-soft); }
+.verd.taxi { background: var(--kin-soft); }
+table.tt { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 8px; }
+table.tt th, table.tt td { padding: 7px 4px; border-bottom: 1px solid var(--line); text-align: right; }
+table.tt th:first-child, table.tt td:first-child { text-align: left; }
+table.tt th { font-size: 12px; color: var(--muted); font-weight: 600; }
+.pass { display: flex; gap: 10px; align-items: flex-start; }
+.pass .v { font-size: 18px; flex-shrink: 0; width: 24px; text-align: center; }
+
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
 @media (min-width: 700px) { h1.v-title { font-size: 34px; } }
 </style>
@@ -448,6 +529,94 @@ details.hotel-d > summary::-webkit-details-marker { display: none; }
     <div id="ruta-hoteles"></div>
     <h2 class="h" style="margin-bottom:0">Día a día</h2>
     <div id="ruta-dias"></div>
+  </section>
+
+  <!-- MOVERSE -->
+  <section class="view" id="v-moverse" aria-label="Moverse">
+    <h1 class="v-title">Moverse</h1>
+    <p class="v-sub">Trenes, metro, buses y taxis siendo 5. Todos los precios son por persona salvo que diga “por coche”.</p>
+
+    <div class="card">
+      <b>Lo básico en 30 segundos</b>
+      <ul class="tipl">
+        <li><b>🚇 Para casi todo: metro, tren o bus con la Suica</b><span>Se pasa la tarjeta (o el iPhone) al entrar y al salir. Un trayecto urbano cuesta 160–330¥ por persona.</span></li>
+        <li><b>🚕 Taxi: siendo 5 hacen falta 2 coches</b><span>En un taxi normal caben 4 pasajeros. Dos taxis cuestan el doble, y repartido entre 5 sale a unas 2–4 veces el precio del metro. Compensa en trayectos cortos, de madrugada, con equipaje o cuando el metro exige dos cambios.</span></li>
+        <li><b>🚄 Shinkansen y buses largos: billete reservado</b><span>La Suica no vale para ellos. Comprad el billete con asiento (online o en la taquilla) y llevadlo en el móvil o en papel.</span></li>
+        <li><b>🗺️ Google Maps manda</b><span>Pon “Transporte público” y te dice la línea, el andén, la hora exacta, el precio y la salida de la estación. Abajo explicamos cómo leerlo.</span></li>
+      </ul>
+    </div>
+
+    <h2 class="h">¿Taxi o transporte público?</h2>
+    <div class="card">
+      <p class="small muted">Pon los kilómetros que te da Google Maps y te calcula los dos taxis entre todos.</p>
+      <div class="tcalc">
+        <div><label for="tx-city">Ciudad</label><select id="tx-city"></select></div>
+        <div><label for="tx-km">Distancia (km)</label><input id="tx-km" inputmode="decimal" value="3"></div>
+        <div><label for="tx-pax">Personas</label><input id="tx-pax" inputmode="numeric" value="5"></div>
+        <div><label for="tx-pub">Metro/bus por persona (¥)</label><input id="tx-pub" inputmode="numeric" value="210"></div>
+        <label class="chk"><input type="checkbox" id="tx-night"> De noche (22:00–5:00, +20%)</label>
+      </div>
+      <div id="tx-res"></div>
+    </div>
+    <h3 class="h">Tabla rápida (Tokio, de día)</h3>
+    <div id="tx-tabla"></div>
+    <p class="small muted" style="margin-top:6px">Tarifas oficiales máximas de 2026: Tokio 500¥ el primer km y 100¥ cada 232 m; Kioto 500¥ los primeros 900 m y 100¥ cada 255 m; Osaka 600¥ los primeros 1,2 km y 100¥ cada 231 m. En atascos el taxímetro también cuenta tiempo, así que sumad un 10–20%.</p>
+    <div class="note"><b>Cómo coger un taxi</b>Luz roja en el parabrisas (空車) = libre. La puerta trasera se abre y se cierra sola: no la toquéis. Aceptan tarjeta casi todos y no hay propina. Enseñad la dirección en japonés (botón “Enseñar al taxista” de cada hotel) o el destino en Maps. Con la app <b style="display:inline">GO</b> pedís los dos coches a la vez y pagáis con tarjeta. Si alguien reserva un “jumbo taxi” (furgoneta), caben 9, pero hay pocos y se pide con antelación.</div>
+
+    <h2 class="h">Tarjetas para pagar el transporte</h2>
+    <div class="card">
+      <ul class="tipl">
+        <li><b>Suica / PASMO / ICOCA (son lo mismo)</b><span>Tarjetas recargables que valen en todo Japón: metro, trenes JR locales, buses urbanos, konbinis, máquinas de bebidas y taquillas. La que tengáis vale en Tokio, Kanazawa, Kioto y Osaka.</span></li>
+        <li><b>iPhone: Suica en Apple Wallet</b><span>Se añade desde Wallet (o la app Welcome Suica Mobile) y se recarga con vuestra tarjeta. Se acerca el móvil al lector sin desbloquearlo. Es la opción más cómoda.</span></li>
+        <li><b>Android comprado en España: NO sirve</b><span>La Suica en Google Wallet solo funciona en móviles vendidos en Japón (necesita el chip FeliCa). Sacad la tarjeta física: <b style="display:inline">Welcome Suica</b> (sin fianza, 28 días) en las máquinas o la oficina JR del aeropuerto de Narita o Haneda, o <b style="display:inline">ICOCA</b> (500¥ de fianza que se devuelve) en cualquier estación JR de Kioto u Osaka.</span></li>
+        <li><b>Recargar la tarjeta física</b><span>Solo en efectivo: en las máquinas de billetes de cualquier estación (botón “Charge”, en inglés) o en la caja de un konbini. Recargad 2.000–3.000¥ cada vez.</span></li>
+        <li><b>Tarjeta de crédito contactless (Visa, Mastercard…)</b><span>Se puede pasar directamente por el torno en el metro de Tokio (Tokyo Metro y Toei), Keikyu (Haneda), el metro de Osaka (con tope diario automático), Nankai (al aeropuerto de Kansai), Hankyu, Hanshin y Kintetsu. <b style="display:inline">No</b> vale en JR, Keisei (Narita), el monorraíl de Haneda ni en el metro y los buses de Kioto. Entrad y salid con la misma tarjeta. Para ir sobre seguro, usad la Suica.</span></li>
+        <li><b>Si no te deja salir del torno</b><span>Falta saldo. Busca la máquina amarilla “Fare Adjustment” (精算) junto a los tornos, recarga y vuelve a pasar.</span></li>
+      </ul>
+    </div>
+
+    <h2 class="h">¿Compensa algún pase?</h2>
+    <div class="card"><ul class="tipl" id="mv-pases"></ul></div>
+
+    <h2 class="h">Cómo leer Google Maps en Japón</h2>
+    <div class="card">
+      <ul class="tipl">
+        <li><b>1. Elige “Transporte público”</b><span>Aparecen varias opciones con la hora de salida, el precio (en ¥, por persona) y los cambios. La que tiene menos cambios suele ser la mejor con el grupo.</span></li>
+        <li><b>2. Mira la línea y su color</b><span>Cada línea tiene un color y una letra (p. ej. Namboku = N, verde azulado). En la estación seguid ese color y esa letra en los carteles.</span></li>
+        <li><b>3. Fíjate en el andén y la dirección</b><span>Maps pone “Andén 3” o “Track 3” y el nombre de la última parada (la dirección del tren). En el andén, la pantalla dice qué tren llega y a qué hora.</span></li>
+        <li><b>4. Tipo de tren</b><span>Local para en todas; Rapid, Express o Limited Express se saltan paradas. Si Maps dice “Local”, no os subáis a un “Express”: puede no parar en la vuestra. El Limited Express suele cobrar suplemento.</span></li>
+        <li><b>5. La salida correcta</b><span>Las estaciones grandes tienen decenas de salidas (A1, B3, Este, Oeste…). Maps dice cuál: salir por la correcta ahorra 10 min de andar.</span></li>
+        <li><b>6. Cambios entre compañías</b><span>Si cambias de JR a metro, sales por un torno y entras por otro (se pasa la Suica dos veces). Es normal.</span></li>
+      </ul>
+    </div>
+
+    <h2 class="h">Normas y horarios</h2>
+    <div class="card">
+      <ul class="tipl">
+        <li><b>🌙 Último tren: sobre las 0:00–0:30</b><span>El metro y los trenes paran de madrugada y no vuelven hasta las 5:00. Mirad la hora del último en Maps antes de las 23:00. Si se escapa, taxi (con +20% nocturno).</span></li>
+        <li><b>⏰ Hora punta: 7:30–9:30 y 17:30–19:30</b><span>Los trenes de Tokio van llenísimos. Evitad moveros con equipaje a esas horas.</span></li>
+        <li><b>🚃 En el andén</b><span>Se hace cola en las marcas del suelo y se deja salir primero. Por las mañanas hay vagones solo para mujeres (cartel rosa).</span></li>
+        <li><b>🤫 Dentro del tren</b><span>Sin llamadas y hablando bajo. En trenes locales no se come; en el Shinkansen y los expresos sí (comprad un ekiben, la caja de comida de estación).</span></li>
+        <li><b>🧳 Equipaje grande</b><span>En el Shinkansen Tokaido/Sanyo (Kioto–Osaka–Hiroshima), las maletas de más de 160 cm (alto + largo + ancho) necesitan reservar el asiento con espacio. Con la mochila no hay problema.</span></li>
+        <li><b>♿ Asientos prioritarios</b><span>Junto a las puertas, con cartel. Dejadlos libres aunque el tren vaya lleno.</span></li>
+      </ul>
+    </div>
+
+    <h2 class="h">Cada trayecto del viaje</h2>
+    <p class="small muted">Opción recomendada en verde. Toca “Ruta en Maps” para ver horarios en tiempo real.</p>
+    <div id="mv-trayectos"></div>
+    <div class="note"><b>¿Por qué no el JR Pass?</b>El nacional de 14 días ronda los 480€ por persona. Esta ruta en billetes sueltos (incluyendo la excursión a Hiroshima) sale por unos 290–330€.</div>
+    <div class="note warn"><b>Reservad con antelación</b>Noviembre es temporada alta. Comprad los billetes que se reservan (Shinkansen, Nohi Bus) desde España, 1–2 meses antes si se puede.</div>
+
+    <h2 class="h">Maletas por el camino</h2>
+    <div class="card">
+      <ul class="tipl">
+        <li><b>Takuhaibin: enviar la maleta al siguiente hotel</b><span>En la recepción del hotel (o en un konbini) rellenáis una etiqueta con la dirección del siguiente hotel y vuestro nombre. Unos 2.000–3.500¥ por maleta según el tamaño; llega al día siguiente o en dos días. Los hoteles guardan la maleta hasta que llegáis. Desde el hotel de origen, avisad de que estaréis allí en la fecha de la reserva.</span></li>
+        <li><b>Nuestro plan recomendado</b><span>La noche del 5 de noviembre, maleta del Edmont (Tokio) directamente al Kyoto Tokyu: llega el 7 y os espera. Así hacéis Kanazawa y Takayama solo con la mochila y pagáis un envío en vez de dos. De Kioto a Osaka (30 min en tren) se puede llevar o volver a enviar la noche del 11.</span></li>
+        <li><b>Taquillas (coin lockers)</b><span>En todas las estaciones grandes: 400–500¥ las pequeñas (mochila) y 700–900¥ las grandes (maleta), por día. Muchas se pagan con la Suica. Si están llenas, la app ecbo cloak reserva consigna en tiendas cercanas.</span></li>
+      </ul>
+    </div>
+    <p class="small muted" style="margin-top:12px">Precios comprobados en octubre de 2026; pueden variar unos yenes. Si dudáis, la máquina o Google Maps os dan el exacto. Frases para el taxi y la estación, en SOS.</p>
   </section>
 
   <!-- SITIOS -->
@@ -522,20 +691,32 @@ details.hotel-d > summary::-webkit-details-marker { display: none; }
           <li><label><input type="checkbox" data-k="h48-maps"><span>Descargar mapas offline de Tokio, Kanazawa, Takayama, Kioto y Osaka en Google Maps.</span></label></li>
           <li><label><input type="checkbox" data-k="h48-trad"><span>Descargar el japonés offline en Google Translate.</span></label></li>
           <li><label><input type="checkbox" data-k="h48-esim"><span>Instalar la eSIM (se activa al aterrizar).</span></label></li>
-          <li><label><input type="checkbox" data-k="h48-suica"><span>Añadir Suica a Apple Wallet o Google Wallet y probar una recarga.</span></label></li>
+          <li><label><input type="checkbox" data-k="h48-suica"><span>iPhone: añadir Suica a Apple Wallet y probar una recarga. Android de España: no se puede; sacad la Welcome Suica física al llegar al aeropuerto.</span></label></li>
           <li><label><input type="checkbox" data-k="h48-entradas"><span>Guardar offline (captura o PDF) las entradas de Disney, USJ, Hakone y Hiroshima.</span></label></li>
           <li><label><input type="checkbox" data-k="h48-banco"><span>Avisar al banco del viaje para que no bloquee la tarjeta.</span></label></li>
           <li><label><input type="checkbox" data-k="h48-app"><span>Instalar esta web en la pantalla de inicio (ver “Usar sin internet”).</span></label></li>
           <li><label><input type="checkbox" data-k="h48-carga"><span>Cargar todo al 100% y meter cargadores y batería externa en el equipaje de mano.</span></label></li>
-          <li><label><input type="checkbox" data-k="h48-peso"><span>Revisar el peso de las maletas: la aerolínea y el Shinkansen tienen límites distintos.</span></label></li>
+          <li><label><input type="checkbox" data-k="h48-peso"><span>Pesar y medir la mochila de cabina (límite de la aerolínea) y la maleta facturada (25 kg). A la ida la maleta debería ir casi vacía.</span></label></li>
         </ul>
       </div>
     </details>
 
     <details class="acc" id="g-maleta">
-      <summary><span class="ico">🧳</span><span>Maleta<span class="sub">16 días de otoño, vestir por capas</span></span><span class="progress" data-progress="eq"></span></summary>
+      <summary><span class="ico">🧳</span><span>Maleta<span class="sub">Mochila de cabina a tope, maleta facturada casi vacía</span></span><span class="progress" data-progress="eq"></span></summary>
       <div class="acc-body">
-        <h3 class="h" style="margin-top:0">Documentación, en el equipaje de mano</h3>
+        <div class="note warn" style="margin-top:0"><b>Lo que nos deja la aerolínea</b>En cabina solo una <b style="display:inline">mochila</b> (no maleta de cabina) y <b style="display:inline">una maleta facturada de hasta 25 kg</b> incluida. Las medidas y el peso exactos de la mochila los añadiremos cuando estén los vuelos: comprobadlos en la reserva, porque en el embarque pueden medirla.</div>
+        <h3 class="h">La estrategia</h3>
+        <ul class="tipl">
+          <li><b>1. Mochila llena al máximo</b><span>Todo lo necesario para el viaje va en la mochila: documentación, electrónica, medicinas y ropa para 6–7 días. Se lava a mitad de viaje (ver abajo).</span></li>
+          <li><b>2. Maleta grande casi vacía</b><span>Solo lo que no quepa en la mochila: el segundo calzado, el chubasquero, el neceser con líquidos de más de 100 ml y una bolsa plegable. Cuanto menos llevéis a la ida, más compras cabrán a la vuelta.</span></li>
+          <li><b>3. Lo voluminoso, puesto en el avión</b><span>Plumífero, jersey gordo y las zapatillas más grandes, puestos. El abrigo se dobla y va de almohada.</span></li>
+          <li><b>4. Durante el viaje la maleta va por mensajería</b><span>Plan recomendado: la noche del 5 de noviembre se manda la maleta del hotel de Tokio al de Kioto (llega el 7) y hacéis Kanazawa y Takayama solo con la mochila. Detalles en Moverse.</span></li>
+          <li><b>5. A la vuelta, al revés</b><span>Maleta llena de compras (pesadla: 25 kg máximo) y en la mochila lo frágil, lo caro, la electrónica y las compras con Tax Free, que hay que enseñar en el aeropuerto antes de facturar.</span></li>
+        </ul>
+        <div class="note"><b>Lo que no hace falta llevar</b>Los cinco hoteles tienen champú, acondicionador, gel, toallas y secador; casi todos, pijama o yukata, zapatillas y cepillo de dientes (en el Monterey de Osaka se pide en recepción). Dejad en casa el neceser grande, el pijama y la toalla.</div>
+        <div class="note rain"><b>Lavar ropa a mitad de viaje</b>Edmont (Tokio): lavandería 24 h en la planta 4, 600¥ lavar y secar, con monedas de 100¥. Koto no Yume (Takayama): gratis, solo se paga el detergente, de 10:00 a 21:00. Y hay lavanderías de monedas (コインランドリー) en todos los barrios. Así basta con ropa para una semana.</div>
+
+        <h3 class="h">🎒 En la mochila de cabina: documentación</h3>
         <ul class="checks" data-group="eq">
           <li><label><input type="checkbox" data-k="eq-pas"><span>Pasaporte físico, una foto de él en el móvil y una fotocopia guardada aparte</span></label></li>
           <li><label><input type="checkbox" data-k="eq-seg"><span>Póliza del seguro accesible sin internet</span></label></li>
@@ -543,34 +724,47 @@ details.hotel-d > summary::-webkit-details-marker { display: none; }
           <li><label><input type="checkbox" data-k="eq-disc"><span>Certificado de discapacidad original (no copia) y una nota en inglés</span></label></li>
           <li><label><input type="checkbox" data-k="eq-tarj"><span>Dos tarjetas sin comisión en el extranjero y algo de efectivo</span></label></li>
         </ul>
-        <h3 class="h">Ropa</h3>
-        <ul class="checks" data-group="eq">
-          <li><label><input type="checkbox" data-k="eq-capas"><span>Camisetas de manga larga y 2–3 jerséis finos</span></label></li>
-          <li><label><input type="checkbox" data-k="eq-plum"><span>Plumífero fino o chaqueta de abrigo (Takayama puede helar de noche)</span></label></li>
-          <li><label><input type="checkbox" data-k="eq-imp"><span>Chubasquero o cortavientos (Kanazawa es muy lluviosa)</span></label></li>
-          <li><label><input type="checkbox" data-k="eq-buf"><span>Bufanda ligera</span></label></li>
-          <li><label><input type="checkbox" data-k="eq-zap"><span>Calzado cómodo fácil de quitar y un segundo par por si llueve</span></label></li>
-          <li><label><input type="checkbox" data-k="eq-calc"><span>Calcetines de sobra y sin agujeros (os descalzaréis mucho)</span></label></li>
-          <li><label><input type="checkbox" data-k="eq-term"><span>Ropa térmica tipo Heattech (o comprarla en Uniqlo al llegar)</span></label></li>
-          <li><label><input type="checkbox" data-k="eq-disfraz"><span>Algo de disfraz para Halloween (31 oct)</span></label></li>
-        </ul>
-        <h3 class="h">Electrónica</h3>
+        <h3 class="h">🎒 En la mochila: electrónica (nunca en la facturada)</h3>
         <ul class="checks" data-group="eq">
           <li><label><input type="checkbox" data-k="eq-adapt"><span>Adaptador de enchufe tipo A (clavijas planas), dos por habitación. También los venden en Don Quijote</span></label></li>
-          <li><label><input type="checkbox" data-k="eq-bat"><span>Batería externa (en cabina, nunca facturada)</span></label></li>
+          <li><label><input type="checkbox" data-k="eq-bat"><span>Batería externa (en cabina, nunca facturada; algunas aerolíneas no dejan usarla durante el vuelo)</span></label></li>
+          <li><label><input type="checkbox" data-k="eq-carg"><span>Cargadores y cables (uno con varios puertos USB sirve para todo)</span></label></li>
           <li><label><input type="checkbox" data-k="eq-auri"><span>Auriculares para los vuelos</span></label></li>
         </ul>
-        <h3 class="h">Botiquín</h3>
+        <h3 class="h">🎒 En la mochila: botiquín</h3>
         <ul class="checks" data-group="eq">
+          <li><label><input type="checkbox" data-k="eq-med"><span>Medicación habitual en su envase y con receta o informe en inglés (siempre en cabina)</span></label></li>
           <li><label><input type="checkbox" data-k="eq-anal"><span>Analgésicos y antiinflamatorios</span></label></li>
           <li><label><input type="checkbox" data-k="eq-est"><span>Algo para el estómago</span></label></li>
           <li><label><input type="checkbox" data-k="eq-tir"><span>Tiritas y desinfectante</span></label></li>
-          <li><label><input type="checkbox" data-k="eq-med"><span>Medicación habitual en su envase y con receta o informe en inglés</span></label></li>
           <li><label><input type="checkbox" data-k="eq-masc"><span>Mascarillas (se siguen usando en el transporte si alguien está resfriado)</span></label></li>
+          <li><label><input type="checkbox" data-k="eq-liq"><span>Líquidos de cabina en frascos de 100 ml máximo, en una bolsa transparente de 1 litro</span></label></li>
         </ul>
-        <h3 class="h">Mochila del día</h3>
+        <h3 class="h">🎒 En la mochila: ropa para una semana</h3>
         <ul class="checks" data-group="eq">
-          <li><label><input type="checkbox" data-k="eq-moch"><span>Mochila pequeña por persona</span></label></li>
+          <li><label><input type="checkbox" data-k="eq-capas"><span>Camisetas de manga larga y 2–3 jerséis finos</span></label></li>
+          <li><label><input type="checkbox" data-k="eq-calc"><span>Calcetines de sobra y sin agujeros (os descalzaréis mucho)</span></label></li>
+          <li><label><input type="checkbox" data-k="eq-term"><span>Ropa térmica tipo Heattech (o comprarla en Uniqlo al llegar)</span></label></li>
+          <li><label><input type="checkbox" data-k="eq-disfraz"><span>Algo de disfraz para Halloween (31 oct): que sea ligero, va en la mochila</span></label></li>
+          <li><label><input type="checkbox" data-k="eq-compr"><span>Bolsas de compresión u organizadores: la ropa enrollada ocupa la mitad</span></label></li>
+        </ul>
+        <h3 class="h">🧥 Puesto en el avión</h3>
+        <ul class="checks" data-group="eq">
+          <li><label><input type="checkbox" data-k="eq-plum"><span>Plumífero fino o chaqueta de abrigo (Takayama puede helar de noche)</span></label></li>
+          <li><label><input type="checkbox" data-k="eq-zap"><span>Calzado cómodo fácil de quitar, el más voluminoso (el segundo par, en la maleta)</span></label></li>
+          <li><label><input type="checkbox" data-k="eq-buf"><span>Bufanda ligera</span></label></li>
+        </ul>
+        <h3 class="h">🧳 En la maleta facturada (poco)</h3>
+        <ul class="checks" data-group="eq">
+          <li><label><input type="checkbox" data-k="eq-imp"><span>Chubasquero o cortavientos (Kanazawa es muy lluviosa)</span></label></li>
+          <li><label><input type="checkbox" data-k="eq-zap2"><span>Segundo par de calzado por si llueve</span></label></li>
+          <li><label><input type="checkbox" data-k="eq-neces"><span>Neceser con lo que sea de más de 100 ml (crema solar, desodorante: el de barra cuesta encontrarlo allí)</span></label></li>
+          <li><label><input type="checkbox" data-k="eq-pleg"><span>Bolsa de viaje plegable, por si a la vuelta no cabe todo</span></label></li>
+          <li><label><input type="checkbox" data-k="eq-bascula"><span>Báscula de mano para pesar la maleta antes de volver (25 kg)</span></label></li>
+        </ul>
+        <h3 class="h">Para cada día</h3>
+        <ul class="checks" data-group="eq">
+          <li><label><input type="checkbox" data-k="eq-moch"><span>Mochila pequeña plegable por persona, para el día (la grande se queda en el hotel)</span></label></li>
           <li><label><input type="checkbox" data-k="eq-bot"><span>Botella de agua reutilizable</span></label></li>
           <li><label><input type="checkbox" data-k="eq-bolsa"><span>Bolsa para la basura (casi no hay papeleras) y otra plegable para compras</span></label></li>
           <li><label><input type="checkbox" data-k="eq-pan"><span>Pañuelos de papel y toallita de mano (muchos baños no tienen secador)</span></label></li>
@@ -611,20 +805,8 @@ details.hotel-d > summary::-webkit-details-marker { display: none; }
       </div>
     </details>
 
-    <details class="acc" id="g-transporte">
-      <summary><span class="ico">🚄</span><span>Transporte<span class="sub">Billetes sueltos, Suica y envío de maletas</span></span></summary>
-      <div class="acc-body">
-        <div id="transport"></div>
-        <div class="note"><b>¿Por qué no el JR Pass?</b>El nacional de 14 días ronda los 480€ por persona. Esta ruta en billetes sueltos (incluyendo la excursión a Hiroshima) sale por unos 290–330€.</div>
-        <div class="note warn"><b>Reservad con antelación</b>Noviembre es temporada alta. Comprad los billetes que se reservan (Shinkansen, Nohi Bus) desde España, 1–2 meses antes si se puede.</div>
-        <h3 class="h">Suica</h3>
-        <p>Tarjeta para metro, bus, konbinis y máquinas expendedoras. Funciona en Tokio, Kanazawa, Kioto y Osaka. Lo más cómodo es tenerla en Apple Wallet o Google Wallet; si no, se saca en el aeropuerto al llegar.</p>
-        <h3 class="h">Takuhaibin: enviar las maletas</h3>
-        <p>Desde el hotel o un konbini se envía la maleta grande al siguiente hotel (unos 15–20€ por maleta, llega al día siguiente). Ideal para Tokio → Kanazawa o Kioto, y para viajar solo con mochila por Shirakawa-go y Takayama. Avisad al hotel de destino.</p>
-        <h3 class="h">Taquillas (coin lockers)</h3>
-        <p>En todas las estaciones grandes, 300–800¥. La app ecbo cloak reserva consigna en tiendas cercanas.</p>
-      </div>
-    </details>
+    <a class="card" id="g-transporte" href="#moverse" style="display:flex;align-items:center;gap:12px;text-decoration:none;margin-bottom:8px">
+      <span style="font-size:20px;width:28px;text-align:center">🚄</span><span><b>Transporte</b><br><span class="muted small">Taxi o metro siendo 5, Suica, pases y cada trayecto: en la pestaña Moverse</span></span><span class="chev">›</span></a>
 
     <details class="acc" id="g-consejos">
       <summary><span class="ico">💡</span><span>Consejos clave<span class="sub">Lo que marca la diferencia en el viaje</span></span></summary>
@@ -691,7 +873,7 @@ details.hotel-d > summary::-webkit-details-marker { display: none; }
           <li><b>Japan Travel by NAVITIME</b><span>Mejor que Google para buses de Takayama y Shirakawa-go.</span></li>
           <li><b>GO</b><span>Taxis en inglés y con tarjeta. Con 5 personas puede salir a cuenta entre todos (necesitaréis 2 coches).</span></li>
           <li><b>Tabelog</b><span>Las reseñas de restaurantes de los japoneses. Un 3,5 ya es excelente.</span></li>
-          <li><b>Suica en Wallet</b><span>Añadidla a Apple Wallet o Google Wallet y recargad con tarjeta. Se acerca el móvil al lector, incluso con la pantalla apagada en iPhone.</span></li>
+          <li><b>Suica en Wallet</b><span>En iPhone, añadidla a Apple Wallet y recargad con tarjeta. Se acerca el móvil al lector, incluso con la pantalla apagada. En Android comprado en España no funciona: tarjeta física (ver Moverse).</span></li>
           <li><b>NERV Disaster Prevention</b><span>Alertas al momento de terremotos, tifones e inundaciones, en inglés, con la intensidad prevista según dónde estéis. Gratis y muy recomendada. Alternativa oficial: Safety tips, en español.</span></li>
           <li><b>LINE</b><span>El WhatsApp de Japón. No imprescindible, pero útil para hablar con algún alojamiento o hacer una reserva directa.</span></li>
           <li><b>Klook</b><span>Entradas, excursiones y billetes de tren comprados desde España.</span></li>
@@ -726,6 +908,13 @@ details.hotel-d > summary::-webkit-details-marker { display: none; }
     <div class="note warn"><b>Si perdéis el pasaporte</b>Denuncia en la policía (110 o en cualquier kōban) y después llamad a la embajada para el pasaporte provisional.</div>
     <div class="note"><b>Hospital</b>Pedid en el hotel el hospital más cercano con atención en inglés. Llevad la póliza del seguro y guardad todos los recibos.</div>
     <div class="card" style="margin-top:10px" id="seguro"></div>
+    <div class="card" style="margin-top:10px"><b>🚕 Perdidos o sin tren</b>
+      <ul class="tipl">
+        <li><b>Volver al hotel</b><span>Abajo, en cada hotel, “Enseñar al taxista” pone la dirección en japonés en grande. Siendo 5, parad dos taxis o pedidlos con la app GO.</span></li>
+        <li><b>Último tren</b><span>Sobre las 0:00–0:30. Si se escapa, taxi con +20% de recargo nocturno. Calculadora de taxi para 5 en Moverse.</span></li>
+        <li><b>Si alguien se separa</b><span>Quedad siempre en un punto fijo (la salida de la estación que diga Maps o el hotel). En las estaciones grandes hay mostradores de información en inglés.</span></li>
+      </ul>
+      <div class="btn-row"><a class="btn ghost" href="#moverse">Ir a Moverse</a></div></div>
 
     <h2 class="h">Hoteles</h2>
     <div id="hoteles"></div>
@@ -743,6 +932,7 @@ details.hotel-d > summary::-webkit-details-marker { display: none; }
   <div class="wrap">
     <a class="tab" href="#hoy" data-tab="hoy"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>Hoy</a>
     <a class="tab" href="#ruta" data-tab="ruta"><svg viewBox="0 0 24 24"><circle cx="6" cy="18" r="2.3"/><circle cx="18" cy="6" r="2.3"/><path d="M8.3 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.7"/></svg>Ruta</a>
+    <a class="tab" href="#moverse" data-tab="moverse"><svg viewBox="0 0 24 24"><rect x="5.5" y="3" width="13" height="14" rx="3"/><path d="M5.5 10.5h13M9 21l1.6-4M15 21l-1.6-4"/><circle cx="9.3" cy="13.8" r=".5"/><circle cx="14.7" cy="13.8" r=".5"/></svg>Moverse</a>
     <a class="tab" href="#sitios" data-tab="sitios"><svg viewBox="0 0 24 24"><path d="M3.5 11.5h17a8.5 8.5 0 0 1-17 0z"/><path d="M14 3.5 8.5 11M20 4l-7.5 7"/></svg>Sitios</a>
     <a class="tab" href="#guia" data-tab="guia"><svg viewBox="0 0 24 24"><path d="M4 4.5h6a2 2 0 0 1 2 2V20a1.5 1.5 0 0 0-1.5-1.5H4zM20 4.5h-6a2 2 0 0 0-2 2V20a1.5 1.5 0 0 1 1.5-1.5H20z"/></svg>Guía</a>
     <a class="tab" href="#sos" data-tab="sos"><svg viewBox="0 0 24 24"><path d="M12 3 2.8 19.5h18.4z"/><path d="M12 9.5v4.5M12 16.8v.2"/></svg>SOS</a>
@@ -983,7 +1173,7 @@ const DIAS = [
     plan: ['Salida temprana: primer Shinkansen Hokuriku desde Tokio (2 h 30 min, ~90€)', 'Kenroku-en nada más llegar: uno de los tres jardines más bellos de Japón (320¥)', 'Mercado Omicho para comer: el mejor marisco de la región', 'Higashi Chaya, el barrio de geishas mejor conservado', 'Ceremonia del té en una casa de té del barrio (~20–30€, reservada con antelación)', 'Distrito samurái Nagamachi: callejones de adobe de la época Edo, a 15 min andando', 'Cena con cangrejo de nieve (zuwaigani)'],
     notas: [
       { t: 'tip', h: 'Llegáis el día que abre el cangrejo', x: 'La temporada de cangrejo de nieve en Ishikawa empieza el 6 de noviembre. En Kenroku-en estarán colocando los yukitsuri, las cuerdas que protegen los pinos de la nieve.' },
-      { t: 'tip', h: 'Takuhaibin', x: 'Mandad la maleta desde el hotel de Tokio a Kanazawa la noche anterior (~15–20€) y viajad solo con mochila en el Shinkansen.' },
+      { t: 'tip', h: 'Takuhaibin', x: 'Mandad la maleta desde el hotel de Tokio la noche anterior (~15–20€) y viajad solo con mochila en el Shinkansen. Con la maleta casi vacía, lo mejor es mandarla directamente a Kioto (llega el 7) en vez de a Kanazawa: un envío en vez de dos.' },
       { t: 'tip', h: 'Distancias', x: 'Todo está a 15–20 min andando entre sí: es un día completo pero llevadero. Si llueve, el bus urbano para en todos estos sitios.' }],
     comer: ['Kourin Sushi', 'Puestos del Mercado Omicho', 'Mori Mori Sushi Omicho'],
     lluvia: 'Kanazawa es de las ciudades más lluviosas de Japón: paraguas siempre. Omicho está cubierto y Kenroku-en con lluvia también es precioso.',
@@ -991,7 +1181,7 @@ const DIAS = [
 
   { fecha: '2026-11-07', n: 8, ciudad: 'takayama', tiempo: 'takayama',
     titulo: 'Takayama, Shirakawa-go y Hida no Sato', resumen: 'El pueblo más auténtico de los Alpes japoneses.',
-    plan: ['Bus Kanazawa → Takayama por la mañana (Nohi Bus, ~2 h 15 min)', 'Mercado matutino Jinya-mae (abre hasta mediodía; cuanto antes, mejor)', 'Sanmachi Suji: calles históricas de la época Edo, sake, miso y dango', 'Bodegas de sake con degustación gratis (buscad la bola de cedro verde en la entrada)', 'Hida no Sato (Folk Village): casas de montaña históricas, a 10 min en bus', 'Excursión a Shirakawa-go (50 min en bus, ~17€ ida y vuelta): casas gassho-zukuri, Patrimonio de la UNESCO', 'Cena de Hida beef: wagyu local, mejor y más barato que en ningún otro sitio'],
+    plan: ['Bus Kanazawa → Takayama por la mañana (Nohi Bus, ~2 h 15 min)', 'Mercado matutino Jinya-mae (abre hasta mediodía; cuanto antes, mejor)', 'Sanmachi Suji: calles históricas de la época Edo, sake, miso y dango', 'Bodegas de sake con degustación gratis (buscad la bola de cedro verde en la entrada)', 'Hida no Sato (Folk Village): casas de montaña históricas, a 10 min en bus', 'Excursión a Shirakawa-go (50 min en bus, 2.800¥ por trayecto, ~33€ ida y vuelta): casas gassho-zukuri, Patrimonio de la UNESCO', 'Cena de Hida beef: wagyu local, mejor y más barato que en ningún otro sitio'],
     notas: [
       { t: 'tip', h: 'Shirakawa-go', x: 'Para muchos viajeros es lo más especial del viaje: tejados de paja enormes que no existen en ningún otro sitio. El bus requiere reserva.' },
       { t: 'tip', h: 'Alternativa para ganar tiempo', x: 'El bus de Kanazawa a Takayama pasa por Shirakawa-go. Podéis bajaros allí (~1 h 15 min desde Kanazawa, 2.800¥), dejar las mochilas en la consigna de la terminal y seguir a Takayama (~50 min) en otro bus del mismo día. Os ahorráis la ida y vuelta; a cambio, los mercados de Takayama pasan a la mañana del día 9. Reservad los dos tramos en Nohi Bus.' }],
@@ -1181,6 +1371,13 @@ const FRASES = [
   { ja: 'トイレはどこですか？', ro: 'Toire wa doko desu ka?', es: '¿Dónde está el baño?' },
   { ja: '助けてください！', ro: 'Tasukete kudasai!', es: '¡Ayuda, por favor!' },
   { ja: '病院に連れて行ってください。', ro: 'Byōin ni tsurete itte kudasai.', es: 'Llévenos a un hospital, por favor.' },
+  { ja: '5人です。タクシー2台お願いします。', ro: 'Go-nin desu. Takushī ni-dai onegaishimasu.', es: 'Somos cinco: dos taxis, por favor.' },
+  { ja: 'ここまでお願いします。', ro: 'Koko made onegaishimasu.', es: 'Hasta aquí, por favor (enseñando el mapa).' },
+  { ja: 'タクシー乗り場はどこですか？', ro: 'Takushī noriba wa doko desu ka?', es: '¿Dónde está la parada de taxis?' },
+  { ja: 'この電車はここに行きますか？', ro: 'Kono densha wa koko ni ikimasu ka?', es: '¿Este tren va aquí? (enseñando el mapa)' },
+  { ja: '何番線ですか？', ro: 'Nan-ban-sen desu ka?', es: '¿Qué andén es? (enseñando el billete)' },
+  { ja: 'コインロッカーはどこですか？', ro: 'Koin rokkā wa doko desu ka?', es: '¿Dónde están las taquillas?' },
+  { ja: 'この荷物を次のホテルに送りたいです。', ro: 'Kono nimotsu o tsugi no hoteru ni okuritai desu.', es: 'Quiero enviar esta maleta al siguiente hotel.' },
 ];
 
 const PRESUPUESTO = [
@@ -1188,8 +1385,8 @@ const PRESUPUESTO = [
     ['Narita Express (aeropuerto → centro)', 20],
     ['Tren a Nikko, ida y vuelta', 25],
     ['Shinkansen Tokio → Kanazawa', 90],
-    ['Bus Kanazawa → Takayama', 19, 'Comprobad el precio en Nohi Bus'],
-    ['Bus Takayama ↔ Shirakawa-go', 17],
+    ['Bus Kanazawa → Takayama', 22, '3.400–4.000¥ según la web; comprobadlo en Nohi Bus'],
+    ['Bus Takayama ↔ Shirakawa-go', 33, '2.800¥ por trayecto (sube a 2.900¥ en diciembre)'],
     ['Tren Takayama → Kioto', 39, 'En tren es más: 45–63€. 39€ se acerca al bus'],
     ['Tren Kioto ↔ Nara', 10],
     ['Tren Kioto → Osaka', 4],
@@ -1214,19 +1411,92 @@ const PRESUPUESTO = [
 ];
 const EXTRAS = [['Express Pass de USJ', '~100–150€'], ['Envío de maletas (takuhaibin)', '~15–20€ por maleta'], ['Excursión de carne de Kobe u Omi', '20–50€'], ['eSIM de datos', '~20€']];
 
-const TRANSPORTE = [
-  { d: 'Día 1', r: 'Aeropuerto → Tokio', m: 'Narita Express (o monorraíl/Keikyu si es Haneda)', t: '~1 h', p: '~20€', donde: 'En el aeropuerto al llegar. Vale Suica + billete de asiento.' },
-  { d: 'Día 2', r: 'Hakone', m: 'Hakone Freepass, incluido en la excursión', t: '', p: 'Ya pagado', donde: 'Va con la excursión.' },
-  { d: 'Día 3', r: 'Tokio ↔ Nikko', m: 'Tren Tobu desde Asakusa', t: '~2 h', p: '~25€', donde: 'En la estación de Asakusa ese mismo día.' },
-  { d: 'Día 7', r: 'Tokio → Kanazawa', m: 'Shinkansen Hokuriku', t: '2 h 30 min', p: '~90€', donde: 'Online (JR East / JR West) o Klook, con 1–2 meses de antelación: es temporada de momiji y se llena.' },
-  { d: 'Día 8', r: 'Kanazawa → Takayama', m: 'Bus Nohi', t: '~2 h 15 min', p: '~19€ (comprobadlo)', donde: 'Web de Nohi Bus. Reserva obligatoria en temporada alta: hacedlo en cuanto tengáis fechas.' },
-  { d: 'Día 8', r: 'Takayama ↔ Shirakawa-go', m: 'Bus Nohi', t: '50 min', p: '~17€', donde: 'Web de Nohi Bus, con reserva.' },
-  { d: 'Día 9', r: 'Takayama → Kioto', m: 'Tren Hida + Shinkansen desde Nagoya, o Hida directo', t: '3–4 h', p: '45–63€', donde: 'En la estación de Takayama el día antes, u online. El bus directo (~35€) tarda unas 5 h.' },
-  { d: 'Día 10', r: 'Kioto ↔ Hiroshima', m: 'Shinkansen', t: '~1 h 40 min', p: 'En la excursión (69€)', donde: 'Klook o GetYourGuide; confirmad que incluye el Shinkansen.' },
-  { d: 'Día 11', r: 'Kioto ↔ Nara', m: 'JR Nara Line', t: '45 min', p: '~10€', donde: 'Con Suica, sin comprar billete.' },
-  { d: 'Día 13', r: 'Kioto → Osaka', m: 'JR (o Shinkansen, 15 min, ~9€)', t: '~30 min', p: '~4€', donde: 'Con Suica.' },
-  { d: 'Día 16', r: 'Namba → aeropuerto', m: 'Nankai', t: '35–45 min', p: '~8€', donde: 'Con Suica, o el Rapi:t con asiento reservado.' },
+// Trayectos grandes del viaje, con sus opciones (rec = la recomendada). Precios por persona salvo "por coche".
+const TRAYECTOS = [
+  { d: '31 oct · Día 1', r: 'Aeropuerto → Hotel Edmont (Iidabashi)', de: 'Narita International Airport', a: 'Hotel Metropolitan Edmont Tokyo',
+    nota: 'Falta confirmar si llegáis a Narita o a Haneda: lo concretaremos con los vuelos.',
+    ops: [
+      { rec: true, n: 'Narita: Narita Express + JR', t: '~1 h 15 min', p: '~3.250¥', x: 'N’EX hasta Tokyo (~55 min, asiento reservado; vale Suica + billete de asiento). Allí, JR Chuo rápida (naranja) hasta Ochanomizu y, en el mismo andén, JR Chuo-Sobu (amarilla) 2 paradas hasta Iidabashi. Se compra en la oficina JR de la planta B1 del aeropuerto. Hay oferta de ida y vuelta para turistas con pasaporte (N’EX Round Trip, ~5.200¥): solo compensa si volvéis por Narita, y no es el caso.' },
+      { n: 'Narita: bus a Tokyo Station + JR', t: '~1 h 30 min', p: '~1.500–1.700¥', x: 'Airport Bus TYO-NRT desde la parada delante de llegadas (sin reserva, cada 10–20 min). En Tokyo, JR hasta Iidabashi (~15 min). Más barato, pero con atascos tarda más.' },
+      { rec: true, n: 'Haneda: Keikyu o monorraíl + JR', t: '~50 min', p: '~600–700¥', x: 'Keikyu hasta Shinagawa o monorraíl hasta Hamamatsucho, y JR hasta Iidabashi. Keikyu acepta tarjeta contactless; el monorraíl no.' },
+      { n: 'Taxi (2 coches)', t: '1–1 h 30 min', p: 'Narita ~10.000¥ · Haneda ~4.000¥', x: 'Narita → Chiyoda a tarifa fija, ~25.000¥ por coche; Haneda ~9.000–11.000¥ por coche. Siendo 5 con maletas necesitáis 2 coches o un jumbo taxi reservado. Solo compensa desde Haneda si vais muy cansados.' }] },
+  { d: '1 nov · Día 2', r: 'Hakone y el Fuji', de: 'Hotel Metropolitan Edmont Tokyo', a: 'Shinjuku Station',
+    ops: [{ rec: true, n: 'Excursión organizada', t: 'todo el día', p: 'Ya pagado', x: 'El transporte en Hakone (Hakone Freepass) va incluido en la excursión. Solo tenéis que llegar al punto de encuentro: si es en Shinjuku, JR Chuo-Sobu (amarilla) desde Iidabashi, ~15 min, ~180¥.' }] },
+  { d: '2 nov · Día 3', r: 'Tokio ↔ Nikko', de: 'Tobu Asakusa Station', a: 'Tobu Nikko Station',
+    ops: [
+      { rec: true, n: 'NIKKO PASS World Heritage Area', t: '~2 h 20 min (tren normal)', p: '3.000¥', x: 'Pase de 2 días solo para turistas (pasaporte): ida y vuelta desde Asakusa en tren normal (cambio en Shimo-Imaichi) y buses de la zona de templos. Se compra en el Tobu Tourist Information Center de la estación de Asakusa o en la web/app de Tobu. Si queréis el expreso, se paga aparte el suplemento (~1.650–1.940¥).' },
+      { n: 'Tren expreso Revaty o Kegon', t: '~1 h 50 min', p: '~3.050–3.340¥ por trayecto', x: 'Asiento reservado, sin cambios. Billete en la taquilla de Tobu Asakusa o en la web de Tobu. El Spacia X, más nuevo y cómodo, ronda los 3.900¥.' },
+      { n: 'Tren normal sin pase', t: '~2 h 20 min', p: '~1.400¥ por trayecto', x: 'Con Suica. Ida y vuelta 2.800¥, pero el bus a los templos se paga aparte: el pase de 3.000¥ sale mejor.' },
+      { n: 'Bus a la cascada Kegon y el lago Chuzenji', t: '~45 min (más con atascos)', p: '~1.200¥ por trayecto', x: 'No entra en el pase World Heritage. Sale de la estación Tobu-Nikko y pasa por la zona de templos. El NIKKO PASS All Area, que sí lo incluía, ahora cuesta 8.000¥ y no compensa en un día.' }] },
+  { d: '3 y 4 nov · Días 4 y 5', r: 'Hotel → Disney (Maihama)', de: 'Iidabashi Station', a: 'Maihama Station',
+    ops: [
+      { rec: true, n: 'JR hasta Tokyo + línea Keiyo', t: '~45 min', p: '~330¥', x: 'En Tokyo Station los andenes de la Keiyo (roja) están lejos: 10 min andando por pasillos, seguid los carteles “Keiyo Line”. Bajad en Maihama: Disneyland a 5 min andando; para DisneySea, monorraíl Disney Resort Line (~300¥) o 20 min andando.' },
+      { n: 'Taxi (2 coches)', t: '~35 min', p: '~3.000¥', x: '~17 km, unos 7.000–8.000¥ por coche con peajes. A la vuelta, al cierre, hay colas de taxis: mejor el tren.' }] },
+  { d: '6 nov · Día 7', r: 'Tokio → Kanazawa', de: 'Tokyo Station', a: 'Kanazawa Station',
+    ops: [
+      { rec: true, n: 'Shinkansen Hokuriku Kagayaki', t: '2 h 30 min', p: '~14.400–14.700¥', x: 'Todo con asiento reservado. Online (JR East / JR West) o Klook, con 1–2 meses de antelación: es temporada de momiji y se llena. Sale de los andenes 20–23 de Tokyo Station (entrada “Shinkansen”).' },
+      { n: 'Shinkansen Hakutaka', t: '~3 h', p: '~14.000¥', x: 'Más paradas; tiene vagones sin reserva por si los Kagayaki están llenos.' },
+      { n: 'Hotel → Tokyo Station a primera hora', t: '15 min', p: 'JR ~170¥ · taxi ~760¥', x: 'JR Chuo-Sobu hasta Ochanomizu y Chuo rápida hasta Tokyo. En taxi son ~4 km, ~1.900¥ por coche: a las 6 de la mañana y con mochilas, compensa.' }] },
+  { d: '7 nov · Día 8', r: 'Kanazawa → Takayama y Shirakawa-go', de: 'Kanazawa Station', a: 'Takayama Nohi Bus Center',
+    ops: [
+      { rec: true, n: 'Bus Nohi Kanazawa → Takayama', t: '~2 h 15 min', p: '~3.400–4.000¥', x: 'Web de Nohi Bus (o japanbusonline.com). Reserva obligatoria en temporada alta: hacedlo en cuanto tengáis fechas. Sale de la terminal de la salida Este de la estación de Kanazawa, en la puerta del hotel.' },
+      { rec: true, n: 'Bus Nohi Takayama ↔ Shirakawa-go', t: '50 min', p: '2.800¥ por trayecto', x: 'Web de Nohi Bus, con reserva. Ida y vuelta 5.600¥ (~33€; antes estaba apuntado como 17€ ida y vuelta, pero ese es el precio de un solo trayecto).' },
+      { n: 'Alternativa: parar en Shirakawa-go por el camino', t: '1 h 15 min + 50 min', p: '2.800¥ + 2.800¥', x: 'Kanazawa → Shirakawa-go, consigna en la terminal y Shirakawa-go → Takayama por la tarde. Os ahorráis la ida y vuelta y ~3 horas.' }] },
+  { d: '8 nov · Día 9', r: 'Takayama → Kioto', de: 'Takayama Station', a: 'Kyoto Station',
+    ops: [
+      { rec: true, n: 'Tren Hida + Shinkansen desde Nagoya', t: '~3 h', p: '~10.800¥', x: 'Hida hasta Nagoya (~2 h 20 min) y Shinkansen hasta Kioto (~35 min). En la estación de Takayama el día antes, u online.' },
+      { n: 'Tren Hida directo a Kioto', t: '~3 h 45 min – 4 h', p: '~6.500–7.600¥', x: 'Solo hay uno al día (va hasta Osaka). Sin cambios: cómodo con mochilas.' },
+      { n: 'Bus directo', t: '~5 h', p: '5.500–6.500¥', x: 'El más barato. Se acerca a los 39€ que teníamos apuntados.' },
+      { n: 'Kyoto Station → Kyoto Tokyu Hotel', t: '10 min', p: 'Gratis · bus 230¥ · taxi ~450¥', x: 'Lanzadera gratis desde la salida Hachijo (sur), cada ~30 min de 8:00 a 21:00. O bus 9 desde la terminal de la salida Karasuma (norte) hasta Horikawa Gojo. Taxi ~1.000–1.200¥ por coche.' }] },
+  { d: '9 nov · Día 10', r: 'Kioto ↔ Hiroshima y Miyajima', de: 'Kyoto Station', a: 'Hiroshima Station',
+    ops: [{ rec: true, n: 'Excursión organizada (69€)', t: '~1 h 40 min en Shinkansen', p: 'En la excursión', x: 'Klook o GetYourGuide; confirmad que incluye el Shinkansen. Por libre, solo el Shinkansen ida y vuelta ya cuesta ~22.000¥. El ferry a Miyajima (JR, ~200¥ por trayecto + 100¥ de tasa) admite Suica.' }] },
+  { d: '10 nov · Día 11', r: 'Kioto → Fushimi Inari → Nara → Kioto', de: 'Kyoto Tokyu Hotel', a: 'Fushimi Inari Taisha',
+    ops: [
+      { rec: true, n: 'Taxi al amanecer a Fushimi Inari', t: '~15 min', p: '~900¥', x: '~5 km, unos 2.000–2.300¥ por coche. A las 6:45 no hay lanzadera y el taxi os deja en la puerta.' },
+      { n: 'Metro + JR a Fushimi Inari', t: '~30 min', p: '~380¥', x: 'Metro desde Gojo (8 min andando) una parada hasta Kyoto y JR Nara Line dos paradas hasta Inari, que está en la puerta del santuario.' },
+      { rec: true, n: 'Inari → Nara en JR Nara Line', t: '~50–60 min', p: '~700¥', x: 'Con Suica, sin comprar billete. Desde Inari salen trenes locales; en algunos hay que cambiar a un rápido por el camino (Maps os lo dice). De la estación JR Nara al parque, 20 min andando.' },
+      { rec: true, n: 'Vuelta: Kintetsu desde Kintetsu-Nara', t: '~35–45 min', p: '~760¥', x: 'La estación Kintetsu-Nara está pegada al parque y llega a Kyoto Station por la salida Hachijo, donde para la lanzadera del hotel. Acepta Suica y tarjeta contactless. Con el expreso limitado (+520¥) tardáis 35 min.' }] },
+  { d: '11 nov · Día 12', r: 'Kioto → Arashiyama → Kiyomizudera', de: 'Kyoto Tokyu Hotel', a: 'Arashiyama Bamboo Grove',
+    ops: [
+      { rec: true, n: 'Taxi a Arashiyama a las 7:00', t: '~25 min', p: '~1.500¥', x: '~9 km, unos 3.500–4.000¥ por coche. Para llegar al bambú antes de las 8:00 es lo más fácil.' },
+      { n: 'Metro + JR Sagano Line', t: '~45 min', p: '~460¥', x: 'Metro de Gojo a Kyoto (1 parada) y JR Sagano Line hasta Saga-Arashiyama (~15 min) + 10 min andando.' },
+      { n: 'Bus 28 desde Horikawa Gojo', t: '~50 min', p: '230¥', x: 'El más barato, sin cambios, pero lento.' },
+      { rec: true, n: 'Arashiyama → Kiyomizudera', t: '~45 min', p: '~240¥ + bus 230¥ o taxi ~600¥', x: 'JR Sagano Line de vuelta a Kyoto y, desde la terminal de buses (salida Karasuma), bus 206 o 86 hasta Gojozaka (van llenos) o taxi ~3 km, ~1.400¥ por coche.' }] },
+  { d: '12 nov · Día 13', r: 'Kioto → Osaka (Hotel Monterey, JR Namba)', de: 'Kyoto Station', a: 'Hotel Monterey Grasmere Osaka',
+    ops: [
+      { rec: true, n: 'JR Special Rapid + metro Midosuji', t: '~55 min', p: '~820¥', x: 'JR Special Rapid de Kyoto a Osaka (29 min, ~580¥, con Suica) y metro Midosuji (rojo) de Umeda a Namba (8 min, ~240¥; acepta tarjeta contactless). El hotel está sobre la estación JR Namba, a 5 min por pasillos subterráneos.' },
+      { n: 'Shinkansen + metro', t: '~40 min', p: '~1.750¥', x: 'Shinkansen hasta Shin-Osaka (15 min, ~1.450¥ sin reserva; sí, “15 min” es solo en Shinkansen) y metro Midosuji directo hasta Namba (~15 min, ~290¥).' },
+      { n: 'Taxi (2 coches)', t: '~1 h', p: '~6.000¥ o más', x: '~50 km: más de 15.000¥ por coche. No compensa.' }] },
+  { d: '14 nov · Día 15', r: 'Hotel → Universal Studios', de: 'Osaka Namba Station', a: 'Universal City Station',
+    ops: [
+      { rec: true, n: 'Hanshin + JR Yumesaki Line', t: '~30 min', p: '~420¥', x: 'Hanshin desde Osaka-Namba hasta Nishikujo (~10 min) y JR Yumesaki (Sakurajima) Line 2 paradas hasta Universal City. Con Suica (en el tramo JR no vale la tarjeta contactless).' },
+      { n: 'Taxi (2 coches)', t: '~20 min', p: '~1.500¥', x: '~9 km, unos 3.500–4.000¥ por coche. A las 7:00 compensa si vais justos.' }] },
+  { d: '15 nov · Día 16', r: 'Namba → aeropuerto de Kansai (KIX)', de: 'Nankai Namba Station', a: 'Kansai International Airport',
+    ops: [
+      { rec: true, n: 'Nankai Rapi:t (asiento reservado)', t: '~38 min', p: '~1.450–1.500¥', x: 'Desde la estación Nankai Namba (5–10 min andando del hotel). Billete en la taquilla o la web de Nankai. Acepta tarjeta contactless.' },
+      { n: 'Nankai Airport Express', t: '~45 min', p: '~970¥', x: 'Sin reserva, con Suica. Sale cada ~30 min; con maletas grandes, id con tiempo para sentaros.' },
+      { n: 'Bus desde OCAT (al lado del hotel)', t: '~50–70 min', p: '~1.100–1.400¥', x: 'Sin cambiar de edificio. Con atascos de domingo puede tardar más que el tren.' },
+      { n: 'Taxi (2 coches)', t: '~50 min', p: '~8.000¥', x: '~20.000¥ por coche a tarifa fija. No compensa.' }] },
 ];
+
+// Pases: v = ✅ compensa · ➖ depende · ❌ no compensa
+const PASES = [
+  ['❌', 'JR Pass nacional (14 días)', 'Unos 480€: la ruta en billetes sueltos sale por 290–330€.'],
+  ['❌', 'Tokyo Subway Ticket 24/48/72 h (1.000 / 1.500 / 2.000¥)', 'Solo vale para metro (Tokyo Metro y Toei), no para JR. Vuestros días en Tokio son de excursión, Disney o JR: no lo amortizáis.'],
+  ['✅', 'NIKKO PASS World Heritage Area (3.000¥)', 'Ida y vuelta a Nikko en tren normal + buses de los templos. El día 3.'],
+  ['❌', 'NIKKO PASS All Area (8.000¥)', 'Subió de precio en 2025. Para un día, mejor el World Heritage + el bus a Kegon aparte.'],
+  ['➖', 'Pase de bus de 1 día en Kanazawa (800¥)', 'Un viaje cuesta 220¥: compensa a partir de 4 trayectos o si llueve. Se compra en el centro de Hokutetsu de la salida Este, no en el bus.'],
+  ['❌', 'Pase de metro y bus de 1 día en Kioto (1.100¥)', 'El bus cuesta 230¥: haría falta coger 5 en un día. Con los taxis de primera hora, no sale.'],
+  ['✅', 'Tarjeta contactless en el metro de Osaka', 'Tiene tope diario automático: paséis las veces que paséis, no cobra más que un pase de día. Usad siempre la misma tarjeta.'],
+];
+
+// Taxímetro: tarifa máxima oficial de 2026 (bajada de bandera, metros que incluye, 100¥ cada X metros)
+const TAXI = {
+  tokio: { n: 'Tokio', base: 500, inc: 1000, paso: 232 },
+  kioto: { n: 'Kioto', base: 500, inc: 900, paso: 255 },
+  osaka: { n: 'Osaka', base: 600, inc: 1200, paso: 231 },
+  otras: { n: 'Kanazawa, Takayama, Nara (aprox.)', base: 600, inc: 1200, paso: 250 },
+};
 
 // Coordenadas [lat, lon, 1 = zona aproximada] de cada sitio, por su búsqueda de Maps (OpenStreetMap)
 const GEO = {
@@ -1301,7 +1571,7 @@ const VISITAS = {
   'Lake Ashi, Hakone': { x: 'Incluido en la excursión' },
   'Owakudani, Hakone': { x: 'Incluido en la excursión' },
   'Nikko Toshogu': { h: '9:00–16:00 (última entrada 15:30)', p: '1.600¥' },
-  'Kegon Falls': { h: 'Ascensor al mirador 8:00–17:00', p: '~600¥ ida y vuelta' },
+  'Kegon Falls': { h: 'Ascensor al mirador 8:00–17:00', p: '550¥ ida y vuelta' },
   'Tokyo Disneyland': { h: 'Suele abrir 9:00–21:00 (mirad el día en la app)' },
   'Tokyo DisneySea': { h: 'Suele abrir 9:00–21:00 (mirad el día en la app)' },
   'Tokyo Tower': { h: '9:00–23:00 (última entrada 22:30)', p: 'Main Deck 1.200–1.500¥' },
@@ -1341,9 +1611,9 @@ const PREPARAR = {
   '2026-11-02': ['Salir temprano hacia Asakusa (tren Tobu)', 'Calzado cómodo: hay cuestas y escaleras', 'Efectivo para las entradas (Tosho-gu 1.600¥)'],
   '2026-11-03': ['Entradas de Disneyland descargadas y app de Tokyo Disney Resort con sesión iniciada', 'Batería externa', 'Salir para estar 45–60 min antes de abrir'],
   '2026-11-04': ['Entradas de DisneySea descargadas', 'Batería externa', 'Misma hora de salida que ayer'],
-  '2026-11-05': ['Si llueve: comprar entradas de teamLab Borderless', 'Por la noche: enviar las maletas a Kanazawa desde el mostrador de mensajería del Edmont (planta 1, junto al bell desk; venden cajas)'],
-  '2026-11-06': ['Maletas enviadas a Kanazawa la noche antes (takuhaibin)', 'Check-out del Edmont antes de las 11:00 (si salís muy temprano, dejad la llave en recepción)', 'Billetes del Shinkansen', 'Paraguas: Kanazawa es muy lluviosa', 'Confirmar la hora de la ceremonia del té'],
-  '2026-11-07': ['Billetes del bus Nohi (Kanazawa → Takayama y Shirakawa-go); el bus sale de la terminal que está en la puerta del Hotel Kanazawa', 'Maletas grandes: enviadlas desde el Hotel Kanazawa directamente al Kyoto Tokyu y viajad dos días con mochila', 'Abrigo: Takayama es la noche más fría del viaje', 'Efectivo para mercados y degustaciones', 'Koto no Yume cierra la puerta a las 23:00: no os alarguéis cenando'],
+  '2026-11-05': ['Si llueve: comprar entradas de teamLab Borderless', 'Por la noche: enviar las maletas desde el mostrador de mensajería del Edmont (planta 1, junto al bell desk; venden cajas). Recomendado: directamente al Kyoto Tokyu (llegan el 7 y os esperan). Alternativa: al Hotel Kanazawa'],
+  '2026-11-06': ['Maletas enviadas la noche antes (takuhaibin), a Kioto o a Kanazawa: hoy solo mochila', 'Check-out del Edmont antes de las 11:00 (si salís muy temprano, dejad la llave en recepción)', 'Billetes del Shinkansen', 'Paraguas: Kanazawa es muy lluviosa', 'Confirmar la hora de la ceremonia del té'],
+  '2026-11-07': ['Billetes del bus Nohi (Kanazawa → Takayama y Shirakawa-go); el bus sale de la terminal que está en la puerta del Hotel Kanazawa', 'Si mandasteis las maletas a Kanazawa: enviadlas desde el Hotel Kanazawa directamente al Kyoto Tokyu y viajad dos días con mochila', 'Abrigo: Takayama es la noche más fría del viaje', 'Efectivo para mercados y degustaciones', 'Koto no Yume cierra la puerta a las 23:00: no os alarguéis cenando'],
   '2026-11-08': ['Check-out de Koto no Yume a las 10:00 (antes que en los hoteles)', 'Billete de tren a Kioto (se puede comprar en la estación el día antes)', 'Si enviasteis las maletas, avisad al Kyoto Tokyu', 'En Kioto: lanzadera gratis al hotel desde la salida Hachijo de la estación'],
   '2026-11-09': ['Bono de la excursión y punto de encuentro', 'Mirar la tabla de mareas de Miyajima', 'Monedas: 100¥ de tasa de la isla'],
   '2026-11-10': ['Despertador temprano: Fushimi Inari a las 7:00', 'Monedas para las galletas de los ciervos', 'Calzado cómodo: en Fushimi Inari todo son escaleras'],
@@ -1352,6 +1622,300 @@ const PREPARAR = {
   '2026-11-13': ['Efectivo para el mercado y el kushikatsu', 'Bolsa plegable para las compras'],
   '2026-11-14': ['Entradas de USJ y app oficial con sesión iniciada', 'Express Pass, si lo comprasteis', 'Batería externa', 'Salir para estar 1 h antes de abrir'],
   '2026-11-15': ['Pasaporte y todos los recibos de Tax Free', 'Compras con Tax Free a mano y sin abrir, no en la maleta facturada', 'Check-out del Monterey antes de las 11:00 y maletas en su consigna', 'Al aeropuerto: bus desde OCAT, al lado del hotel (~50 min), o tren Nankai desde Namba', 'Estar en el aeropuerto 3 h antes + 30–45 min para el Tax Free'],
+};
+
+// Hora a hora de cada día (pestaña Hoy). "clave": datos rápidos. Cada paso: h hora, t qué, x detalle, q búsqueda de Maps,
+// opt = opcional, ir = cómo llegar desde el paso anterior (m modo, l línea, d duración, p precio por persona,
+// donde, alt alternativa, taxi comparación siendo 5, de = origen si no es el paso anterior). Horas orientativas.
+const HORARIO = {
+  '2026-10-30': {
+    clave: [['🛫', 'En el aeropuerto', '6:00 (hora de España)'], ['🕗', 'Diferencia horaria', 'Japón va 8 h por delante'], ['🎒', 'Cabina', 'Solo la mochila'], ['🧳', 'Facturada', '1 maleta de hasta 25 kg, casi vacía'], ['🔌', 'Antes de salir', 'Móvil y batería al 100%', 'w']],
+    pasos: [
+      { h: '6:00', t: 'En el aeropuerto', x: 'Tres horas antes. Facturad la maleta grande y pasad el control con la mochila: líquidos en frascos de 100 ml en una bolsa transparente, batería externa en la mochila (nunca en la maleta).' },
+      { h: '', t: 'Vuelo a Doha y escala de 4 h 35 min', x: 'En Hamad hay wifi gratis, fuentes de agua y zonas de descanso. No cambiéis dinero aquí: los yenes se sacan mejor en un cajero de Japón.' },
+      { h: '', t: 'Vuelo a Tokio', x: 'Dormid todo lo que podáis en este tramo: llegáis a mediodía y hay que aguantar despiertos hasta la noche. Poned el reloj en hora japonesa al despegar.' },
+    ] },
+
+  '2026-10-31': {
+    clave: [['✈️', 'Aterrizaje', '11:55'], ['🏨', 'Check-in', '15:00 en el Edmont'], ['🚆', 'Transporte hoy', '~3.700¥ por persona'], ['💵', 'Efectivo', 'Sacad 20.000–30.000¥ en el aeropuerto'], ['🌙', 'Último tren', 'Sobre las 0:00 (miradlo en Maps)'], ['🛍️', 'Tax Free', 'Último día con descuento en caja']],
+    pasos: [
+      { h: '11:55', t: 'Aterrizaje', x: 'Inmigración y aduanas con los QR de Visit Japan Web. Contad 45–90 min hasta salir.', q: 'Narita International Airport' },
+      { h: '13:00', t: 'Dinero, Suica e internet', x: 'Cajero de 7-Eleven (Seven Bank) en llegadas: acepta tarjetas extranjeras. Activad la eSIM. iPhone: Suica en Wallet. Android: <b>Welcome Suica física</b> en las máquinas o la oficina JR del aeropuerto. Billetes del N’EX en la oficina JR (planta B1).' },
+      { h: '13:30', t: 'Tren al hotel', x: 'Si llegáis a Haneda, en vez del N’EX: Keikyu o monorraíl y JR (~50 min, ~600–700¥).', q: 'Hotel Metropolitan Edmont Tokyo',
+        ir: { m: 'tren', l: 'Narita Express hasta Tokyo · JR Chuo rápida (naranja) a Ochanomizu · JR Chuo-Sobu (amarilla) 2 paradas a Iidabashi', d: '~1 h 15 min', p: '~3.250¥',
+          donde: 'Andenes JR en la planta B1 de la terminal. El N’EX lleva asiento reservado: sacad billete con asiento. En Ochanomizu el cambio es en el mismo andén.',
+          alt: 'Bus Airport Bus TYO-NRT hasta Tokyo Station (~1.500¥) y JR hasta Iidabashi.',
+          taxi: 'Desde Narita ~25.000¥ por coche y hacen falta 2: ~10.000¥ por persona. No compensa.', de: 'Narita Airport Terminal 1' } },
+      { h: '14:45', t: 'Hotel Metropolitan Edmont', x: 'Check-in a las 15:00: hay cola y dan número. Si llegáis antes, maletas a la consigna (bell desk, planta 1) y a comer algo enfrente (FamilyMart y 7-Eleven). Ducha y descanso corto, <b>sin dormir</b>.', q: 'Hotel Metropolitan Edmont Tokyo' },
+      { h: '17:30', t: 'Shinjuku: disfraces y ambiente', x: 'Salida Este hacia Kabukicho. Tiendas abiertas hasta tarde. Si alguien quiere electrónica cara, hoy es el día: Yodobashi y Bic Camera en la salida Oeste (Tax Free en caja).', q: 'Kabukicho, Shinjuku, Tokyo',
+        ir: { m: 'tren', l: 'JR Chuo-Sobu (amarilla) dirección Shinjuku/Mitaka', d: '~15 min', p: '~180¥', donde: 'Estación JR Iidabashi, salida Este (5 min del hotel).', taxi: '~5 km: ~2.300¥ por coche, ~950¥ por persona con 2 taxis. El tren es 5 veces más barato.' } },
+      { h: '19:30', t: 'Cena en Omoide Yokocho', x: 'El callejón de izakayas junto a la salida Oeste. Locales diminutos: os tendréis que repartir o buscar uno con sitio para 5. Alternativa: Ichiran en Shibuya.', q: 'Omoide Yokocho Shinjuku',
+        ir: { m: 'andar', l: 'Andando por la estación, de la salida Este a la Oeste', d: '~10 min' } },
+      { h: '21:00', t: 'Shibuya y el cruce disfrazado', x: 'Mucha seguridad y prohibido beber en la calle alrededor de la estación. Id a ver el ambiente y no os separéis: quedad en un punto fijo (la estatua de Hachiko) por si alguien se pierde.', q: 'Shibuya Scramble Crossing',
+        ir: { m: 'tren', l: 'JR Yamanote (verde) dirección Shibuya/Shinagawa', d: '7 min', p: '~170¥', donde: 'Andenes de la Yamanote en la estación de Shinjuku.', taxi: 'No: en Halloween cortan el tráfico alrededor del cruce.', de: 'Shinjuku Station' } },
+      { h: '22:30', t: 'Don Quijote Shibuya', x: 'Abierto 24 h. Primeras compras y snacks.', q: 'Don Quijote Shibuya', ir: { m: 'andar', l: 'Andando desde el cruce', d: '~5 min' } },
+      { h: '23:30', t: 'Vuelta al hotel', x: 'Último tren sobre las 0:00–0:30: miradlo en Maps antes de entretenerse.', q: 'Hotel Metropolitan Edmont Tokyo',
+        ir: { m: 'tren', l: 'JR Yamanote a Shinjuku y JR Chuo-Sobu (amarilla) a Iidabashi', d: '~30 min', p: '~210¥', alt: 'Metro Hanzomon hasta Kudanshita (~16 min) y 10 min andando.', taxi: '~7 km: ~3.600¥ por coche con el recargo nocturno, ~1.450¥ por persona. En Halloween cuesta encontrar taxi cerca del cruce: alejaos un par de calles.' } },
+    ] },
+
+  '2026-11-01': {
+    clave: [['⏰', 'Despertador', '~6:30 (según el bono)'], ['💴', 'Excursión', 'Ya pagada (99€)'], ['💵', 'Efectivo', '3.000–5.000¥ para comer y souvenirs'], ['🧥', 'Ropa', 'Abrigo: en Hakone hace 5–8 °C menos'], ['🌙', 'Vuelta', '~19:00–20:00; es domingo, habrá atascos', 'w']],
+    pasos: [
+      { h: '6:30', t: 'Desayuno de konbini', x: 'FamilyMart y 7-Eleven justo enfrente del hotel: onigiri, sándwich de huevo y café por ~500¥.' },
+      { h: '7:15', t: 'Al punto de encuentro', x: 'Mirad el sitio y la hora exactos en el bono y llegad 15 min antes: las excursiones no esperan.', q: 'Shinjuku Station',
+        ir: { m: 'tren', l: 'Si es en Shinjuku: JR Chuo-Sobu (amarilla) desde Iidabashi', d: '~15 min', p: '~180¥', taxi: 'A Shinjuku ~2.300¥ por coche (~950¥ por persona). Solo si vais tarde.' } },
+      { h: '~8:00', t: 'Salida en bus hacia Hakone', x: 'Unas 2 h. Sentaos a la derecha a la ida: si está despejado, el Fuji aparece por ese lado.' },
+      { h: '', t: 'Lago Ashi con vistas al Fuji', x: 'Por la mañana se ve mejor el Fuji, ya con nieve en la cima.', q: 'Lake Ashi, Hakone' },
+      { h: '', t: 'Teleférico de Owakudani', x: 'Sobre el valle volcánico. Probad el kuro-tamago, el huevo negro cocido en las fumarolas.', q: 'Owakudani, Hakone' },
+      { h: '', t: 'Tren de cremallera Hakone Tozan y onsen', x: 'El onsen, si la excursión lo incluye: llevad toalla pequeña.' },
+      { h: '~19:30', t: 'Vuelta a Tokio y cena cerca del hotel', x: 'Kagurazaka, a 5 min andando del Edmont, es un barrio de callejuelas con izakayas y restaurantes: perfecto para no coger más trenes.', q: 'Kagurazaka, Tokyo' },
+    ] },
+
+  '2026-11-02': {
+    clave: [['⏰', 'Despertador', '6:15'], ['🚪', 'Salir del hotel', '6:50'], ['🚆', 'Transporte hoy', '~6.000¥ (pase 3.000¥ + bus a Kegon)'], ['🎟️', 'Entradas', 'Tosho-gu 1.600¥ · ascensor Kegon 550¥'], ['💵', 'Efectivo', '5.000¥'], ['🌙', 'Vuelta', 'Tren de Nikko a las ~17:30']],
+    pasos: [
+      { h: '6:15', t: 'Despertador y desayuno rápido', x: 'Konbini de enfrente. Llevad agua y algo de picar para el tren.' },
+      { h: '6:50', t: 'Metro a Asakusa', x: 'Calzado cómodo: hoy hay cuestas y escaleras.', q: 'Tobu Asakusa Station',
+        ir: { m: 'metro', l: 'Metro con un cambio (Google Maps os da la mejor combinación)', d: '~25–30 min', p: '~220–280¥', taxi: '~7 km: ~3.000¥ por coche, ~1.200¥ por persona. A esa hora va rápido: compensa si vais justos para el tren.', de: 'Hotel Metropolitan Edmont Tokyo' } },
+      { h: '7:30', t: 'Estación Tobu Asakusa: pase y tren', x: 'En el Tourist Information Center de Tobu: <b>NIKKO PASS World Heritage Area</b> (3.000¥, con pasaporte): ida y vuelta en tren normal y buses de los templos. Si queréis el expreso Revaty o Kegon (1 h 50 min, sin cambios), se paga el suplemento (~1.650–1.940¥). El tren normal tarda ~2 h 20 min con cambio en Shimo-Imaichi.', q: 'Tobu Asakusa Station' },
+      { h: '9:45', t: 'Llegada a Tobu-Nikko', x: 'Hay puestos de yuba y la oficina de turismo junto a la estación.', q: 'Tobu Nikko Station',
+        ir: { m: 'tren', l: 'Tobu Nikko Line (expreso o normal)', d: '1 h 50 min – 2 h 20 min', p: 'En el pase (+ suplemento si es expreso)' } },
+      { h: '10:00', t: 'Puente rojo Shinkyo', x: 'Para la foto basta con verlo desde la carretera; cruzarlo cuesta unos 300¥.', q: 'Shinkyo Bridge, Nikko',
+        ir: { m: 'bus', l: 'Bus Tobu hacia la zona de templos (parada Shinkyo)', d: '~10 min', p: 'En el pase', alt: 'Andando: 30 min cuesta arriba por la avenida principal.', taxi: '~2 km: ~1.000¥ por coche, ~400¥ por persona.' } },
+      { h: '10:15', t: 'Tosho-gu', x: 'El santuario más ornamentado de Japón: puerta Yomeimon, los tres monos sabios (“no ver, no oír, no hablar”) y el gato dormido. 9:00–16:00, 1.600¥. Calculad 1 h 30 min – 2 h.', q: 'Nikko Toshogu', ir: { m: 'andar', l: 'Andando, subiendo por el bosque', d: '~10 min' } },
+      { h: '12:30', t: 'Comida: yuba', x: 'La piel de tofu, especialidad de Nikko, en los restaurantes de la avenida que baja a la estación.' },
+      { h: '13:30', t: 'Cascada Kegon y lago Chuzenji', x: 'Ascensor al mirador de abajo, 550¥ (8:00–17:00). La carretera de curvas Irohazaka se atasca en momiji: si a las 14:00 vais tarde, saltaos la cascada.', q: 'Kegon Falls',
+        ir: { m: 'bus', l: 'Bus Tobu hacia Chuzenji Onsen (no entra en el pase)', d: '~45 min, más con atascos', p: '~1.200¥ por trayecto', donde: 'Paradas de la zona de templos o la estación Tobu-Nikko.', taxi: '~12 km: ~5.000–6.000¥ por coche, ~2.200¥ por persona. Atrapado en el mismo atasco que el bus.' } },
+      { h: '16:30', t: 'Bajada a la estación', x: 'Mirad en la oficina el último expreso de vuelta si lo queréis.', q: 'Tobu Nikko Station',
+        ir: { m: 'bus', l: 'Bus Tobu de vuelta a la estación', d: '~50 min', p: '~1.200¥' } },
+      { h: '17:30', t: 'Tren de vuelta a Tokio', x: 'Cena en Asakusa al llegar o en Kagurazaka, junto al hotel.', q: 'Tobu Asakusa Station',
+        ir: { m: 'tren', l: 'Tobu hasta Asakusa (normal con el pase o expreso con suplemento)', d: '1 h 50 min – 2 h 20 min', p: 'En el pase' } },
+    ] },
+
+  '2026-11-03': {
+    clave: [['⏰', 'Despertador', '6:30'], ['🚪', 'Salir del hotel', '7:10'], ['🏰', 'Abre', 'Normalmente 9:00 (mirad la app)'], ['🚆', 'Transporte hoy', '~660¥ ida y vuelta'], ['💳', 'Pagos', 'Dentro, todo con tarjeta'], ['⚠️', 'Ojo', 'Festivo: muy lleno']],
+    pasos: [
+      { h: '6:30', t: 'Despertador y desayuno', x: 'Desayunad fuerte: no se puede entrar comida de fuera.' },
+      { h: '7:10', t: 'Tren a Maihama', x: 'Entradas descargadas y app de Tokyo Disney Resort con sesión iniciada.', q: 'Maihama Station',
+        ir: { m: 'tren', l: 'JR hasta Tokyo (cambio en Ochanomizu) y línea Keiyo (roja) hasta Maihama', d: '~45 min', p: '~330¥', donde: 'En Tokyo Station los andenes de la Keiyo están a 10 min andando por pasillos: seguid “Keiyo Line”. No cojáis el tren “Musashino” que va por otra vía si Maps no lo dice.', taxi: '~17 km: ~7.000–8.000¥ por coche con peajes, ~3.000¥ por persona. No compensa.', de: 'Iidabashi Station' } },
+      { h: '8:00', t: 'En la puerta de Tokyo Disneyland', x: '45–60 min antes de abrir. A 5 min andando de la estación.', q: 'Tokyo Disneyland', ir: { m: 'andar', l: 'Andando desde la estación de Maihama', d: '5 min' } },
+      { h: '9:00', t: 'Premier Access para La Bella y la Bestia', x: 'Nada más entrar, en la app (de pago, ~1.500–2.500¥ por persona). Es la más solicitada.' },
+      { h: '9:15', t: 'Big Thunder Mountain y Splash Mountain', x: 'Las colas suben rápido a partir de las 10:00. Space Mountain está cerrada hasta 2027.' },
+      { h: '11:00', t: 'Haunted Mansion y Piratas del Caribe' },
+      { h: '~12:30', t: 'Desfile de mediodía', x: 'Espectacular en el parque japonés. Coged sitio 20 min antes.' },
+      { h: '15:00', t: 'Fantasyland' },
+      { h: '~19:30', t: 'Electrical Parade Dreamlights y fuegos', x: 'Horas exactas en la app.' },
+      { h: '21:00', t: 'Vuelta al hotel', x: 'Al cierre la estación de Maihama se colapsa: salid 15 min antes o esperad media hora tomando algo.', q: 'Hotel Metropolitan Edmont Tokyo',
+        ir: { m: 'tren', l: 'Keiyo hasta Tokyo y JR hasta Iidabashi', d: '~45 min', p: '~330¥', de: 'Maihama Station' } },
+    ] },
+
+  '2026-11-04': {
+    clave: [['⏰', 'Despertador', '6:30'], ['🚪', 'Salir del hotel', '7:10'], ['🌊', 'Abre', 'Normalmente 9:00 (mirad la app)'], ['🚆', 'Transporte hoy', '~660¥ (+ monorraíl ~300¥)'], ['💳', 'Pagos', 'Dentro, todo con tarjeta'], ['🌙', 'Noche', 'Believe! Sea of Dreams']],
+    pasos: [
+      { h: '7:10', t: 'Tren a Maihama', x: 'Mismo camino que ayer.', q: 'Maihama Station',
+        ir: { m: 'tren', l: 'JR hasta Tokyo y línea Keiyo hasta Maihama', d: '~45 min', p: '~330¥', de: 'Iidabashi Station' } },
+      { h: '8:00', t: 'En la puerta de Tokyo DisneySea', q: 'Tokyo DisneySea',
+        ir: { m: 'tren', l: 'Monorraíl Disney Resort Line hasta Tokyo DisneySea Station', d: '~10 min', p: '~300¥', alt: 'Andando por el paseo junto al hotel MiraCosta: ~20 min, gratis.' } },
+      { h: '9:00', t: 'Fantasy Springs', x: 'Frozen, Rapunzel y Peter Pan: Standby Pass o Premier Access en la app nada más entrar.' },
+      { h: '9:15', t: 'Journey to the Center of the Earth', x: 'La primera: su cola se dispara.' },
+      { h: '9:45', t: 'Tower of Terror', x: 'Antes de las 10:00.' },
+      { h: '11:00', t: 'Indiana Jones, Sindbad y Soaring: Fantastic Flight' },
+      { h: '~19:00', t: 'Believe! Sea of Dreams', x: 'El espectáculo nocturno sobre el agua (sustituyó a Fantasmic!). Puede cancelarse con lluvia fuerte: miradlo en la app.' },
+      { h: '21:00', t: 'Vuelta al hotel', q: 'Hotel Metropolitan Edmont Tokyo',
+        ir: { m: 'tren', l: 'Monorraíl o andando a Maihama, Keiyo y JR hasta Iidabashi', d: '~55 min', p: '~630¥', de: 'Tokyo DisneySea Station' } },
+    ] },
+
+  '2026-11-05': {
+    clave: [['⏰', 'Despertador', '7:45'], ['🚪', 'Salir del hotel', '8:30'], ['🚇', 'Transporte hoy', '~700¥ en metro'], ['🎟️', 'Entradas', 'Tokyo Tower 1.200–1.500¥'], ['🍜', 'Comida', 'Sometaro abre a las 12:00: estad a las 11:45'], ['📦', 'Esta noche', 'Enviar las maletas']],
+    pasos: [
+      { h: '8:30', t: 'Metro a Tokyo Tower', x: 'Si llueve, cambiad el plan: teamLab Borderless en Azabudai Hills (comprad la entrada antes).', q: 'Tokyo Tower',
+        ir: { m: 'metro', l: 'Metro Namboku (verde azulado, N) hasta Roppongi-itchome y 10 min andando', d: '~25 min', p: '~210¥', donde: 'Estación de metro de Iidabashi, andenes de la Namboku dirección Meguro.', taxi: '~5 km: ~2.300¥ por coche, ~950¥ por persona.', de: 'Iidabashi Station' } },
+      { h: '9:00', t: 'Tokyo Tower', x: 'Abre a las 9:00: a primera hora, sin colas. Main Deck 1.200–1.500¥.', q: 'Tokyo Tower' },
+      { h: '10:15', t: 'Azabudai Hills y Roppongi', x: 'Paseo rápido por la zona. teamLab Borderless está aquí si llueve (entrada con hora).', q: 'Azabudai Hills', ir: { m: 'andar', l: 'Andando', d: '~10 min' } },
+      { h: '11:15', t: 'Metro a Asakusa', q: 'Sometaro Asakusa',
+        ir: { m: 'metro', l: 'Toei Asakusa Line desde Daimon, directo hasta Asakusa', d: '~10 min andando a Daimon + 20 min de metro', p: '~220¥', donde: 'Estación Daimon (salida hacia el parque Shiba).', taxi: '~8 km: ~3.400¥ por coche, ~1.400¥ por persona.', de: 'Tokyo Tower' } },
+      { h: '11:45', t: 'Comida: okonomiyaki en Sometaro', x: 'Abre a las 12:00: llegad 15–20 min antes o esperaréis 1–2 h. Os lo cocináis vosotros en tatami.', q: 'Sometaro Asakusa' },
+      { h: '13:30', t: 'Senso-ji y la calle Nakamise', x: 'El templo más antiguo de Tokio. Sala principal hasta las 17:00; tiendas de Nakamise hasta ~19:00.', q: 'Senso-ji, Asakusa', ir: { m: 'andar', l: 'Andando', d: '~5 min' } },
+      { h: '16:30', t: 'Skytree iluminada desde el río Sumida', x: 'Se pone el sol sobre las 16:45.', q: 'Sumida Park, Tokyo', ir: { m: 'andar', l: 'Andando hasta el parque Sumida', d: '~5 min' } },
+      { h: '18:30', t: 'Cena: tempura en Daikokuya', x: 'O noche libre: izakaya, karaoke o últimas compras.', q: 'Daikokuya Tempura Asakusa' },
+      { h: '21:00', t: 'Vuelta y envío de maletas', x: 'Mostrador de mensajería del Edmont (planta 1, junto al bell desk; venden cajas). Recomendado: mandarlas al Kyoto Tokyu (llegan el 7). Mañana se madruga.', q: 'Hotel Metropolitan Edmont Tokyo',
+        ir: { m: 'metro', l: 'Metro con un cambio (Maps)', d: '~30 min', p: '~250¥', taxi: '~7 km: ~3.000¥ por coche, ~1.200¥ por persona.', de: 'Asakusa Station' } },
+    ] },
+
+  '2026-11-06': {
+    clave: [['⏰', 'Despertador', '5:45'], ['🚪', 'Salir del hotel', '6:20, con la mochila'], ['🚄', 'Shinkansen', '~14.400¥, asiento reservado'], ['🚌', 'En Kanazawa', 'Pase de bus de 1 día 800¥'], ['🎟️', 'Entradas', 'Kenroku-en 320¥ · té ~20–30€ · Nomura 550¥'], ['💵', 'Efectivo', '10.000¥ (mercado Omicho)']],
+    pasos: [
+      { h: '6:00', t: 'Check-out del Edmont', x: 'Si salís antes de que abra la recepción, dejad la llave en el buzón.' },
+      { h: '6:20', t: 'A Tokyo Station', q: 'Tokyo Station',
+        ir: { m: 'taxi', l: 'Taxi (2 coches) o JR Chuo-Sobu + Chuo rápida', d: '~15 min', p: 'Taxi ~760¥ · tren ~170¥', taxi: '~4 km: ~1.900¥ por coche. A estas horas y con mochilas, compensa.', de: 'Hotel Metropolitan Edmont Tokyo' } },
+      { h: '6:45', t: 'Desayuno para el tren: ekiben', x: '“Ekibenya Matsuri”, dentro de los tornos: cajas de comida de todo Japón. Se come en el Shinkansen.' },
+      { h: '~7:00', t: 'Shinkansen Hokuriku (Kagayaki)', x: 'Andenes 20–23. En el suelo del andén está pintado el número de vagón: esperad en el vuestro. Sentaos a la izquierda para ver los Alpes japoneses.',
+        ir: { m: 'shink', l: 'Kagayaki Tokyo → Kanazawa, todo con asiento reservado', d: '2 h 30 min', p: '~14.400–14.700¥' } },
+      { h: '~9:30', t: 'Llegada a Kanazawa: mochilas al hotel', x: 'Salida Este (la de la gran puerta de madera Tsuzumi-mon). El Hotel Kanazawa está a 1 min. Comprad aquí el pase de bus de 1 día (800¥) en el centro de Hokutetsu de la salida Este.', q: 'Hotel Kanazawa Horikawashinmachi' },
+      { h: '10:00', t: 'Kenroku-en', x: 'Uno de los tres jardines más bellos de Japón, con los yukitsuri (cuerdas que protegen los pinos). 8:00–17:00, 320¥. Al lado, el castillo de Kanazawa (parque gratis).', q: 'Kenrokuen Garden',
+        ir: { m: 'bus', l: 'Kanazawa Loop Bus o bus a Kenrokuen-shita', d: '~15 min', p: '220¥ (o el pase de 800¥)', donde: 'Terminal de buses de la salida Este, al lado del hotel.', taxi: '~2,5 km: ~1.300¥ por coche, ~550¥ por persona.', de: 'Kanazawa Station' } },
+      { h: '12:00', t: 'Comida en el mercado Omicho', x: 'Kaisendon (bol de marisco), gamba dulce y cangrejo de nieve, que abre temporada hoy. Muchos puestos cierran a media tarde.', q: 'Omicho Market Kanazawa',
+        ir: { m: 'andar', l: 'Andando, bajando hacia la estación', d: '~15 min', alt: 'Bus hasta Musashigatsuji, 5 min.' } },
+      { h: '13:30', t: 'Higashi Chaya y ceremonia del té', x: 'El barrio de geishas mejor conservado. La ceremonia del té, a la hora reservada (45–60 min). El helado con pan de oro de Hakuichi está aquí.', q: 'Higashi Chaya District',
+        ir: { m: 'andar', l: 'Andando, cruzando el río Asano', d: '~15 min', alt: 'Bus hasta Hashiba-cho, 5 min.' } },
+      { h: '15:15', t: 'Distrito samurái Nagamachi', x: 'Casa Nomura hasta las 16:30 (última entrada 16:00), 550¥. Los callejones de adobe se ven gratis.', q: 'Nagamachi Samurai District',
+        ir: { m: 'bus', l: 'Bus desde Hashiba-cho hasta Korinbo y 5 min andando', d: '~15 min', p: '220¥ (o el pase)', alt: 'Andando: 25–30 min.', taxi: '~2,5 km: ~1.300¥ por coche, ~550¥ por persona.' } },
+      { h: '16:30', t: 'Check-in en el Hotel Kanazawa', q: 'Hotel Kanazawa Horikawashinmachi',
+        ir: { m: 'bus', l: 'Bus desde Korinbo a la estación de Kanazawa', d: '~10 min', p: '220¥ (o el pase)' } },
+      { h: '18:30', t: 'Cena de cangrejo de nieve', x: 'Kourin Sushi (reservad el día antes o pedid al hotel), Fuwari o los restaurantes de Omicho, que abren de noche.', q: 'Kourin Sushi Kanazawa' },
+    ] },
+
+  '2026-11-07': {
+    clave: [['⏰', 'Despertador', '6:45'], ['🚌', 'Bus a Takayama', '~3.400–4.000¥, reservado'], ['🚌', 'Shirakawa-go', '2.800¥ cada trayecto'], ['💵', 'Efectivo', '10.000¥ (mercados y sake)'], ['🥶', 'Frío', 'La noche más fría del viaje'], ['🚪', 'Ryokan', 'Cierra la puerta a las 23:00']],
+    pasos: [
+      { h: '7:00', t: 'Desayuno bufé y check-out', x: 'Más de 40 platos. Comprad souvenirs en la estación (Hyakubangai) si os da tiempo.' },
+      { h: '~8:00', t: 'Bus Nohi a Takayama', x: 'La terminal está en la puerta del hotel (salida Este). Mirad el número de andén en el billete.', q: 'Takayama Nohi Bus Center',
+        ir: { m: 'bus', l: 'Bus Nohi Kanazawa → Takayama (asiento reservado)', d: '~2 h 15 min', p: '~3.400–4.000¥', donde: 'Terminal de autobuses de la salida Este de Kanazawa.', de: 'Kanazawa Station' } },
+      { h: '10:30', t: 'Mochilas al ryokan Koto no Yume', x: 'A 2 min de la terminal. Check-in a las 15:00, pero os guardan las mochilas.', q: 'Oyado Koto no Yume Takayama', ir: { m: 'andar', l: 'Andando desde la terminal', d: '2 min' } },
+      { h: '10:45', t: 'Mercado matutino Jinya-mae', x: 'Hasta mediodía. Al lado, Takayama Jinya (antigua casa de gobierno, 440¥).', q: 'Jinya-mae Morning Market, Takayama', ir: { m: 'andar', l: 'Andando', d: '~10 min' } },
+      { h: '11:30', t: 'Sanmachi Suji y bodegas de sake', x: 'Calles de la época Edo. Degustación gratis donde cuelga la bola de cedro verde. Para picar: nigiri de Hida beef en Hida Kotte Ushi (700–1.000¥).', q: 'Sanmachi Suji, Takayama', ir: { m: 'andar', l: 'Andando, cruzando el río Miyagawa', d: '~5 min' } },
+      { h: '~13:10', t: 'Bus a Shirakawa-go', x: 'Con reserva en Nohi Bus.', q: 'Shirakawa-go',
+        ir: { m: 'bus', l: 'Bus Nohi Takayama → Shirakawa-go', d: '50 min', p: '2.800¥', donde: 'Takayama Nohi Bus Center, junto a la estación JR.', de: 'Takayama Nohi Bus Center' } },
+      { h: '14:00', t: 'Shirakawa-go', x: 'Casas gassho-zukuri con tejados de paja, Patrimonio de la UNESCO. Subid al mirador Shiroyama (20 min andando o lanzadera) para la foto del pueblo. Algunas casas se visitan por dentro.', q: 'Shirakawa-go' },
+      { h: '~16:30', t: 'Bus de vuelta a Takayama', x: 'Los últimos buses se llenan: llevad la vuelta reservada.', q: 'Takayama Nohi Bus Center',
+        ir: { m: 'bus', l: 'Bus Nohi Shirakawa-go → Takayama', d: '50 min', p: '2.800¥', de: 'Shirakawa-go Bus Terminal' } },
+      { h: '18:30', t: 'Cena de Hida beef', x: 'Hidagyu Maruaki (sin reserva: apuntaos en la lista al llegar), Suzuya (hoba miso) o Matsuki Sushi.', q: 'Hidagyu Maruaki Takayama' },
+      { h: '21:00', t: 'Onsen del ryokan', x: 'Abierto hasta las 23:00 (y de 6:00 a 9:00). La puerta del ryokan se cierra a las 23:00.', q: 'Oyado Koto no Yume Takayama' },
+      { h: '', t: 'Hida no Sato (Folk Village)', x: 'No cabe hoy con Shirakawa-go (cierra a las 17:00): hacedlo mañana a primera hora.', opt: true },
+    ] },
+
+  '2026-11-08': {
+    clave: [['♨️', 'Onsen matinal', '6:00–9:00'], ['🚪', 'Check-out', '10:00 (antes que los hoteles)'], ['🚆', 'Tren a Kioto', '~6.500–10.800¥ según opción'], ['🚌', 'En Kioto', 'Bus 230¥ · lanzadera gratis'], ['🏨', 'Check-in', '14:00 Kyoto Tokyu'], ['📸', 'Gion', 'Prohibido fotografiar a las maiko']],
+    pasos: [
+      { h: '7:00', t: 'Onsen y desayuno en el ryokan', x: 'Desayuno japonés u occidental, de 7:00 a 8:00 según la web (confirmadlo al llegar).' },
+      { h: '8:30', t: 'Hida no Sato, si queréis', x: 'Casas de montaña históricas, 8:30–17:00, 700¥. Calculad 1 h.', q: 'Hida Folk Village', opt: true,
+        ir: { m: 'bus', l: 'Bus desde la terminal Nohi', d: '~10 min', p: 'Pocos cientos de yenes', taxi: '~2,5 km: ~1.300¥ por coche, ~550¥ por persona.', de: 'Takayama Nohi Bus Center' } },
+      { h: '10:00', t: 'Check-out de Koto no Yume', q: 'Oyado Koto no Yume Takayama' },
+      { h: '~10:30', t: 'Tren a Kioto', x: 'Comprad el billete el día antes en la estación. Opciones: Hida + Shinkansen en Nagoya (~3 h, ~10.800¥), el Hida directo (1 al día, ~4 h, ~6.500–7.600¥) o bus directo (~5 h, 5.500–6.500¥).', q: 'Kyoto Station',
+        ir: { m: 'tren', l: 'Limited Express Hida hasta Nagoya y Shinkansen hasta Kioto', d: '~3 h', p: '~10.800¥', donde: 'Estación JR de Takayama, a 2 min del ryokan.', de: 'Takayama Station' } },
+      { h: '~14:00', t: 'Al Kyoto Tokyu Hotel', x: 'Check-in a las 14:00. Si mandasteis las maletas, estarán allí.', q: 'Kyoto Tokyu Hotel',
+        ir: { m: 'bus', l: 'Lanzadera gratis del hotel desde la salida Hachijo (sur)', d: '~10 min', p: 'Gratis', donde: 'Al salir por Hachijo, a la izquierda, en la zona de buses de hoteles. Pasa cada ~30 min.', alt: 'Bus 9 desde la terminal de la salida Karasuma (norte) hasta Horikawa Gojo, 230¥.', taxi: '~2 km: ~1.100¥ por coche, ~450¥ por persona. Si la lanzadera acaba de irse, compensa.', de: 'Kyoto Station Hachijo Exit' } },
+      { h: '16:30', t: 'A Gion', q: 'Gion, Kyoto',
+        ir: { m: 'bus', l: 'Bus urbano (Maps os dice la línea desde Horikawa Gojo)', d: '~25 min', p: '230¥', taxi: '~3,5 km: ~1.600¥ por coche, ~650¥ por persona. Entre 5, 230¥ en bus frente a 650¥ en taxi y 10 min menos: decidid según el cansancio.' } },
+      { h: '17:00', t: 'Gion y Hanamikoji al atardecer', x: 'Si veis geishas o maiko, no las paréis ni las fotografiéis de cerca. Las callejuelas privadas de Gion tienen carteles de “prohibido el paso” (multa de 10.000¥).', q: 'Hanamikoji Street' },
+      { h: '19:00', t: 'Cena en una izakaya del barrio', x: 'Yagenbori o Gion Tanto.', q: 'Yagenbori Gion Kyoto' },
+      { h: '21:00', t: 'Vuelta al hotel', q: 'Kyoto Tokyu Hotel',
+        ir: { m: 'taxi', l: 'Taxi desde Shijo-dori (hay muchos) o bus', d: '~15 min', p: 'Taxi ~650¥ · bus 230¥', de: 'Gion, Kyoto' } },
+    ] },
+
+  '2026-11-09': {
+    clave: [['⏰', 'Despertador', 'Según el bono'], ['💴', 'Excursión', '69€ (confirmad si incluye el Shinkansen)'], ['🎟️', 'Entradas', 'Museo 200¥ · Itsukushima 300¥'], ['💵', 'Monedas', '100¥ de tasa de Miyajima'], ['🌊', 'Mareas', 'Mirad la tabla del 9 de noviembre', 'w']],
+    pasos: [
+      { h: '', t: 'A la estación de Kioto', x: 'Punto de encuentro según el bono. La lanzadera del hotel empieza sobre las 8:00; antes, taxi.', q: 'Kyoto Station',
+        ir: { m: 'taxi', l: 'Lanzadera, taxi o metro desde Gojo (1 parada)', d: '~10 min', p: 'Gratis · taxi ~450¥ · metro ~220¥', de: 'Kyoto Tokyu Hotel' } },
+      { h: '', t: 'Shinkansen a Hiroshima', x: '~1 h 40 min, incluido en la excursión.', ir: { m: 'shink', l: 'Shinkansen Kioto → Hiroshima', d: '~1 h 40 min', p: 'En la excursión' } },
+      { h: '', t: 'Parque Memorial de la Paz y Museo de la Bomba Atómica', x: 'Muy emocionante. Museo 8:30–18:00, 200¥.', q: 'Hiroshima Peace Memorial Park' },
+      { h: '', t: 'Ferry a Miyajima', x: '10 min. La isla cobra 100¥ de tasa.', q: 'Miyajimaguchi Ferry Terminal', ir: { m: 'ferry', l: 'Ferry JR desde Miyajimaguchi', d: '10 min', p: '~200¥ + 100¥ de tasa' } },
+      { h: '', t: 'Santuario Itsukushima y el torii sobre el mar', x: 'Con marea alta parece flotar; con marea baja se llega andando. Ciervos sueltos por la isla. Ostras a la brasa y momiji manju.', q: 'Itsukushima Shrine' },
+      { h: '', t: 'Vuelta a Kioto', x: 'Cena: okonomiyaki estilo Hiroshima si no lo habéis probado allí.' },
+    ] },
+
+  '2026-11-10': {
+    clave: [['⏰', 'Despertador', '6:15'], ['🚕', 'Salir', '6:40 en taxi'], ['🚆', 'Transporte hoy', '~2.000¥ (taxi + trenes)'], ['🎟️', 'Entradas', 'Inari gratis · Todai-ji 800¥'], ['🦌', 'Galletas', '~200¥ (llevad monedas)'], ['👟', 'Calzado', 'Muchas escaleras']],
+    pasos: [
+      { h: '6:40', t: 'Taxi a Fushimi Inari', q: 'Fushimi Inari Taisha',
+        ir: { m: 'taxi', l: 'Taxi (2 coches) desde la puerta del hotel', d: '~15 min', p: '~900¥', alt: 'Metro desde Gojo a Kyoto y JR Nara Line 2 paradas hasta Inari: ~30 min, ~380¥.', taxi: '~5 km: ~2.200¥ por coche. A esta hora no hay lanzadera y os deja en la puerta.', de: 'Kyoto Tokyu Hotel' } },
+      { h: '7:00', t: 'Fushimi Inari sin gente', x: 'Miles de torii naranjas, gratis y abierto 24 h. Subid hasta el cruce Yotsutsuji (~45 min, mirador sobre Kioto) y bajad: la cima completa son 2–3 h.', q: 'Fushimi Inari Taisha' },
+      { h: '9:15', t: 'Tren a Nara', q: 'Nara Park',
+        ir: { m: 'tren', l: 'JR Nara Line desde la estación JR Inari (delante del santuario)', d: '~50–60 min', p: '~700¥', donde: 'Estación JR Inari, enfrente del torii principal. Si Maps lo dice, cambiad a un tren rápido por el camino.', alt: 'Keihan hasta Tambabashi y Kintetsu hasta Kintetsu-Nara (~50 min, ~800¥): llega más cerca del parque.', taxi: 'No: son ~40 km.', de: 'Inari Station Kyoto' } },
+      { h: '10:30', t: 'Parque de Nara y sus ciervos', x: 'Galletas shika senbei (~200¥): los ciervos se inclinan para pedirlas. Cuando se acaben, enseñad las manos vacías. Desde la estación JR Nara son 20 min andando.', q: 'Nara Park' },
+      { h: '11:30', t: 'Todai-ji', x: 'Uno de los mayores edificios de madera del mundo, con un Buda de 15 m. 8:00–17:00, 800¥.', q: 'Todai-ji', ir: { m: 'andar', l: 'Andando por el parque', d: '~10 min' } },
+      { h: '13:00', t: 'Comida junto a la estación Kintetsu-Nara', x: 'Calle cubierta Higashimuki, con muchos restaurantes.', q: 'Higashimuki Shopping Street Nara', ir: { m: 'andar', l: 'Andando', d: '~15 min' } },
+      { h: '14:30', t: 'Vuelta a Kioto', q: 'Kyoto Station',
+        ir: { m: 'tren', l: 'Kintetsu desde Kintetsu-Nara hasta Kyoto', d: '~35–45 min', p: '~760¥ (+520¥ el expreso limitado)', donde: 'Estación Kintetsu-Nara (subterránea, junto a la calle Higashimuki). Acepta Suica y tarjeta contactless.', de: 'Kintetsu Nara Station' } },
+      { h: '16:00', t: 'Mercado de Nishiki', x: 'Muchos puestos cierran sobre las 17:00–18:00. Se come de pie junto a cada puesto, no andando.', q: 'Nishiki Market Kyoto',
+        ir: { m: 'metro', l: 'Metro Karasuma hasta Shijo y 5 min andando', d: '~15 min', p: '~220¥', taxi: '~3 km: ~1.400¥ por coche, ~550¥ por persona.' } },
+      { h: '18:30', t: 'Cena en Gion', x: 'Gion está a 15 min andando hacia el este cruzando el río Kamo.', q: 'Gion, Kyoto', ir: { m: 'andar', l: 'Andando por Shijo-dori', d: '~15 min' } },
+    ] },
+
+  '2026-11-11': {
+    clave: [['⏰', 'Despertador', '6:30'], ['🚕', 'Salir', '7:00 en taxi'], ['🚆', 'Transporte hoy', '~2.500¥ (taxi + tren + bus)'], ['🎟️', 'Entradas', 'Tenryu-ji 500¥ · Kiyomizu-dera 500¥'], ['👘', 'Kimono', 'Si lo alquiláis, con reserva'], ['📦', 'Esta noche', 'Maletas a Osaka (si las mandáis)']],
+    pasos: [
+      { h: '7:00', t: 'Taxi a Arashiyama', q: 'Arashiyama Bamboo Grove',
+        ir: { m: 'taxi', l: 'Taxi (2 coches) desde el hotel', d: '~25 min', p: '~1.500¥', alt: 'Metro de Gojo a Kyoto y JR Sagano Line hasta Saga-Arashiyama: ~45 min, ~460¥. O bus 28 desde Horikawa Gojo: ~50 min, 230¥.', taxi: '~9 km: ~3.700¥ por coche. Para estar en el bambú antes de las 8:00, es lo más fácil.', de: 'Kyoto Tokyu Hotel' } },
+      { h: '7:30', t: 'Bosque de bambú', x: 'Antes de las 8:00; después es un caos. Gratis, abierto siempre.', q: 'Arashiyama Bamboo Grove' },
+      { h: '8:30', t: 'Tenryu-ji', x: 'Jardín zen con estanque, de los más bellos de Japón. 8:30–17:00, jardín 500¥ (+300¥ los edificios).', q: 'Tenryu-ji', ir: { m: 'andar', l: 'Andando (la puerta norte da al bambú)', d: '5 min' } },
+      { h: '10:00', t: 'Puente Togetsukyo y paseo', x: 'Si llueve fuerte, cambiad el orden y dejad el bambú para cuando escampe.', q: 'Togetsukyo Bridge', ir: { m: 'andar', l: 'Andando', d: '~10 min' } },
+      { h: '11:00', t: 'Comida: yudofu en Sagano', x: 'Tofu hervido, el plato más emblemático de Kioto.', q: 'Yudofu Sagano Arashiyama' },
+      { h: '12:30', t: 'A Kiyomizudera', q: 'Kiyomizu-dera',
+        ir: { m: 'tren', l: 'JR Sagano Line a Kyoto y bus 206 u 86 hasta Gojozaka (o taxi desde la estación)', d: '~45 min', p: '~240¥ + bus 230¥', donde: 'JR Saga-Arashiyama; en Kyoto, terminal de buses de la salida Karasuma (norte).', taxi: 'Desde la estación de Kioto ~3 km: ~1.400¥ por coche, ~600¥ por persona, y evitáis el bus lleno. Directo desde Arashiyama ~11 km: ~2.000¥ por persona.', de: 'Saga-Arashiyama Station' } },
+      { h: '13:30', t: 'Kiyomizu-dera y las cuestas de Sannenzaka', x: 'El templo sobre la ladera, 6:00–18:00, 500¥. Las cuestas están llenas de tiendas de cerámica Kiyomizu-yaki.', q: 'Kiyomizu-dera' },
+      { h: '16:00', t: 'Bajando a Gion', x: 'Sannenzaka, Ninenzaka y el santuario Yasaka: todo cuesta abajo.', q: 'Yasaka Shrine', ir: { m: 'andar', l: 'Andando', d: '~20 min' } },
+      { h: '16:45', t: 'Hanamikoji al atardecer', x: 'La calle de las geishas.', q: 'Hanamikoji Street', ir: { m: 'andar', l: 'Andando', d: '5 min' } },
+      { h: '19:00', t: 'Cena en Gion', x: 'Gion Tanto o ramen en Pontocho (solo efectivo).', q: 'Gion Tanto Kyoto' },
+      { h: '21:00', t: 'Vuelta y maletas', x: 'Si queréis ir mañana ligeros, mandad las maletas al Monterey de Osaka desde recepción.', q: 'Kyoto Tokyu Hotel',
+        ir: { m: 'taxi', l: 'Taxi o bus', d: '~15 min', p: 'Taxi ~650¥ · bus 230¥' } },
+    ] },
+
+  '2026-11-12': {
+    clave: [['⏰', 'Despertador', '7:00'], ['🚪', 'Check-out', '7:45'], ['🧳', 'Mochilas', 'A una taquilla de Kyoto Station'], ['🚆', 'A Osaka', 'JR + metro ~820¥'], ['🏯', 'Castillo', 'Última entrada 16:30'], ['🎟️', 'Entradas', 'Kinkaku-ji 500¥ · torre del castillo 1.200¥']],
+    pasos: [
+      { h: '7:45', t: 'Check-out y mochilas a Kyoto Station', x: 'Taquillas grandes 700–900¥ (se pagan con Suica). Si están llenas, hay consignas con personal en la estación: preguntad en información.', q: 'Kyoto Station',
+        ir: { m: 'taxi', l: 'Taxi (lanzadera solo desde las ~8:00)', d: '~10 min', p: '~450¥', de: 'Kyoto Tokyu Hotel' } },
+      { h: '8:30', t: 'A Kinkaku-ji', q: 'Kinkaku-ji',
+        ir: { m: 'bus', l: 'Bus 205 o 101 hasta Kinkakuji-michi', d: '~40 min', p: '230¥', donde: 'Terminal de buses de la salida Karasuma (norte).', taxi: '~8 km: ~3.200¥ por coche, ~1.300¥ por persona y 20 min menos.', de: 'Kyoto Station' } },
+      { h: '9:00', t: 'Kinkaku-ji, el pabellón dorado', x: 'Abre a las 9:00, 500¥. Con lluvia se refleja igual de bien.', q: 'Kinkaku-ji' },
+      { h: '10:00', t: 'Philosopher’s Path', x: 'El canal con arces, el koyo de Kioto con calma. Empezad por Ginkaku-ji y bajad.', q: "Philosopher's Path, Kyoto",
+        ir: { m: 'bus', l: 'Bus 204 hasta Ginkakuji-michi', d: '~35 min', p: '230¥', taxi: '~6 km: ~2.500¥ por coche, ~1.000¥ por persona y 15 min menos. Entre 5, aquí compensa.', de: 'Kinkaku-ji' } },
+      { h: '', t: 'Tofuku-ji, si da tiempo', x: 'Al sur, cerca de la estación; de los mejores momiji de Kioto. 8:30–16:30, jardín 500–600¥ y puente Tsutenkyo 1.000¥ en temporada alta.', q: 'Tofuku-ji', opt: true },
+      { h: '12:30', t: 'Comida y de vuelta a Kyoto Station', x: 'Recoged las mochilas de la taquilla.', q: 'Kyoto Station',
+        ir: { m: 'bus', l: 'Bus 5 o 17 hasta Kyoto Station', d: '~35 min', p: '230¥', taxi: '~6 km: ~2.500¥ por coche, ~1.000¥ por persona.' } },
+      { h: '13:45', t: 'Tren a Osaka', q: 'Hotel Monterey Grasmere Osaka',
+        ir: { m: 'tren', l: 'JR Special Rapid Kyoto → Osaka y metro Midosuji (rojo) Umeda → Namba', d: '~55 min', p: '~820¥', donde: 'JR Kyoto, andenes de la línea JR Kyoto dirección Osaka. En Osaka, seguid “Midosuji Line” hasta la estación Umeda.', alt: 'Shinkansen a Shin-Osaka (15 min) y Midosuji directo a Namba: ~40 min, ~1.750¥.', taxi: 'No: ~50 km, más de 15.000¥ por coche.', de: 'Kyoto Station' } },
+      { h: '14:45', t: 'Hotel Monterey Grasmere', x: 'Recepción en la planta 22. Pedid el cepillo de dientes en el check-in.', q: 'Hotel Monterey Grasmere Osaka' },
+      { h: '15:30', t: 'Castillo de Osaka', x: 'Torre 1.200¥, última entrada sobre las 16:30. El parque es gratis.', q: 'Osaka Castle',
+        ir: { m: 'metro', l: 'Metro Midosuji hasta Hommachi y línea Chuo hasta Tanimachi 4-chome', d: '~20 min + 10 min andando', p: '~240¥', taxi: '~4 km: ~1.800¥ por coche, ~720¥ por persona.', de: 'Namba Station Osaka' } },
+      { h: '18:00', t: 'Dotonbori de noche', x: 'El canal con los neones y el cartel de Glico. Takoyaki en Wanaka y okonomiyaki en Mizuno (id pronto: la cola de la noche es larga).', q: 'Dotonbori',
+        ir: { m: 'metro', l: 'Metro de vuelta a Namba', d: '~20 min', p: '~240¥', de: 'Osaka Castle' } },
+    ] },
+
+  '2026-11-13': {
+    clave: [['🚶', 'Hoy', 'Casi todo andando'], ['💵', 'Efectivo', '5.000¥ (Kuromon y kushikatsu)'], ['🍣', 'Kuromon', '2.000–3.000¥ por persona'], ['🚇', 'Metro', '~500¥ en total'], ['🛍️', 'Compras', 'Bolsa plegable'], ['🎤', 'Noche', 'Karaoke o Round1']],
+    pasos: [
+      { h: '8:30', t: 'Mercado Kuromon: desayuno picando', x: 'Sashimi de atún recién cortado, vieiras y wagyu a la plancha, tamagoyaki y fruta cortada. Solo efectivo en muchos puestos; se come junto al puesto o en las zonas con mesas.', q: 'Kuromon Ichiba Market',
+        ir: { m: 'andar', l: 'Andando desde el hotel', d: '~15 min', alt: 'Metro hasta Nippombashi, 1 parada.', de: 'Hotel Monterey Grasmere Osaka' } },
+      { h: '10:30', t: 'Den Den Town', x: 'Figuras, manga y electrónica. Las tiendas abren sobre las 10:00–11:00.', q: 'Den Den Town Osaka', ir: { m: 'andar', l: 'Andando hacia el sur', d: '~10 min' } },
+      { h: '12:30', t: 'Shinsaibashi-suji', x: 'Casi 600 m de calle comercial cubierta, conectada con Dotonbori. Comed por aquí.', q: 'Shinsaibashi-suji',
+        ir: { m: 'andar', l: 'Andando hacia el norte, cruzando Dotonbori', d: '~20 min', alt: 'Metro Sakaisuji de Ebisucho a Nagahoribashi: 5 min, ~190¥.' } },
+      { h: '15:00', t: 'Amerikamura', x: 'Ropa vintage, streetwear japonés y tiendas alternativas.', q: 'Amerikamura, Osaka', ir: { m: 'andar', l: 'Andando al oeste de Midosuji', d: '~5 min' } },
+      { h: '17:30', t: 'Shinsekai y cena de kushikatsu', x: 'Barrio retro bajo la torre Tsutenkaku. Kushikatsu Daruma o Chitose. Regla sagrada: no se moja dos veces en la salsa común.', q: 'Shinsekai, Osaka',
+        ir: { m: 'metro', l: 'Metro Midosuji de Shinsaibashi a Dobutsuen-mae', d: '~10 min', p: '~240¥', alt: 'Andando: ~30 min.', taxi: '~3 km: ~1.500¥ por coche, ~600¥ por persona.', de: 'Shinsaibashi Station' } },
+      { h: '20:30', t: 'Karaoke en Big Echo o Round1', x: 'Big Echo: cabinas privadas con bebida hasta de madrugada. Round1: grúas, purikura y máquinas de ritmo. Los dos tienen local en Namba, a un paso del hotel.', q: 'Big Echo Namba',
+        ir: { m: 'metro', l: 'Metro Midosuji de Dobutsuen-mae a Namba', d: '~5 min', p: '~190¥', de: 'Dobutsuen-mae Station' } },
+    ] },
+
+  '2026-11-14': {
+    clave: [['⏰', 'Despertador', '6:15'], ['🚪', 'Salir del hotel', '7:00'], ['🎢', 'Abre', '8:30–9:00 (mirad la app)'], ['🚆', 'Transporte hoy', '~840¥ ida y vuelta'], ['💳', 'Express Pass', '~100–150€ si lo compráis'], ['⚠️', 'Ojo', 'Sábado: colas de 2 h o más']],
+    pasos: [
+      { h: '6:15', t: 'Despertador y desayuno fuerte', x: 'No se puede entrar comida de fuera (sí una botella de bebida cerrada).' },
+      { h: '7:00', t: 'Tren a Universal City', x: 'Entradas y app de USJ con sesión iniciada.', q: 'Universal City Station',
+        ir: { m: 'tren', l: 'Hanshin desde Osaka-Namba hasta Nishikujo y JR Yumesaki Line 2 paradas', d: '~30 min', p: '~420¥', donde: 'Estación Osaka-Namba de Hanshin (andenes subterráneos, a 5 min del hotel). En Nishikujo se cambia a JR: con Suica (la tarjeta contactless no vale en JR).', taxi: '~9 km: ~3.700¥ por coche, ~1.500¥ por persona. A esa hora va rápido: compensa si vais justos.', de: 'Osaka Namba Station' } },
+      { h: '7:30', t: 'Cola en la puerta de USJ', x: '1 h antes de abrir: con grupo grande es imprescindible.', q: 'Universal Studios Japan', ir: { m: 'andar', l: 'Andando por Universal CityWalk', d: '5 min' } },
+      { h: '~8:45', t: 'Super Nintendo World', x: 'Lo primero. Sin Express Pass, sacad en la app la entrada con hora (area timed entry) nada más pasar el torno. Mario Kart, Yoshi y Donkey Kong Country.' },
+      { h: '10:30', t: 'Mundo de Harry Potter', x: 'Antes de las 11:00.' },
+      { h: '13:00', t: 'Comida dentro del parque o en CityWalk' },
+      { h: '14:00', t: 'Minions, Jurassic Park, Flying Dinosaur y el resto' },
+      { h: '~20:00', t: 'Vuelta al hotel', x: 'Al cierre la estación de Universal City se llena: salid 15 min antes o cenad en CityWalk y volved más tarde.', q: 'Hotel Monterey Grasmere Osaka',
+        ir: { m: 'tren', l: 'JR Yumesaki Line a Nishikujo y Hanshin a Osaka-Namba', d: '~30 min', p: '~420¥', de: 'Universal City Station' } },
+    ] },
+
+  '2026-11-15': {
+    clave: [['🚪', 'Check-out', 'Antes de las 11:00 (maletas a la consigna)'], ['✈️', 'Aeropuerto', '3 h antes del vuelo + 30–45 min de Tax Free', 'w'], ['🚆', 'A Kansai', 'Rapi:t ~1.450¥ · bus ~1.100¥'], ['🧾', 'Tax Free', 'Compras a mano y sin abrir'], ['🎟️', 'Umeda Sky', '2.000¥']],
+    pasos: [
+      { h: '8:30', t: 'Check-out y maletas a la consigna', x: 'Pesad la maleta (25 kg). Las compras con Tax Free, a mano y sin abrir.', q: 'Hotel Monterey Grasmere Osaka' },
+      { h: '9:30', t: 'Umeda Sky Building', x: 'Dos torres unidas por una terraza circular. Abre a las 9:30, 2.000¥.', q: 'Umeda Sky Building',
+        ir: { m: 'metro', l: 'Metro Midosuji de Namba a Umeda y 15 min andando (por el pasillo subterráneo junto a Yodobashi)', d: '~25 min', p: '~240¥', taxi: '~6 km: ~2.600¥ por coche, ~1.050¥ por persona.', de: 'Namba Station Osaka' } },
+      { h: '11:30', t: 'Namba Parks, Shinsaibashi y Don Quijote', x: 'Últimos souvenirs, cosmética y snacks japoneses.', q: 'Namba Parks',
+        ir: { m: 'metro', l: 'Metro Midosuji de Umeda a Namba', d: '~10 min', p: '~240¥', de: 'Umeda Station Osaka' } },
+      { h: '', t: 'Recoger maletas y al aeropuerto', x: '<b>Cuando tengamos el vuelo pondremos la hora.</b> Salid del hotel ~4 h antes del vuelo: 45 min de trayecto + 3 h de antelación + Tax Free.', q: 'Kansai International Airport',
+        ir: { m: 'tren', l: 'Nankai Rapi:t desde Nankai Namba (asiento reservado)', d: '~38 min', p: '~1.450–1.500¥', donde: 'Estación Nankai Namba, 5–10 min andando del hotel. Acepta tarjeta contactless.', alt: 'Nankai Airport Express sin reserva (~45 min, ~970¥) o bus desde OCAT, pegado al hotel (~50–70 min, ~1.100–1.400¥; en domingo puede haber atasco).', taxi: '~20.000¥ por coche a tarifa fija: ~8.000¥ por persona. No compensa.', de: 'Hotel Monterey Grasmere Osaka' } },
+      { h: '', t: 'Tax Free antes de facturar', x: 'Quiosco de Tax Free con el pasaporte y los recibos: todo lo comprado desde el 1 de noviembre. Aduanas puede pedir ver los productos. Después, facturar.', q: 'Kansai International Airport' },
+    ] },
 };
 
 /* =========================================================
@@ -1372,6 +1936,12 @@ const routeUrl = ps => {
   if (ps.length > 2) u += '&waypoints=' + ps.slice(1, -1).map(p => enc(p.n)).join('%7C');
   return u;
 };
+// Cómo llegar de A a B (sin origen = desde donde estás). modo: transit, walking o driving
+const dirUrl = (de, a, modo) => 'https://www.google.com/maps/dir/?api=1' + (de ? '&origin=' + encodeURIComponent(de) : '') +
+  '&destination=' + encodeURIComponent(a) + (modo ? '&travelmode=' + modo : '');
+const MODOS = { andar: ['🚶', 'walking'], metro: ['🚇', 'transit'], tren: ['🚆', 'transit'], shink: ['🚄', 'transit'], bus: ['🚌', 'transit'], taxi: ['🚕', 'driving'], ferry: ['⛴️', 'transit'] };
+// Textos de datos: escapados, con <b> permitido y euros añadidos
+const rich = s => withEur(esc(s).replace(/&lt;(\/?)b&gt;/g, '<$1b>'));
 const pad = n => String(n).padStart(2, '0');
 const isoLocal = d => d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
 const fmtDate = (iso, opts) => new Date(iso + 'T12:00:00').toLocaleDateString('es-ES', opts || { weekday: 'long', day: 'numeric', month: 'long' });
@@ -1379,10 +1949,13 @@ const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
 const allPlaces = [...COMER, ...ONSEN];
 const num = v => parseFloat(String(v).replace(/\./g, '').replace(',', '.')) || 0;
 const fmtE = n => (Math.abs(n) < 10 ? n.toLocaleString('es-ES', { maximumFractionDigits: 1 }) : Math.round(n).toLocaleString('es-ES')) + '€';
+const fmtY = n => Math.round(n).toLocaleString('es-ES') + '¥';
 
 // Yenes → euros con el cambio guardado en el conversor
 const rate = () => store.get('rate', 170) || 170;
 const toEur = y => { const e = y / rate(); return e < 10 ? Math.max(1, Math.round(e)) : Math.round(e); };
+// Euros → yenes redondeados a 100¥ (para "te quedan")
+const eurYen = e => fmtY(Math.round(e * rate() / 100) * 100);
 // Añade "≈X€" detrás de cada precio en yenes que no lleve ya su equivalente en euros
 const withEur = html => html.replace(/(\d{1,3}(?:\.\d{3})*)(?:–(\d{1,3}(?:\.\d{3})*))?¥(?!\s*\(~|\s*≈|\s*\(≈)/g, (m, a, b) =>
   `${m} <span class="eur">≈${toEur(num(a))}${b ? '–' + toEur(num(b)) : ''}€</span>`);
@@ -1395,7 +1968,9 @@ const fmtKm = d => d < 1 ? Math.max(50, Math.round(d * 1000 / 50) * 50) + ' m' :
 // "?fecha=2026-11-03" permite simular un día concreto
 const params = new URLSearchParams(location.search);
 const fakeDate = /^\d{4}-\d{2}-\d{2}$/.test(params.get('fecha') || '') ? params.get('fecha') : null;
-const now = () => fakeDate ? new Date(fakeDate + 'T10:00:00') : new Date();
+// "?hora=14:30" (junto a ?fecha) simula la hora para probar el "Ahora"
+const fakeHora = /^\d{1,2}:\d{2}$/.test(params.get('hora') || '') ? params.get('hora').padStart(5, '0') : '10:00';
+const now = () => fakeDate ? new Date(fakeDate + 'T' + fakeHora + ':00') : new Date();
 const todayISO = () => isoLocal(now());
 const dayIndex = iso => DIAS.findIndex(d => d.fecha === iso);
 const phase = () => {
@@ -1444,16 +2019,67 @@ function fillWeather(el, dia) {
 
 /* ---------- Render de un día ---------- */
 function placeByName(name) { return allPlaces.find(p => p.n === name); }
-function dayBody(dia) {
+
+// Minutos desde medianoche de una hora tipo "7:30" o "~13:10" (null si no hay hora)
+const mins = h => { const m = /(\d{1,2}):(\d{2})/.exec(h || ''); return m ? +m[1] * 60 + +m[2] : null; };
+// Paso en curso y siguiente del día, solo si ese día es hoy
+function ahora(dia) {
+  const H = HORARIO[dia.fecha];
+  if (!H || dia.fecha !== todayISO()) return null;
+  const n = now(), t = n.getHours() * 60 + n.getMinutes();
+  let cur = -1;
+  H.pasos.forEach((p, i) => { const m = mins(p.h); if (m !== null && m <= t) cur = i; });
+  let next = H.pasos.findIndex((p, i) => i > cur && mins(p.h) !== null);
+  if (next < 0 && cur >= 0 && cur + 1 < H.pasos.length) next = cur + 1; // pasos finales sin hora fija
+  return { cur, next, pasos: H.pasos };
+}
+// De dónde sale el trayecto de un paso: su "de" o el último paso anterior con lugar
+const origenDe = (pasos, i) => pasos[i].ir.de || (pasos.slice(0, i).reverse().find(p => p.q) || {}).q || null;
+
+function irBlock(ir, a, de) {
+  const [ico, modo] = MODOS[ir.m] || ['➡️', 'transit'];
+  return `<div class="ir"><div class="ir-top"><span class="ir-ico">${ico}</span><b>${rich(ir.l)}</b></div>
+    ${ir.d || ir.p ? `<div class="ir-meta">${[ir.d && '⏱ ' + esc(ir.d), ir.p && '💴 ' + rich(ir.p)].filter(Boolean).join(' · ')}</div>` : ''}
+    ${ir.donde ? `<div class="ir-x"><b>Dónde:</b> ${rich(ir.donde)}</div>` : ''}
+    ${ir.alt ? `<div class="ir-x"><b>Otra opción:</b> ${rich(ir.alt)}</div>` : ''}
+    ${ir.taxi ? `<div class="ir-x"><b>🚕 En taxi, siendo 5:</b> ${rich(ir.taxi)}</div>` : ''}
+    ${a ? `<a class="ir-go" href="${dirUrl(de, a, modo)}" target="_blank" rel="noopener">Ruta en Google Maps ↗</a>` : ''}</div>`;
+}
+
+function timeline(dia) {
+  const H = HORARIO[dia.fecha];
+  if (!H) return '';
+  const st = ahora(dia);
+  return `<ol class="tl">${H.pasos.map((p, i) => {
+    const cls = [p.opt && 'opt', st && i === st.cur && 'now', st && st.cur > i && 'past'].filter(Boolean).join(' ');
+    return `<li${cls ? ` class="${cls}"` : ''}>${p.ir ? irBlock(p.ir, p.ir.a || p.q, origenDe(H.pasos, i)) : ''}
+      <span class="hr">${esc(p.h)}</span><span class="dot"></span>
+      <div class="st">${esc(p.t)}${st && i === st.cur ? ' <span class="tag" style="margin:0">Ahora</span>' : ''}</div>
+      ${p.x ? `<div class="sx">${rich(p.x)}</div>` : ''}
+      ${p.q ? `<a class="smap" href="${mapsUrl(p.q)}" target="_blank" rel="noopener">📍 Ver en el mapa</a>` : ''}</li>`;
+  }).join('')}</ol>`;
+}
+
+// ctx 'hoy': el hora a hora abierto y el plan resumido plegado; en Ruta, al revés
+function dayBody(dia, ctx) {
   const c = CIUDADES[dia.ciudad];
   const fecha = cap(fmtDate(dia.fecha));
+  const H = HORARIO[dia.fecha], hoy = ctx === 'hoy';
   let h = `<div class="day-head">${hanko(dia.ciudad, 'big' + (dia.fecha < todayISO() ? ' done' : ''))}
     <div><div class="meta">${fecha} · Día ${dia.n}</div><h2>${esc(dia.titulo)}</h2><div class="sum">${esc(dia.resumen)}</div>
     ${dia.flag ? `<span class="tag">${esc(dia.flag)}</span>` : ''}</div></div>`;
   h += `<div class="wx" data-wx="${dia.fecha}"></div>`;
+  if (H && H.clave) h += `<div class="qf">${H.clave.map(([i, l, v, w]) => `<div${w ? ' class="w"' : ''}><small>${i} ${esc(l)}</small>${rich(v)}</div>`).join('')}</div>`;
   const prep = PREPARAR[dia.fecha];
   if (prep) h += `<div class="sec"><h4>Antes de salir</h4><ul class="eat">${prep.map(x => `<li>☐ ${withEur(esc(x))}</li>`).join('')}</ul></div>`;
-  h += `<div class="sec"><h4>Plan</h4><ol class="plan">${dia.plan.map(p => typeof p === 'string' ? `<li>${withEur(esc(p))}</li>` : `<li class="opt">${withEur(esc(p.x))}</li>`).join('')}</ol></div>`;
+  const plan = `<ol class="plan">${dia.plan.map(p => typeof p === 'string' ? `<li>${withEur(esc(p))}</li>` : `<li class="opt">${withEur(esc(p.x))}</li>`).join('')}</ol>`;
+  if (H && hoy) {
+    h += `<div class="sec"><h4>Hora a hora, con cómo llegar</h4><p class="small muted">Horas orientativas. Cada trayecto lleva su precio por persona, la opción en taxi para 5 y la ruta en Maps.</p>${timeline(dia)}</div>`;
+    h += `<details class="plain"><summary>Plan resumido</summary>${plan}</details>`;
+  } else {
+    h += `<div class="sec"><h4>Plan</h4>${plan}</div>`;
+    if (H) h += `<details class="plain"><summary>🕘 Hora a hora, con transporte y precios</summary>${timeline(dia)}</details>`;
+  }
   dia.notas.forEach(n => { h += `<div class="note ${n.t === 'warn' ? 'warn' : ''}"><b>${esc(n.h)}</b>${withEur(esc(n.x))}</div>`; });
   if (dia.comer.length) {
     h += `<div class="sec"><h4>Dónde comer</h4><ul class="eat">${dia.comer.map(name => {
@@ -1520,10 +2146,26 @@ function renderHoy() {
   }
   const dia = DIAS[hoySel];
   const lbl = dia.fecha === todayISO() ? 'Hoy' : cap(fmtDate(dia.fecha, { weekday: 'short', day: 'numeric', month: 'short' }));
+  // Todos los días a un toque
+  h += `<div class="dchips" role="group" aria-label="Elegir día">${DIAS.map((d, i) => {
+    const dt = new Date(d.fecha + 'T12:00:00');
+    return `<button class="dchip${d.fecha === todayISO() ? ' today' : ''}" data-go="${i}" aria-pressed="${i === hoySel}" style="--c:${CIUDADES[d.ciudad].color}">
+      <small>${dt.toLocaleDateString('es-ES', { weekday: 'short' })}</small><b>${dt.getDate()}</b><small>${dt.toLocaleDateString('es-ES', { month: 'short' })}</small><i></i></button>`;
+  }).join('')}</div>`;
   h += `<div class="daynav"><button data-nav="-1" ${hoySel === 0 ? 'disabled' : ''} aria-label="Día anterior">‹ Anterior</button>
     <span class="label">${lbl}${hoySel !== dayIndex(todayISO()) && ph === 'durante' ? ` · <a href="#" data-nav="hoy">volver a hoy</a>` : ''}</span>
     <button data-nav="1" ${hoySel === DIAS.length - 1 ? 'disabled' : ''} aria-label="Día siguiente">Siguiente ›</button></div>`;
-  h += `<article class="card">${dayBody(dia)}</article>`;
+  // Ahora y lo siguiente, solo viendo el día de hoy
+  const st = ahora(dia);
+  renderHoy.cur = st ? st.cur : null;
+  if (st && (st.cur >= 0 || st.next >= 0)) {
+    const c = st.pasos[st.cur], nx = st.pasos[st.next];
+    const go = nx && nx.ir ? dirUrl(origenDe(st.pasos, st.next), nx.ir.a || nx.q, (MODOS[nx.ir.m] || [])[1]) : nx && nx.q ? dirUrl(null, nx.q, 'transit') : '';
+    h += `<div class="nowb"><div class="lbl">${c ? 'Ahora' : 'Para empezar'}</div><div class="what">${esc((c || nx).t)}</div>
+      ${c && nx ? `<div class="nx">Después${nx.h ? `, a las <b>${esc(nx.h)}</b>` : ''}: ${esc(nx.t)}${nx.ir ? `<br>${(MODOS[nx.ir.m] || ['➡️'])[0]} ${rich(nx.ir.l)}${nx.ir.d ? ' · ' + esc(nx.ir.d) : ''}${nx.ir.p ? ' · ' + rich(nx.ir.p) : ''}` : ''}${go ? `<br><a href="${go}" target="_blank" rel="noopener">Cómo llegar ↗</a>` : ''}</div>`
+        : !c ? `<div class="nx">A las <b>${esc(nx.h)}</b>${go ? ` · <a href="${go}" target="_blank" rel="noopener">Cómo llegar ↗</a>` : ''}</div>` : '<div class="nx">Último plan del día.</div>'}</div>`;
+  }
+  h += `<article class="card daycard">${dayBody(dia, 'hoy')}</article>`;
   // Para mañana: lo que hay que dejar listo esta noche
   const viendoHoy = ph === 'durante' && hoySel === dayIndex(todayISO());
   const man = DIAS[hoySel + 1];
@@ -1544,15 +2186,18 @@ function renderHoy() {
   }
   v.innerHTML = h;
   fillWeather($('[data-wx]', v), dia);
+  // centra el día elegido en la tira sin mover la página
+  const sel = $('.dchip[aria-pressed="true"]', v), strip = $('.dchips', v);
+  if (sel) strip.scrollLeft = sel.offsetLeft - strip.offsetLeft - (strip.clientWidth - sel.offsetWidth) / 2;
 }
 
 function gastosCard() {
   const s = gastosStats();
   const sub = s.days ? (phase() === 'durante'
-    ? `Hoy llevas ${fmtE(s.today)} de unos ${fmtE(s.hoyTope)} al día`
-    : `Unos ${fmtE(s.perDay)} al día durante el viaje`) : `Has gastado ${fmtE(s.spent)}`;
+    ? `Hoy llevas ${fmtE(s.today)} de unos ${fmtE(s.hoyTope)} (≈${eurYen(s.hoyTope)}) al día`
+    : `Unos ${fmtE(s.perDay)} (≈${eurYen(s.perDay)}) al día durante el viaje`) : `Has gastado ${fmtE(s.spent)}`;
   return `<a class="card" href="#guia/gastos" style="display:flex;align-items:center;gap:12px;text-decoration:none;margin-top:10px">
-    <span style="font-size:24px">🧾</span><span><b>Te quedan ${fmtE(s.left)} de ${fmtE(s.pres)}</b><br><span class="muted small">${sub}</span></span><span class="chev">›</span></a>`;
+    <span style="font-size:24px">🧾</span><span><b>${s.left < 0 ? 'Te has pasado ' + fmtE(-s.left) : 'Te quedan ' + fmtE(s.left)} <span class="eur">≈${eurYen(Math.abs(s.left))}</span></b><br><span class="muted small">De ${fmtE(s.pres)}. ${sub}</span></span><span class="chev">›</span></a>`;
 }
 
 /* ---------- HOTELES ---------- */
@@ -1562,7 +2207,7 @@ const hotelHoy = () => HOTELES.find(h => h.entra <= todayISO() && todayISO() < h
 
 function hotelActions(h, i) {
   return `<div class="btn-row">
-    <a class="btn" href="${mapsUrl(h.q)}" target="_blank" rel="noopener">Cómo llegar</a>
+    <a class="btn" href="${dirUrl(null, h.q, 'transit')}" target="_blank" rel="noopener">Cómo llegar</a>
     <button class="btn ghost" data-taxi="${i}">Enseñar al taxista</button>
     <a class="btn ghost" href="${telHref(h.telefono)}">Llamar</a></div>`;
 }
@@ -1674,7 +2319,8 @@ function renderSitios() {
       <div class="place-top"><div><div class="place-name">${esc(p.n)}</div><div class="place-type">${esc(p.t)}</div></div>${p.p ? `<div class="place-price">${withEur(esc(p.p))}</div>` : ''}</div>
       <p>${withEur(esc(p.d))}</p>${p.o ? `<div class="order"><b>${sKind === 'compras' ? 'Id para' : 'Pedid'}:</b> ${withEur(esc(p.o))}</div>` : ''}
       <div class="place-foot"><span class="pill city" style="background:${c.color}">${c.nombre}</span>${label ? `<span class="pill muted">${esc(label)}</span>` : ''}${dist}
-      <a class="maplink" href="${mapsUrl(p.q)}" target="_blank" rel="noopener">Abrir en Maps ↗</a></div></div>`;
+      <a class="maplink" href="${mapsUrl(p.q)}" target="_blank" rel="noopener">Mapa ↗</a>
+      <a class="maplink" style="margin-left:0" href="${dirUrl(null, p.q, 'transit')}" target="_blank" rel="noopener">🚇 Cómo llegar ↗</a></div></div>`;
   }).join('') : `<div class="empty">Nada con “${esc(sQuery)}” aquí. Prueba con otra ciudad o borra la búsqueda.</div>`);
 }
 
@@ -1691,6 +2337,50 @@ function toggleNear() {
   }, { enableHighAccuracy: true, timeout: 15000, maximumAge: 60000 });
 }
 
+/* ---------- MOVERSE ---------- */
+// Precio del taxímetro en ¥ para una distancia en km (sin contar el tiempo parado)
+function taxiFare(city, km, noche) {
+  const t = TAXI[city], m = km * 1000;
+  const f = t.base + Math.max(0, Math.ceil((m - t.inc) / t.paso)) * 100;
+  return noche ? Math.round(f * 1.2 / 10) * 10 : f;
+}
+function renderTaxi() {
+  const km = num($('#tx-km').value), pax = Math.max(1, Math.min(20, Math.round(num($('#tx-pax').value)) || 5));
+  const pub = num($('#tx-pub').value), noche = $('#tx-night').checked, city = $('#tx-city').value;
+  if (!(km > 0) || km > 200) { $('#tx-res').innerHTML = '<p class="small muted" style="margin-top:10px">Escribe una distancia en km.</p>'; return; }
+  const coches = Math.ceil(pax / 4), uno = taxiFare(city, km, noche), total = uno * coches, pp = total / pax;
+  const vale = pub > 0 && pp <= pub * 2.5;
+  $('#tx-res').innerHTML = `<div class="tres"><div><small>Un coche</small><b>${fmtY(uno)}</b></div><div><small>${coches} ${coches === 1 ? 'coche' : 'coches'}</small><b>${fmtY(total)}</b></div>
+    <div class="pp"><small>Por persona</small><b>${fmtY(pp)}</b></div></div>
+    ${pub > 0 ? `<div class="verd${vale ? ' taxi' : ''}">${vale
+      ? `🚕 El taxi sale a ${fmtY(pp)} por persona frente a ${fmtY(pub)} en metro o bus: poca diferencia. Si vais cansados, con equipaje o el metro tiene cambios, coged taxi.`
+      : `🚇 Mejor metro o bus: ${fmtY(pub)} por persona frente a ${fmtY(pp)} en taxi (${(pp / pub).toLocaleString('es-ES', { maximumFractionDigits: 1 })} veces más). El taxi solo si no hay otra forma o es muy tarde.`}</div>` : ''}
+    <p class="small muted" style="margin-top:6px">${withEur(fmtY(pp))} por persona. Máximo 4 pasajeros por taxi normal. Con atasco, sumad un 10–20%.</p>`;
+}
+function renderMoverse() {
+  const sel = $('#tx-city');
+  if (!sel.options.length) {
+    sel.innerHTML = Object.entries(TAXI).map(([k, t]) => `<option value="${k}">${t.n}</option>`).join('');
+    const c = phase() === 'durante' ? DIAS[dayIndex(todayISO())].ciudad : 'tokio';
+    sel.value = TAXI[c] ? c : c === 'vuelo' ? 'tokio' : 'otras';
+    sel.addEventListener('change', () => { $('#tx-pub').value = sel.value === 'kioto' ? 230 : sel.value === 'otras' ? 220 : 210; renderTaxi(); });
+    $$('#tx-km, #tx-pax, #tx-pub').forEach(i => i.addEventListener('input', renderTaxi));
+    $('#tx-night').addEventListener('change', renderTaxi);
+  }
+  renderTaxi();
+  // Tabla de Tokio: 2 coches entre 5 frente al metro
+  $('#tx-tabla').innerHTML = `<div class="card" style="padding:8px 14px"><table class="tt"><thead><tr><th>Distancia</th><th>1 taxi</th><th>2 taxis</th><th>Por persona</th><th>Metro</th></tr></thead><tbody>${
+    [[2, 180], [3, 210], [5, 260], [8, 290], [10, 330]].map(([k, m]) => { const f = taxiFare('tokio', k, false);
+      return `<tr><td>${k} km</td><td>${fmtY(f)}</td><td>${fmtY(f * 2)}</td><td><b>${fmtY(f * 2 / 5)}</b></td><td>~${fmtY(m)}</td></tr>`; }).join('')
+  }</tbody></table></div>`;
+  $('#mv-pases').innerHTML = PASES.map(([v, n, x]) => `<li><div class="pass"><span class="v">${v}</span><div><b>${withEur(esc(n))}</b><span>${withEur(esc(x))}</span></div></div></li>`).join('');
+  $('#mv-trayectos').innerHTML = TRAYECTOS.map(t => `<div class="card mv-leg"><h3><span>${esc(t.r)}</span><small>${esc(t.d)}</small></h3>
+    ${t.nota ? `<p class="small muted">${esc(t.nota)}</p>` : ''}
+    <div class="mv-opts">${t.ops.map(o => `<div class="mv-opt${o.rec ? ' rec' : ''}"><div class="on"><span>${esc(o.n)}${o.rec ? '<span class="badge">Recomendado</span>' : ''}</span><span>${withEur(esc(o.p))}</span></div>
+      <div class="om">⏱ ${esc(o.t)}</div><div style="margin-top:4px">${withEur(esc(o.x))}</div></div>`).join('')}</div>
+    <div class="btn-row"><a class="btn ghost" href="${dirUrl(t.de, t.a, 'transit')}" target="_blank" rel="noopener">Ruta en Maps ↗</a></div></div>`).join('');
+}
+
 /* ---------- GUÍA ---------- */
 function renderGuia() {
   let total = 0;
@@ -1700,9 +2390,6 @@ function renderGuia() {
       <ul class="rows">${g.items.map(i => `<li><span>${esc(i[0])}${i[2] ? `<span class="r-note">${esc(i[2])}</span>` : ''}</span><span class="r-amt">${i[1]}€</span></li>`).join('')}</ul>`;
   }).join('') + `<div class="total"><span>Total por persona<br><span class="small" style="opacity:.7">± 200€ según lo que gastéis</span></span><span class="t">~${Math.round(total / 50) * 50}€</span></div>
     <h3 class="h">No incluido</h3><ul class="rows">${EXTRAS.map(e => `<li><span>${e[0]}</span><span class="r-amt">${e[1]}</span></li>`).join('')}</ul>`;
-
-  $('#transport').innerHTML = `<ul class="tipl">${TRANSPORTE.map(t => `<li><b>${t.r} <span class="muted" style="font-weight:400">· ${t.d}</span></b>
-    <span>${t.m}${t.t ? ', ' + t.t : ''}. <b style="display:inline;color:var(--shu)">${t.p}</b><br>${t.donde}</span></li>`).join('')}</ul>`;
 
   // Conversor
   const rateIn = $('#cv-rate'), yen = $('#cv-yen'), eur = $('#cv-eur');
@@ -1714,7 +2401,7 @@ function renderGuia() {
   rateIn.addEventListener('input', () => {
     const r = num(rateIn.value);
     if (r < 50 || r > 500) return; // cambio absurdo: no lo guardamos
-    store.set('rate', r); fromYen();
+    store.set('rate', r); fromYen(); renderGastos(); renderMoverse();
     // los precios en euros de toda la web dependen del cambio
     renderSitios(); $$('#ruta-dias .dr-body').forEach(b => { if (!b.closest('details').open) b.innerHTML = ''; });
   });
@@ -1774,24 +2461,27 @@ function renderGastos() {
   let extra = '';
   if (durante && s.days) {
     const rest = s.hoyTope - s.today;
-    extra = rest >= 0 ? `Hoy puedes gastar ${fmtE(rest)} más (${fmtE(s.hoyTope)} al día hasta el final).`
-                      : `Hoy te has pasado ${fmtE(-rest)}. Mañana tocarán unos ${fmtE(s.left / Math.max(1, s.days - 1))} al día.`;
-  } else if (s.days) extra = `Son unos ${fmtE(s.perDay)} al día para los 16 días.`;
+    const man = s.left / Math.max(1, s.days - 1);
+    extra = rest >= 0 ? `Hoy puedes gastar <b>${fmtE(rest)} (≈${eurYen(rest)})</b> más; ${fmtE(s.hoyTope)} (≈${eurYen(s.hoyTope)}) al día hasta el final.`
+                      : `Hoy te has pasado ${fmtE(-rest)} (≈${eurYen(-rest)}). Mañana tocarán unos ${fmtE(man)} (≈${eurYen(man)}) al día.`;
+  } else if (s.days) extra = `Son unos ${fmtE(s.perDay)} (≈${eurYen(s.perDay)}) al día para los 16 días.`;
   const porCat = Object.keys(CAT_ICO).map(c => [c, s.g.filter(x => x.cat === c).reduce((a, x) => a + x.eur, 0)]).filter(x => x[1] > 0);
   $('#gastos-resumen').innerHTML = `<div class="gsum">
     <div class="left" style="color:${s.left < 0 ? 'var(--shu)' : 'inherit'}">${s.left < 0 ? 'Te has pasado ' + fmtE(-s.left) : 'Te quedan ' + fmtE(s.left)}</div>
+    <div style="font-family:var(--serif);font-weight:700;font-size:19px;color:var(--muted)">≈ ${eurYen(Math.abs(s.left))}</div>
     <div class="gbar${s.left < 0 ? ' over' : ''}"><span style="width:${pct}%"></span></div>
-    <div class="small muted">Gastado ${fmtE(s.spent)} de ${fmtE(s.pres)}. ${extra}</div>
-    ${porCat.length ? `<div class="legend" style="margin-top:8px">${porCat.map(([c, v]) => `<span>${CAT_ICO[c]} ${c} ${fmtE(v)}</span>`).join('')}</div>` : ''}</div>`;
-  $('#gastos-sub').textContent = s.g.length ? `Te quedan ${fmtE(s.left)} de ${fmtE(s.pres)}` : 'Apunta lo que gastas y mira lo que te queda';
+    <div class="small muted">Gastado ${fmtE(s.spent)} (≈${eurYen(s.spent)}) de ${fmtE(s.pres)} (≈${eurYen(s.pres)}). ${extra}</div>
+    <div class="small muted" style="margin-top:4px">Yenes al cambio de 1 € = ${rate().toLocaleString('es-ES')}¥ (se cambia en Dinero y presupuesto).</div>
+    ${porCat.length ? `<div class="legend" style="margin-top:8px">${porCat.map(([c, v]) => `<span>${CAT_ICO[c]} ${c} ${fmtE(v)} · ${eurYen(v)}</span>`).join('')}</div>` : ''}</div>`;
+  $('#gastos-sub').textContent = s.g.length ? `Te quedan ${fmtE(s.left)} (≈${eurYen(s.left)}) de ${fmtE(s.pres)}` : 'Apunta lo que gastas y mira lo que te queda';
   // lista agrupada por día, lo más reciente primero
   const byDay = {};
   [...s.g].reverse().forEach(x => (byDay[x.fecha] = byDay[x.fecha] || []).push(x));
   $('#gastos-lista').innerHTML = Object.keys(byDay).sort().reverse().map(f => {
     const tot = byDay[f].reduce((a, x) => a + x.eur, 0);
-    return `<div class="gday"><span>${cap(fmtDate(f, { weekday: 'short', day: 'numeric', month: 'short' }))}</span><span>${fmtE(tot)}</span></div>` +
+    return `<div class="gday"><span>${cap(fmtDate(f, { weekday: 'short', day: 'numeric', month: 'short' }))}</span><span>${fmtE(tot)} · ${eurYen(tot)}</span></div>` +
       byDay[f].map(x => `<div class="gitem"><span>${CAT_ICO[x.cat] || '📦'}</span><span class="gt">${esc(x.txt || x.cat)}${x.txt ? `<small>${esc(x.cat)}</small>` : ''}</span>
-        <span class="ga">${fmtE(x.eur)}${x.yen ? `<small>${x.yen.toLocaleString('es-ES')}¥</small>` : ''}</span>
+        <span class="ga">${fmtE(x.eur)}<small>${x.yen ? x.yen.toLocaleString('es-ES') + '¥' : '≈' + eurYen(x.eur)}</small></span>
         <button class="gdel" data-del="${x.id}" aria-label="Borrar gasto">×</button></div>`).join('');
   }).join('') || '<p class="small muted" style="margin-top:12px">Todavía no has apuntado nada. Puedes empezar con lo que ya hayas pagado, como la excursión del Fuji.</p>';
 }
@@ -1835,7 +2525,7 @@ function openOverlay(ja, ro, es, audio) {
 function closeOverlay() { $('#overlay').classList.remove('open'); }
 
 /* ---------- Navegación ---------- */
-const VIEWS = ['hoy', 'ruta', 'sitios', 'guia', 'sos'];
+const VIEWS = ['hoy', 'ruta', 'moverse', 'sitios', 'guia', 'sos'];
 function route() {
   const [view, sub] = (location.hash.slice(1) || 'hoy').split('/');
   const v = VIEWS.includes(view) ? view : 'hoy';
@@ -1860,6 +2550,8 @@ document.addEventListener('click', e => {
     hoySel = nav.dataset.nav === 'hoy' ? dayIndex(todayISO()) : Math.max(0, Math.min(DIAS.length - 1, hoySel + +nav.dataset.nav));
     renderHoy(); return;
   }
+  const go = e.target.closest('[data-go]');
+  if (go) { hoySel = +go.dataset.go; renderHoy(); return; }
   const kind = e.target.closest('.seg button'); if (kind) { sKind = kind.dataset.kind; renderSitios(); return; }
   const city = e.target.closest('[data-city]'); if (city) { sCity = city.dataset.city; renderSitios(); return; }
   if (e.target.closest('#near')) { toggleNear(); return; }
@@ -1878,6 +2570,19 @@ document.addEventListener('click', e => {
 });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeOverlay(); });
 $('#q').addEventListener('input', e => { sQuery = e.target.value; renderSitios(); });
+// En Hoy, deslizar el día a izquierda o derecha cambia de día
+let swX = null, swY = 0;
+$('#v-hoy').addEventListener('touchstart', e => {
+  swX = e.target.closest('.daycard') ? e.touches[0].clientX : null; swY = e.touches[0].clientY;
+}, { passive: true });
+$('#v-hoy').addEventListener('touchend', e => {
+  if (swX === null) return;
+  const dx = e.changedTouches[0].clientX - swX, dy = e.changedTouches[0].clientY - swY; swX = null;
+  if (Math.abs(dx) < 70 || Math.abs(dy) > 50) return;
+  const n = hoySel + (dx < 0 ? 1 : -1);
+  if (n < 0 || n >= DIAS.length) return;
+  hoySel = n; renderHoy(); $('.daynav').scrollIntoView({ block: 'start' });
+}, { passive: true });
 window.addEventListener('hashchange', route);
 
 // Tema claro/oscuro manual (si no, sigue al sistema)
@@ -1898,8 +2603,14 @@ if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.se
 // En el viaje, Sitios abre filtrado por la ciudad del día
 if (phase() === 'durante') { const c = DIAS[dayIndex(todayISO())].ciudad; if (CIUDADES[c].noches) sCity = c; }
 
-renderGuia(); renderStatus(); renderRuta(); renderSitios(); renderSOS(); renderHoy(); route();
-setInterval(() => { renderStatus(); if (phase() === 'antes' && $('#v-hoy').classList.contains('active')) renderHoy(); }, 60000);
+renderGuia(); renderStatus(); renderRuta(); renderMoverse(); renderSitios(); renderSOS(); renderHoy(); route();
+// cada minuto: cuenta atrás antes del viaje y el "Ahora" durante (sin redibujar si se está leyendo otro día)
+setInterval(() => {
+  renderStatus();
+  if (!$('#v-hoy').classList.contains('active')) return;
+  const st = phase() === 'durante' ? ahora(DIAS[hoySel]) : null;
+  if (phase() === 'antes' || (st && st.cur !== renderHoy.cur)) renderHoy();
+}, 60000);
 </script>
 </body>
 </html>
