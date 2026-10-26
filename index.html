@@ -502,7 +502,7 @@ table.tt th { font-size: 12px; color: var(--muted); font-weight: 600; }
 .pass .v { font-size: 18px; flex-shrink: 0; width: 24px; text-align: center; }
 
 /* ---------- Sección privada ---------- */
-.top-title { -webkit-user-select: none; user-select: none; cursor: default; }
+.top-title { -webkit-user-select: none; user-select: none; cursor: default; touch-action: manipulation; }
 .np { position: fixed; inset: 0; z-index: 55; background: var(--card); overflow-y: auto; -webkit-overflow-scrolling: touch; }
 .np[hidden] { display: none; }
 .np-bar { position: sticky; top: 0; display: flex; justify-content: flex-end; padding: calc(10px + env(safe-area-inset-top)) 16px 10px; background: var(--card); border-bottom: 1px solid var(--line); }
@@ -2737,19 +2737,21 @@ $('#v-hoy').addEventListener('touchend', e => {
 }, { passive: true });
 window.addEventListener('hashchange', route);
 
-/* ---------- Sección privada: 5 toques seguidos en el título ---------- */
+/* ---------- Sección privada: 10 toques seguidos en el título ---------- */
+const NP_TOQUES = 10, NP_VENTANA = 5000; // toques necesarios y en cuántos ms
 let npTaps = [];
 $('.top-title').addEventListener('click', () => {
   const t = Date.now();
-  npTaps = npTaps.filter(x => t - x < 2500); npTaps.push(t);
-  if (npTaps.length >= 5) { npTaps = []; npOpen(); }
+  npTaps = npTaps.filter(x => t - x < NP_VENTANA); npTaps.push(t);
+  if (npTaps.length >= NP_TOQUES) { npTaps = []; npOpen(); }
 });
 const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 function npOpen() {
   if (!NOTAS_PRIV.c || !(window.crypto && crypto.subtle)) return;
   $('#np-body').innerHTML = `<form class="np-lock" id="np-form" autocomplete="off"><div style="font-size:30px">🔒</div>
     <input type="password" id="np-pass" inputmode="numeric" aria-label="Contraseña" autocomplete="off" autocapitalize="none" spellcheck="false">
-    <button class="btn" type="submit">Abrir</button><p class="small muted" id="np-msg"></p></form>`;
+    <button class="btn" type="submit">Abrir</button><p class="small muted" id="np-msg"></p>
+    <p class="small muted" style="opacity:.5">${esc(NOTAS_PRIV.s.slice(0, 4))}</p></form>`;
   $('#np').hidden = false; document.body.style.overflow = 'hidden';
   setTimeout(() => $('#np-pass') && $('#np-pass').focus(), 50);
 }
@@ -2766,12 +2768,17 @@ $('#np').addEventListener('submit', async e => {
   e.preventDefault();
   const msg = $('#np-msg'); msg.textContent = 'Abriendo…';
   try {
-    const html = await npUnlock($('#np-pass').value);
+    const html = await npUnlock($('#np-pass').value.trim());
     $('#np-body').innerHTML = html; // contenido propio, verificado por el cifrado
     const done = store.get('np', {});
     $$('#np-body [data-np]').forEach(i => { if (i.dataset.np in done) i.checked = done[i.dataset.np]; });
     $('#np').scrollTop = 0;
-  } catch { msg.textContent = 'Contraseña incorrecta'; $('#np-pass').select(); }
+  } catch (err) {
+    msg.textContent = err && err.name === 'OperationError' ? 'Contraseña incorrecta' : 'No se ha podido abrir (' + (err && err.name || 'error') + ')';
+    $('#np-pass').select();
+    // por si este móvil tiene una versión vieja guardada: busca la nueva (si la hay, la página se recarga sola)
+    if ('serviceWorker' in navigator) navigator.serviceWorker.getRegistration().then(r => r && r.update()).catch(() => {});
+  }
 });
 $('#np').addEventListener('change', e => {
   const i = e.target.closest('[data-np]'); if (!i) return;

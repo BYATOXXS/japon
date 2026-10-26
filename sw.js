@@ -1,6 +1,6 @@
 // Guarda la web en el móvil para que funcione sin internet.
 // Sube VERSION cada vez que cambies index.html para forzar la actualización.
-const VERSION = 'japon-v11';
+const VERSION = 'japon-v12';
 const SHELL = ['./', './index.html', './manifest.webmanifest', './icon.svg', './icon-192.png', './icon-512.png', './icon-180.png'];
 
 self.addEventListener('install', e => {
