@@ -16,6 +16,7 @@ Se comparte por WhatsApp con el enlace de GitHub Pages y funciona sin internet u
 ## Estado actual
 - 6 pestañas (barra inferior): Hoy, Ruta, Moverse, Sitios, Guía, SOS.
 - "Hoy": antes del viaje muestra cuenta atrás + reservas pendientes; durante el viaje, el día actual. Tira con los 17 días para saltar a cualquiera, ← → y deslizar el dedo sobre la tarjeta. Cada día: datos rápidos (`HORARIO[fecha].clave`), "Hora a hora" (`HORARIO[fecha].pasos`) con un bloque de transporte antes de cada paso (línea, duración, precio por persona, dónde cogerlo, alternativa, taxi para 5 y ruta de Google Maps) y un banner "Ahora / Después" según la hora real. El plan original queda plegado como "Plan resumido". En Ruta es al revés (plan abierto, hora a hora plegado).
+- "Presupuesto del día, por persona" en cada día (`PRESU_DIA`, en ¥): solo lo necesario (transporte en la opción barata recomendada sin taxis, desayuno, comida, cena y entradas del plan). No cuenta lo ya pagado (Disney, USJ, excursiones) ni caprichos (karaoke, galletas de ciervos, Premier/Express Pass, cangrejo). Muestra el total del viaje con ese mínimo (~146.000¥ ≈ 860€) y, el día en curso, lo apuntado en Mis gastos.
 - `?hora=14:30` (junto con `?fecha=`) simula la hora para probar el banner "Ahora".
 - "Moverse" (nueva, 2026-10-26): reglas de taxi siendo 5 (máx. 4 por taxi → 2 coches), calculadora de taxi por persona con las tarifas oficiales 2026 (`TAXI`), tabla rápida, Suica/ICOCA/tarjeta contactless (dónde vale y dónde no), pases (`PASES`), cómo leer Google Maps, normas, cada trayecto con opciones (`TRAYECTOS`, sustituye al antiguo `TRANSPORTE`) y envío de maletas.
 - Maleta (Guía): la aerolínea solo deja MOCHILA en cabina + 1 maleta facturada de 25 kg. Estrategia: mochila a tope, maleta casi vacía para volver con compras. Plan recomendado: la noche del 5 nov, maleta de Tokio directa al Kyoto Tokyu (Kanazawa y Takayama solo con mochila).
@@ -33,7 +34,7 @@ Se comparte por WhatsApp con el enlace de GitHub Pages y funciona sin internet u
 - Quitado el botón "Enviar por WhatsApp" de los días: el usuario lo considera innecesario (todos tienen la web y viajan juntos).
 
 ## Archivos clave
-- `index.html` — todo. Los DATOS están al principio del `<script>`: `HOTELES`, `SEGURO`, `DIAS`, `MOMENTOS`, `COMER`, `COMPRAS`, `ONSEN`, `FRASES`, `PRESUPUESTO`, `TRAYECTOS`, `PASES`, `TAXI`, `GEO`, `VISITAS`, `PREPARAR`, `HORARIO`. En los textos de `HORARIO` se permite `<b>`. Si se añade un sitio nuevo, añadir también sus coordenadas en `GEO` (clave = su `q`). Para cambiar contenido, editar solo esos arrays.
+- `index.html` — todo. Los DATOS están al principio del `<script>`: `HOTELES`, `SEGURO`, `DIAS`, `MOMENTOS`, `COMER`, `COMPRAS`, `ONSEN`, `FRASES`, `PRESUPUESTO`, `TRAYECTOS`, `PASES`, `TAXI`, `GEO`, `VISITAS`, `PREPARAR`, `HORARIO`, `PRESU_DIA`. En los textos de `HORARIO` se permite `<b>`. Si se añade un sitio nuevo, añadir también sus coordenadas en `GEO` (clave = su `q`). Para cambiar contenido, editar solo esos arrays.
 - `sw.js` — caché offline. **Subir `VERSION` cada vez que se cambie algo** para que los móviles se actualicen.
 - `og.png` (1200×630) — vista previa del enlace en WhatsApp. `icon*.png`, `icon.svg` — iconos de la app.
 

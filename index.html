@@ -1918,6 +1918,106 @@ const HORARIO = {
     ] },
 };
 
+// Presupuesto mínimo del día por persona, en ¥: solo lo necesario (transporte barato recomendado, sin taxis;
+// desayuno, comida, cena y entradas del plan). Sin caprichos ni compras. [icono, concepto, yenes, nota]
+const PRESU_DIA = {
+  '2026-10-30': [['🍜', 'Comer algo en el aeropuerto de salida', 2500, '~15€; en los vuelos dan de comer']],
+  '2026-10-31': [
+    ['🚆', 'Transporte', 3810, 'N’EX + JR al hotel, ida y vuelta a Shinjuku y Shibuya'],
+    ['🍜', 'Comida', 1000, 'Konbini o algo rápido al llegar'],
+    ['🍱', 'Cena', 2500, 'Omoide Yokocho']],
+  '2026-11-01': [
+    ['☕', 'Desayuno', 500, 'Konbini'],
+    ['🚆', 'Transporte', 360, 'Ida y vuelta al punto de encuentro (si es en Shinjuku)'],
+    ['🍜', 'Comida', 1500, 'Si la excursión no la incluye'],
+    ['🍱', 'Cena', 2000, 'Kagurazaka, junto al hotel'],
+    ['🎟️', 'Excursión', 0, 'Ya pagada (99€)']],
+  '2026-11-02': [
+    ['☕', 'Desayuno', 500, 'Konbini'],
+    ['🚆', 'Transporte', 5900, 'Metro a Asakusa i/v 500¥ + NIKKO PASS 3.000¥ + bus a Kegon i/v 2.400¥'],
+    ['🎟️', 'Entradas', 1600, 'Tosho-gu'],
+    ['🍜', 'Comida', 1500, 'Yuba en Nikko'],
+    ['🍱', 'Cena', 2000, '']],
+  '2026-11-03': [
+    ['☕', 'Desayuno', 500, 'Konbini'],
+    ['🚆', 'Transporte', 660, 'JR a Maihama ida y vuelta'],
+    ['🍜', 'Comida', 2000, 'Dentro del parque'],
+    ['🍱', 'Cena', 2500, 'Dentro del parque'],
+    ['🎟️', 'Entrada', 0, 'Comprada antes (~65€). El Premier Access es extra']],
+  '2026-11-04': [
+    ['☕', 'Desayuno', 500, 'Konbini'],
+    ['🚆', 'Transporte', 660, 'JR a Maihama ida y vuelta (al parque, andando)'],
+    ['🍜', 'Comida', 2000, 'Dentro del parque'],
+    ['🍱', 'Cena', 2500, 'Dentro del parque'],
+    ['🎟️', 'Entrada', 0, 'Comprada antes (~65€)']],
+  '2026-11-05': [
+    ['☕', 'Desayuno', 500, 'Konbini'],
+    ['🚆', 'Transporte', 700, 'Metro: torre, Asakusa y vuelta'],
+    ['🎟️', 'Entradas', 1200, 'Tokyo Tower (Main Deck)'],
+    ['🍜', 'Comida', 1700, 'Sometaro'],
+    ['🍱', 'Cena', 2000, 'Daikokuya'],
+    ['📦', 'Envío de la maleta a Kioto', 2500, 'Takuhaibin, según el tamaño']],
+  '2026-11-06': [
+    ['☕', 'Desayuno', 1200, 'Ekiben en Tokyo Station'],
+    ['🚆', 'Transporte', 15370, 'JR a la estación 170¥ + Shinkansen ~14.400¥ + pase de bus 800¥'],
+    ['🎟️', 'Entradas', 4300, 'Kenroku-en 320¥ + ceremonia del té ~4.000¥'],
+    ['🍜', 'Comida', 2500, 'Kaisendon en Omicho'],
+    ['🍱', 'Cena', 2500, 'El cangrejo de nieve es aparte: 3.000–6.000¥ más']],
+  '2026-11-07': [
+    ['☕', 'Desayuno', 0, 'Bufé del Hotel Kanazawa (si no va incluido, ~500¥ en konbini)'],
+    ['🚆', 'Transporte', 9300, 'Bus a Takayama ~3.700¥ + Shirakawa-go i/v 5.600¥'],
+    ['🍜', 'Comida', 1500, 'Picoteo en Sanmachi (nigiri de Hida beef)'],
+    ['🍱', 'Cena', 3500, 'Hida beef en Suzuya o similar']],
+  '2026-11-08': [
+    ['☕', 'Desayuno', 0, 'En el ryokan (si no va incluido, ~500¥)'],
+    ['🚆', 'Transporte', 11260, 'Tren a Kioto ~10.800¥ (el Hida directo, ~7.000¥) + bus a Gion i/v 460¥; lanzadera gratis'],
+    ['🍜', 'Comida', 1200, 'Ekiben o en la estación'],
+    ['🍱', 'Cena', 3000, 'Izakaya en Gion']],
+  '2026-11-09': [
+    ['☕', 'Desayuno', 500, 'Konbini'],
+    ['🚆', 'Ferry y tasa de Miyajima', 500, 'Si no van en la excursión'],
+    ['🎟️', 'Entradas', 500, 'Museo 200¥ + Itsukushima 300¥'],
+    ['🍜', 'Comida', 1500, 'Okonomiyaki de Hiroshima'],
+    ['🍱', 'Cena', 2000, ''],
+    ['🎟️', 'Excursión', 0, 'Comprada antes (69€)']],
+  '2026-11-10': [
+    ['☕', 'Desayuno', 500, 'Konbini'],
+    ['🚆', 'Transporte', 2290, 'Metro + JR a Inari, JR a Nara, Kintetsu de vuelta, metro y bus'],
+    ['🎟️', 'Entradas', 800, 'Todai-ji (Fushimi Inari, gratis)'],
+    ['🍜', 'Comida', 1200, 'En Nara'],
+    ['🍱', 'Cena', 2500, 'Gion']],
+  '2026-11-11': [
+    ['☕', 'Desayuno', 500, 'Konbini'],
+    ['🚆', 'Transporte', 1160, 'Metro + JR a Arashiyama, JR + bus a Kiyomizu, bus de vuelta'],
+    ['🎟️', 'Entradas', 1000, 'Tenryu-ji 500¥ + Kiyomizu-dera 500¥'],
+    ['🍜', 'Comida', 1200, 'El yudofu de Sagano sube a 3.500–6.000¥'],
+    ['🍱', 'Cena', 2000, 'Ramen en Pontocho o similar']],
+  '2026-11-12': [
+    ['☕', 'Desayuno', 500, 'Konbini'],
+    ['🚆', 'Transporte', 2210, 'Metro y buses en Kioto, tren a Osaka 820¥, metro al castillo'],
+    ['🧳', 'Taquilla para la mochila', 800, 'Kyoto Station'],
+    ['🎟️', 'Entradas', 1700, 'Kinkaku-ji 500¥ + torre del castillo 1.200¥'],
+    ['🍜', 'Comida', 1200, ''],
+    ['🍱', 'Cena', 1500, 'Okonomiyaki o takoyaki en Dotonbori']],
+  '2026-11-13': [
+    ['☕', 'Desayuno', 2500, 'Picoteo en Kuromon (es el desayuno fuerte)'],
+    ['🚆', 'Transporte', 430, 'Metro a Shinsekai y vuelta; el resto andando'],
+    ['🍜', 'Comida', 1200, ''],
+    ['🍱', 'Cena', 2000, 'Kushikatsu en Shinsekai']],
+  '2026-11-14': [
+    ['☕', 'Desayuno', 500, 'Konbini'],
+    ['🚆', 'Transporte', 840, 'Hanshin + JR ida y vuelta'],
+    ['🍜', 'Comida', 2000, 'Dentro del parque'],
+    ['🍱', 'Cena', 2500, 'Parque o CityWalk'],
+    ['🎟️', 'Entrada', 0, 'Comprada antes (~65€). El Express Pass es extra']],
+  '2026-11-15': [
+    ['☕', 'Desayuno', 500, 'Konbini'],
+    ['🚆', 'Transporte', 1450, 'Metro a Umeda i/v 480¥ + Nankai al aeropuerto 970¥ (el Rapi:t, ~1.450¥)'],
+    ['🎟️', 'Entradas', 2000, 'Umeda Sky Building'],
+    ['🍜', 'Comida', 1200, ''],
+    ['🍱', 'Cena', 1500, 'En el aeropuerto, según la hora del vuelo']],
+};
+
 /* =========================================================
    LÓGICA
    ========================================================= */
@@ -1949,7 +2049,8 @@ const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
 const allPlaces = [...COMER, ...ONSEN];
 const num = v => parseFloat(String(v).replace(/\./g, '').replace(',', '.')) || 0;
 const fmtE = n => (Math.abs(n) < 10 ? n.toLocaleString('es-ES', { maximumFractionDigits: 1 }) : Math.round(n).toLocaleString('es-ES')) + '€';
-const fmtY = n => Math.round(n).toLocaleString('es-ES') + '¥';
+// con punto de miles también en 4 cifras (1.200¥), como en los textos
+const fmtY = n => String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + '¥';
 
 // Yenes → euros con el cambio guardado en el conversor
 const rate = () => store.get('rate', 170) || 170;
@@ -2060,6 +2161,24 @@ function timeline(dia) {
   }).join('')}</ol>`;
 }
 
+// Presupuesto mínimo del día por persona (PRESU_DIA)
+const presuTotal = f => (PRESU_DIA[f] || []).reduce((a, x) => a + x[2], 0);
+function presuBlock(dia) {
+  const P = PRESU_DIA[dia.fecha];
+  if (!P) return '';
+  const tot = presuTotal(dia.fecha);
+  const viaje = Object.keys(PRESU_DIA).reduce((a, f) => a + presuTotal(f), 0);
+  let mio = '';
+  if (dia.fecha === todayISO() && phase() === 'durante') {
+    const g = gastosStats().today;
+    mio = `<p class="small" style="margin-top:6px">Hoy llevas apuntados <b>${fmtE(g)} (≈${eurYen(g)})</b> en Mis gastos${g * rate() > tot ? ': ya has pasado del mínimo del día.' : '.'}</p>`;
+  }
+  return `<div class="sec"><h4>💴 Presupuesto del día, por persona</h4>
+    <div class="total" style="margin-top:6px"><span>Lo necesario<br><span class="small" style="opacity:.75">sin caprichos ni compras</span></span><span style="text-align:right"><span class="t">${fmtY(tot)}</span><br><span class="small" style="opacity:.8">≈${toEur(tot)}€</span></span></div>
+    <ul class="rows">${P.map(([i, c, y, n]) => `<li><span>${i} ${esc(c)}${n ? `<span class="r-note">${withEur(esc(n))}</span>` : ''}</span><span class="r-amt">${y ? fmtY(y) : '—'}</span></li>`).join('')}</ul>
+    ${mio}<p class="small muted" style="margin-top:6px">Transporte en la opción barata recomendada, sin taxis. Lo ya pagado no cuenta. Todo el viaje con este mínimo: ~${fmtY(Math.round(viaje / 1000) * 1000)} (≈${Math.round(viaje / rate() / 10) * 10}€) por persona.</p></div>`;
+}
+
 // ctx 'hoy': el hora a hora abierto y el plan resumido plegado; en Ruta, al revés
 function dayBody(dia, ctx) {
   const c = CIUDADES[dia.ciudad];
@@ -2070,6 +2189,7 @@ function dayBody(dia, ctx) {
     ${dia.flag ? `<span class="tag">${esc(dia.flag)}</span>` : ''}</div></div>`;
   h += `<div class="wx" data-wx="${dia.fecha}"></div>`;
   if (H && H.clave) h += `<div class="qf">${H.clave.map(([i, l, v, w]) => `<div${w ? ' class="w"' : ''}><small>${i} ${esc(l)}</small>${rich(v)}</div>`).join('')}</div>`;
+  h += presuBlock(dia);
   const prep = PREPARAR[dia.fecha];
   if (prep) h += `<div class="sec"><h4>Antes de salir</h4><ul class="eat">${prep.map(x => `<li>☐ ${withEur(esc(x))}</li>`).join('')}</ul></div>`;
   const plan = `<ol class="plan">${dia.plan.map(p => typeof p === 'string' ? `<li>${withEur(esc(p))}</li>` : `<li class="opt">${withEur(esc(p.x))}</li>`).join('')}</ol>`;
