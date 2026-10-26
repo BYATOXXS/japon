@@ -16,7 +16,7 @@ Se comparte por WhatsApp con el enlace de GitHub Pages y funciona sin internet u
 ## Estado actual
 - 6 pestañas (barra inferior): Hoy, Ruta, Moverse, Sitios, Guía, SOS.
 - "Hoy": antes del viaje muestra cuenta atrás + reservas pendientes; durante el viaje, el día actual. Tira con los 17 días para saltar a cualquiera, ← → y deslizar el dedo sobre la tarjeta. Cada día: datos rápidos (`HORARIO[fecha].clave`), "Hora a hora" (`HORARIO[fecha].pasos`) con un bloque de transporte antes de cada paso (línea, duración, precio por persona, dónde cogerlo, alternativa, taxi para 5 y ruta de Google Maps) y un banner "Ahora / Después" según la hora real. El plan original queda plegado como "Plan resumido". En Ruta es al revés (plan abierto, hora a hora plegado).
-- "Presupuesto del día, por persona" en cada día (`PRESU_DIA`, en ¥): solo lo necesario (transporte en la opción barata recomendada sin taxis, desayuno, comida, cena y entradas del plan). No cuenta lo ya pagado (Disney, USJ, excursiones) ni caprichos (karaoke, galletas de ciervos, Premier/Express Pass, cangrejo). Muestra el total del viaje con ese mínimo (~146.000¥ ≈ 860€) y, el día en curso, lo apuntado en Mis gastos.
+- "Presupuesto del día, por persona" en cada día (`PRESU_DIA`, en ¥): solo lo necesario (transporte en la opción barata recomendada sin taxis, desayuno, comida, cena y entradas del plan). No cuenta lo ya pagado (Disney, USJ, excursiones) ni caprichos (karaoke, galletas de ciervos, Premier/Express Pass, cangrejo). Muestra el total del viaje con ese mínimo (~147.000¥ ≈ 860€) y, el día en curso, lo apuntado en Mis gastos.
 - `?hora=14:30` (junto con `?fecha=`) simula la hora para probar el banner "Ahora".
 - "Moverse" (nueva, 2026-10-26): reglas de taxi siendo 5 (máx. 4 por taxi → 2 coches), calculadora de taxi por persona con las tarifas oficiales 2026 (`TAXI`), tabla rápida, Suica/ICOCA/tarjeta contactless (dónde vale y dónde no), pases (`PASES`), cómo leer Google Maps, normas, cada trayecto con opciones (`TRAYECTOS`, sustituye al antiguo `TRANSPORTE`) y envío de maletas.
 - Maleta (Guía): la aerolínea solo deja MOCHILA en cabina + 1 maleta facturada de 25 kg. Estrategia: mochila a tope, maleta casi vacía para volver con compras. Plan recomendado: la noche del 5 nov, maleta de Tokio directa al Kyoto Tokyu (Kanazawa y Takayama solo con mochila).
@@ -43,6 +43,7 @@ Se comparte por WhatsApp con el enlace de GitHub Pages y funciona sin internet u
 - WhatsApp cachea la vista previa del enlace; tras cambiar `og.png` puede tardar en verse.
 
 ## Decisiones tomadas
+- El desayuno NO va incluido en ningún hotel (dicho por el usuario el 2026-10-26): en `PRESU_DIA` todos los días cuentan desayuno de konbini (~500¥).
 - Tokio son 6 noches (31 oct – 6 nov), no 7: el original estaba mal contado. Total 15 noches.
 - REGLA: el contenido debe conservar TODA la info del HTML original del usuario (auditado el 2026-10-20: 30 restaurantes, 28 tiendas, 7 onsen, todos los días y consejos). Solo se cambia lo que es incorrecto, y se dice qué se cambió.
 - Día 8: se mantiene el plan original (bus a Takayama + excursión a Shirakawa-go). Parar en Shirakawa-go por el camino va solo como "alternativa" en una nota.
@@ -54,6 +55,6 @@ Se comparte por WhatsApp con el enlace de GitHub Pages y funciona sin internet u
 ## Pendientes
 - Cuando el usuario pase los VUELOS: aeropuerto de llegada (Narita/Haneda) para el día 1, horas del día 15 nov (salida al aeropuerto), medidas y peso de la mochila de cabina.
 - Rellenar en `HOTELES` el tipo de habitación reservada (`habitacion`) y el nº de reserva (`reserva`), y `SEGURO` (y subir `VERSION` en sw.js).
-- Confirmar con Koto no Yume si aceptan tatuajes en el onsen y la hora exacta del desayuno.
+- Confirmar con Koto no Yume si aceptan tatuajes en el onsen.
 - Verificar precios dudosos: tren Takayama→Kioto (39€ apuntado vs ~65€ reales con Shinkansen) y la excursión Hiroshima a 69€ (el Shinkansen ida y vuelta solo ya cuesta más).
 - Confirmar aeropuerto de llegada (Narita vs Haneda) y horario exacto del vuelo.
