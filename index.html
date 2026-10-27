@@ -559,6 +559,8 @@ table.tt th { font-size: 12px; color: var(--muted); font-weight: 600; }
     <h1 class="v-title">La ruta</h1>
     <p class="v-sub">30 de octubre al 15 de noviembre. Toca un día para ver el plan completo.</p>
     <div class="card" id="ruta-resumen"></div>
+    <h2 class="h">Vuelos</h2>
+    <div id="ruta-vuelos"></div>
     <h2 class="h">Dónde dormimos</h2>
     <div id="ruta-hoteles"></div>
     <h2 class="h" style="margin-bottom:0">Día a día</h2>
@@ -602,7 +604,7 @@ table.tt th { font-size: 12px; color: var(--muted); font-weight: 600; }
       <ul class="tipl">
         <li><b>Suica / PASMO / ICOCA (son lo mismo)</b><span>Tarjetas recargables que valen en todo Japón: metro, trenes JR locales, buses urbanos, konbinis, máquinas de bebidas y taquillas. La que tengáis vale en Tokio, Kanazawa, Kioto y Osaka.</span></li>
         <li><b>iPhone: Suica en Apple Wallet</b><span>Se añade desde Wallet (o la app Welcome Suica Mobile) y se recarga con vuestra tarjeta. Se acerca el móvil al lector sin desbloquearlo. Es la opción más cómoda.</span></li>
-        <li><b>Android comprado en España: NO sirve</b><span>La Suica en Google Wallet solo funciona en móviles vendidos en Japón (necesita el chip FeliCa). Sacad la tarjeta física: <b style="display:inline">Welcome Suica</b> (sin fianza, 28 días) en las máquinas o la oficina JR del aeropuerto de Narita o Haneda, o <b style="display:inline">ICOCA</b> (500¥ de fianza que se devuelve) en cualquier estación JR de Kioto u Osaka.</span></li>
+        <li><b>Android comprado en España: NO sirve</b><span>La Suica en Google Wallet solo funciona en móviles vendidos en Japón (necesita el chip FeliCa). Sacad la tarjeta física: <b style="display:inline">Welcome Suica</b> (sin fianza, 28 días) en las máquinas o la oficina JR del aeropuerto de Narita (Terminal 2), o <b style="display:inline">ICOCA</b> (500¥ de fianza que se devuelve) en cualquier estación JR de Kioto u Osaka.</span></li>
         <li><b>Recargar la tarjeta física</b><span>Solo en efectivo: en las máquinas de billetes de cualquier estación (botón “Charge”, en inglés) o en la caja de un konbini. Recargad 2.000–3.000¥ cada vez.</span></li>
         <li><b>Tarjeta de crédito contactless (Visa, Mastercard…)</b><span>Se puede pasar directamente por el torno en el metro de Tokio (Tokyo Metro y Toei), Keikyu (Haneda), el metro de Osaka (con tope diario automático), Nankai (al aeropuerto de Kansai), Hankyu, Hanshin y Kintetsu. <b style="display:inline">No</b> vale en JR, Keisei (Narita), el monorraíl de Haneda ni en el metro y los buses de Kioto. Entrad y salid con la misma tarjeta. Para ir sobre seguro, usad la Suica.</span></li>
         <li><b>Si no te deja salir del torno</b><span>Falta saldo. Busca la máquina amarilla “Fare Adjustment” (精算) junto a los tornos, recarga y vuelve a pasar.</span></li>
@@ -738,7 +740,7 @@ table.tt th { font-size: 12px; color: var(--muted); font-weight: 600; }
     <details class="acc" id="g-maleta">
       <summary><span class="ico">🧳</span><span>Maleta<span class="sub">Mochila de cabina a tope, maleta facturada casi vacía</span></span><span class="progress" data-progress="eq"></span></summary>
       <div class="acc-body">
-        <div class="note warn" style="margin-top:0"><b>Lo que nos deja la aerolínea</b>En cabina solo una <b style="display:inline">mochila</b> (no maleta de cabina) y <b style="display:inline">una maleta facturada de hasta 25 kg</b> incluida. Las medidas y el peso exactos de la mochila los añadiremos cuando estén los vuelos: comprobadlos en la reserva, porque en el embarque pueden medirla.</div>
+        <div class="note warn" style="margin-top:0"><b>Lo que nos deja la aerolínea</b>En cabina solo una <b style="display:inline">mochila</b> (no maleta de cabina) y <b style="display:inline">una maleta facturada de hasta 25 kg</b> incluida. Vuelos con Qatar Airways en económica: el equipaje de mano es <b style="display:inline">1 pieza de hasta 7 kg y 50 × 37 × 25 cm</b> (asas y bolsillos incluidos). Comprobadlo en “Gestionar reserva” de la web de Qatar, porque en el embarque pueden pesarla y medirla.</div>
         <h3 class="h">La estrategia</h3>
         <ul class="tipl">
           <li><b>1. Mochila llena al máximo</b><span>Todo lo necesario para el viaje va en la mochila: documentación, electrónica, medicinas y ropa para 6–7 días. Se lava a mitad de viaje (ver abajo).</span></li>
@@ -1130,6 +1132,18 @@ const HOTELES = [
 ];
 const SEGURO = { compania: '', telefono: '', poliza: '' };
 
+// Vuelos (Qatar Airways, económica). Horas locales de cada aeropuerto.
+const VUELOS = [
+  { t: 'Ida · viernes 30 oct', tramos: [
+    { n: 'QR138', r: 'Barcelona T1 → Doha', h: 'Sale 8:35 (España) · llega 16:35 (Doha)', d: '6 h' },
+    { escala: 'Escala en Doha: 3 h 15 min' },
+    { n: 'QR808', r: 'Doha → Tokio Narita T2', h: 'Sale 19:50 (Doha) · llega sáb 31 oct 11:55 (Japón)', d: '~10 h' }] },
+  { t: 'Vuelta · domingo 15 nov', tramos: [
+    { n: 'QR803', r: 'Osaka Kansai T1 → Doha', h: 'Sale 17:55 (Japón) · llega 23:35 (Doha)', d: '11 h 40 min' },
+    { escala: 'Escala en Doha: 1 h 55 min' },
+    { n: 'QR137', r: 'Doha → Barcelona T1', h: 'Sale lun 16 nov 1:30 (Doha) · llega 7:05 (España)', d: '~7 h 35 min' }] },
+];
+
 const SALIDA = new Date('2026-10-30T06:00:00+01:00'); // hora de estar en el aeropuerto (España)
 
 const CIUDADES = {
@@ -1152,13 +1166,13 @@ const LUGARES_TIEMPO = {
 const DIAS = [
   { fecha: '2026-10-30', n: 0, ciudad: 'vuelo', tiempo: null,
     titulo: 'Salida → Doha → Tokio', resumen: 'Día de vuelo. Llegada a Tokio al día siguiente.',
-    plan: ['Estar en el aeropuerto antes de las 6:00 (3 horas de margen)', 'Escala en Doha a las 4:35h', 'Llegada a Tokio a las 11:55 del 31 de octubre'],
+    plan: ['Estar en el aeropuerto (Barcelona T1) antes de las 6:00 (2 h 35 min de margen)', 'Vuelo QR138 a las 8:35 a Doha', 'Escala en Doha de 3 h 15 min (llegada 16:35, salida 19:50, hora de Doha)', 'Vuelo QR808: llegada a Tokio Narita (T2) a las 11:55 del 31 de octubre'],
     notas: [{ t: 'tip', h: 'Jet lag', x: 'Llegáis a mediodía: aguantad despiertos hasta la noche japonesa y al día siguiente estaréis bien.' }],
     comer: [], lluvia: '', paradas: [] },
 
   { fecha: '2026-10-31', n: 1, ciudad: 'tokio', tiempo: 'tokio', flag: 'Halloween',
     titulo: 'Llegada y noche de Halloween', resumen: 'Shinjuku y Shibuya disfrazados.',
-    plan: ['Aterrizaje 11:55. Inmigración y aduanas con los QR de Visit Japan Web', 'Sacar o recargar la Suica en el aeropuerto', 'Narita Express al centro (~1 h, ~20€; vale Suica + billete de asiento). Si llegáis a Haneda, monorraíl o Keikyu (~30 min, ~4€)', 'Check-in en el hotel y descanso corto, sin dormir', 'Shinjuku por la noche: disfraces, ambiente y tiendas abiertas hasta tarde', 'Shibuya y su cruce lleno de gente disfrazada', 'Don Quijote para las primeras compras (abre 24 h)'],
+    plan: ['Aterrizaje 11:55 en Narita, Terminal 2. Inmigración y aduanas con los QR de Visit Japan Web', 'Sacar o recargar la Suica en el aeropuerto', 'Narita Express al centro (~1 h, ~20€; vale Suica + billete de asiento)', 'Check-in en el hotel y descanso corto, sin dormir', 'Shinjuku por la noche: disfraces, ambiente y tiendas abiertas hasta tarde', 'Shibuya y su cruce lleno de gente disfrazada', 'Don Quijote para las primeras compras (abre 24 h)'],
     notas: [
       { t: 'tip', h: 'Disfrazaos', x: 'Aunque sea algo sencillo. La gente interactúa mucho más con vosotros y en grupo es muy divertido.' },
       { t: 'warn', h: 'Shibuya pide que no se vaya a celebrar Halloween', x: 'Desde 2024 está prohibido beber en la calle alrededor de la estación (cada noche de 18:00 a 5:00) y en Halloween hay mucha seguridad y tiendas que no venden alcohol. Id a ver el ambiente, pero sin botellón.' },
@@ -1298,7 +1312,7 @@ const DIAS = [
 
   { fecha: '2026-11-15', n: 16, ciudad: 'osaka', tiempo: 'osaka',
     titulo: 'Últimas compras y vuelo', resumen: 'Umeda, Namba y al aeropuerto de Kansai.',
-    plan: ['Check-out y consigna de maletas (hotel, taquillas o ecbo cloak)', 'Umeda Sky Building: dos torres unidas por una terraza circular, vistas únicas de Osaka', 'Namba Parks y últimas compras en Shinsaibashi', 'Don Quijote: últimos souvenirs, cosmética y snacks japoneses', 'Tren Nankai desde Namba al aeropuerto de Kansai (KIX), 35–45 min', 'Antes de facturar: quiosco de Tax Free con el pasaporte'],
+    plan: ['Check-out y consigna de maletas (hotel, taquillas o ecbo cloak)', 'Umeda Sky Building: dos torres unidas por una terraza circular, vistas únicas de Osaka', 'Namba Parks y últimas compras en Shinsaibashi', 'Don Quijote: últimos souvenirs, cosmética y snacks japoneses', 'Sobre las 13:30, tren Nankai desde Namba al aeropuerto de Kansai (KIX, Terminal 1), 35–45 min', 'Antes de facturar: quiosco de Tax Free con el pasaporte', 'Vuelo QR803 a las 17:55. Escala en Doha de 1 h 55 min y llegada a Barcelona el lunes 16 a las 7:05'],
     notas: [{ t: 'warn', h: 'Tax Free en el aeropuerto', x: 'Todo lo comprado desde el 1 de noviembre se reclama hoy en KIX, antes de facturar. Llevad las compras a mano y sin abrir y contad 30–45 min más.' }],
     comer: ['Aizuya', 'Takoyaki Wanaka'],
     lluvia: 'Día de compras bajo techo. Sin problema.',
@@ -1456,12 +1470,11 @@ const EXTRAS = [['Express Pass de USJ', '~100–150€'], ['Envío de maletas (t
 // Trayectos grandes del viaje, con sus opciones (rec = la recomendada). Precios por persona salvo "por coche".
 const TRAYECTOS = [
   { d: '31 oct · Día 1', r: 'Aeropuerto → Hotel Edmont (Iidabashi)', de: 'Narita International Airport', a: 'Hotel Metropolitan Edmont Tokyo',
-    nota: 'Falta confirmar si llegáis a Narita o a Haneda: lo concretaremos con los vuelos.',
+    nota: 'Aterrizáis en Narita, Terminal 2, a las 11:55 (vuelo QR808).',
     ops: [
       { rec: true, n: 'Narita: Narita Express + JR', t: '~1 h 15 min', p: '~3.250¥', x: 'N’EX hasta Tokyo (~55 min, asiento reservado; vale Suica + billete de asiento). Allí, JR Chuo rápida (naranja) hasta Ochanomizu y, en el mismo andén, JR Chuo-Sobu (amarilla) 2 paradas hasta Iidabashi. Se compra en la oficina JR de la planta B1 del aeropuerto. Hay oferta de ida y vuelta para turistas con pasaporte (N’EX Round Trip, ~5.200¥): solo compensa si volvéis por Narita, y no es el caso.' },
       { n: 'Narita: bus a Tokyo Station + JR', t: '~1 h 30 min', p: '~1.500–1.700¥', x: 'Airport Bus TYO-NRT desde la parada delante de llegadas (sin reserva, cada 10–20 min). En Tokyo, JR hasta Iidabashi (~15 min). Más barato, pero con atascos tarda más.' },
-      { rec: true, n: 'Haneda: Keikyu o monorraíl + JR', t: '~50 min', p: '~600–700¥', x: 'Keikyu hasta Shinagawa o monorraíl hasta Hamamatsucho, y JR hasta Iidabashi. Keikyu acepta tarjeta contactless; el monorraíl no.' },
-      { n: 'Taxi (2 coches)', t: '1–1 h 30 min', p: 'Narita ~10.000¥ · Haneda ~4.000¥', x: 'Narita → Chiyoda a tarifa fija, ~25.000¥ por coche; Haneda ~9.000–11.000¥ por coche. Siendo 5 con maletas necesitáis 2 coches o un jumbo taxi reservado. Solo compensa desde Haneda si vais muy cansados.' }] },
+      { n: 'Taxi (2 coches)', t: '1–1 h 30 min', p: '~10.000¥', x: 'Narita → Chiyoda a tarifa fija, ~25.000¥ por coche. Siendo 5 con maletas necesitáis 2 coches o un jumbo taxi reservado. No compensa.' }] },
   { d: '1 nov · Día 2', r: 'Hakone y el Fuji', de: 'Hotel Metropolitan Edmont Tokyo', a: 'Shinjuku Station',
     ops: [{ rec: true, n: 'Excursión organizada', t: 'todo el día', p: 'Ya pagado', x: 'El transporte en Hakone (Hakone Freepass) va incluido en la excursión. Solo tenéis que llegar al punto de encuentro: si es en Shinjuku, JR Chuo-Sobu (amarilla) desde Iidabashi, ~15 min, ~180¥.' }] },
   { d: '2 nov · Día 3', r: 'Tokio ↔ Nikko', de: 'Tobu Asakusa Station', a: 'Tobu Nikko Station',
@@ -1663,7 +1676,7 @@ const PREPARAR = {
   '2026-11-12': ['Maletas a Osaka por takuhaibin la noche antes, o en consigna', 'Check-out del hotel de Kioto'],
   '2026-11-13': ['Efectivo para el mercado y el kushikatsu', 'Bolsa plegable para las compras'],
   '2026-11-14': ['Entradas de USJ y app oficial con sesión iniciada', 'Express Pass, si lo comprasteis', 'Batería externa', 'Salir para estar 1 h antes de abrir'],
-  '2026-11-15': ['Pasaporte y todos los recibos de Tax Free', 'Compras con Tax Free a mano y sin abrir, no en la maleta facturada', 'Check-out del Monterey antes de las 11:00 y maletas en su consigna', 'Al aeropuerto: bus desde OCAT, al lado del hotel (~50 min), o tren Nankai desde Namba', 'Estar en el aeropuerto 3 h antes + 30–45 min para el Tax Free'],
+  '2026-11-15': ['Pasaporte y todos los recibos de Tax Free', 'Compras con Tax Free a mano y sin abrir, no en la maleta facturada', 'Check-out del Monterey antes de las 11:00 y maletas en su consigna', 'Al aeropuerto: bus desde OCAT, al lado del hotel (~50 min), o tren Nankai desde Namba', 'Salir hacia Kansai sobre las 13:30: vuelo QR803 a las 17:55 desde la Terminal 1 (3 h antes + 30–45 min para el Tax Free)'],
 };
 
 // Hora a hora de cada día (pestaña Hoy). "clave": datos rápidos. Cada paso: h hora, t qué, x detalle, q búsqueda de Maps,
@@ -1671,23 +1684,24 @@ const PREPARAR = {
 // donde, alt alternativa, taxi comparación siendo 5, de = origen si no es el paso anterior). Horas orientativas.
 const HORARIO = {
   '2026-10-30': {
-    clave: [['🛫', 'En el aeropuerto', '6:00 (hora de España)'], ['🕗', 'Diferencia horaria', 'Japón va 8 h por delante'], ['🎒', 'Cabina', 'Solo la mochila'], ['🧳', 'Facturada', '1 maleta de hasta 25 kg, casi vacía'], ['🔌', 'Antes de salir', 'Móvil y batería al 100%', 'w']],
+    clave: [['🛫', 'En el aeropuerto', '6:00, Barcelona T1 (hora de España)'], ['✈️', 'Vuelos', 'QR138 a las 8:35 · QR808 a Narita'], ['🕗', 'Diferencia horaria', 'Japón va 8 h por delante; Doha, 2 h'], ['🎒', 'Cabina', 'Solo la mochila'], ['🧳', 'Facturada', '1 maleta de hasta 25 kg, casi vacía'], ['🔌', 'Antes de salir', 'Móvil y batería al 100%', 'w']],
     pasos: [
-      { h: '6:00', t: 'En el aeropuerto', x: 'Tres horas antes. Facturad la maleta grande y pasad el control con la mochila: líquidos en frascos de 100 ml en una bolsa transparente, batería externa en la mochila (nunca en la maleta).' },
-      { h: '', t: 'Vuelo a Doha y escala de 4 h 35 min', x: 'En Hamad hay wifi gratis, fuentes de agua y zonas de descanso. No cambiéis dinero aquí: los yenes se sacan mejor en un cajero de Japón.' },
-      { h: '', t: 'Vuelo a Tokio', x: 'Dormid todo lo que podáis en este tramo: llegáis a mediodía y hay que aguantar despiertos hasta la noche. Poned el reloj en hora japonesa al despegar.' },
+      { h: '6:00', t: 'En el aeropuerto, Terminal 1', x: 'Dos horas y media antes del vuelo. Facturad la maleta grande en Qatar Airways y pasad el control con la mochila: líquidos en frascos de 100 ml en una bolsa transparente, batería externa en la mochila (nunca en la maleta). La maleta va facturada hasta Narita (confirmadlo al facturar): no hay que recogerla en Doha.' },
+      { h: '8:35', t: 'Vuelo QR138 a Doha', x: '6 h de vuelo. Llegáis a las 16:35, hora de Doha (2 h más que en España).' },
+      { h: '16:35', t: 'Escala en Doha: 3 h 15 min', x: 'Seguid los carteles de “Transfer” y mirad en las pantallas la puerta del QR808. En Hamad hay wifi gratis, fuentes de agua y zonas de descanso. No cambiéis dinero aquí: los yenes se sacan mejor en un cajero de Japón.' },
+      { h: '19:50', t: 'Vuelo QR808 a Tokio Narita', x: '~10 h de vuelo, hora de Doha. Dormid todo lo que podáis en este tramo: llegáis a mediodía y hay que aguantar despiertos hasta la noche. Poned el reloj en hora japonesa al despegar.' },
     ] },
 
   '2026-10-31': {
-    clave: [['✈️', 'Aterrizaje', '11:55'], ['🏨', 'Check-in', '15:00 en el Edmont'], ['🚆', 'Transporte hoy', '~3.700¥ por persona'], ['💵', 'Efectivo', 'Sacad 20.000–30.000¥ en el aeropuerto'], ['🌙', 'Último tren', 'Sobre las 0:00 (miradlo en Maps)'], ['🛍️', 'Tax Free', 'Último día con descuento en caja']],
+    clave: [['✈️', 'Aterrizaje', '11:55 en Narita T2 (QR808)'], ['🏨', 'Check-in', '15:00 en el Edmont'], ['🚆', 'Transporte hoy', '~3.700¥ por persona'], ['💵', 'Efectivo', 'Sacad 20.000–30.000¥ en el aeropuerto'], ['🌙', 'Último tren', 'Sobre las 0:00 (miradlo en Maps)'], ['🛍️', 'Tax Free', 'Último día con descuento en caja']],
     pasos: [
-      { h: '11:55', t: 'Aterrizaje', x: 'Inmigración y aduanas con los QR de Visit Japan Web. Contad 45–90 min hasta salir.', q: 'Narita International Airport' },
+      { h: '11:55', t: 'Aterrizaje en Narita, Terminal 2', x: 'Inmigración, recoger la maleta y aduanas con los QR de Visit Japan Web. Contad 45–90 min hasta salir.', q: 'Narita International Airport' },
       { h: '13:00', t: 'Dinero, Suica e internet', x: 'Cajero de 7-Eleven (Seven Bank) en llegadas: acepta tarjetas extranjeras. Activad la eSIM. iPhone: Suica en Wallet. Android: <b>Welcome Suica física</b> en las máquinas o la oficina JR del aeropuerto. Billetes del N’EX en la oficina JR (planta B1).' },
-      { h: '13:30', t: 'Tren al hotel', x: 'Si llegáis a Haneda, en vez del N’EX: Keikyu o monorraíl y JR (~50 min, ~600–700¥).', q: 'Hotel Metropolitan Edmont Tokyo',
+      { h: '13:30', t: 'Tren al hotel', x: 'Desde la estación Aeropuerto Terminal 2 (bajo la propia terminal). El N’EX sale cada 30–60 min: mirad en la pantalla el próximo y sacad el billete para ese.', q: 'Hotel Metropolitan Edmont Tokyo',
         ir: { m: 'tren', l: 'Narita Express hasta Tokyo · JR Chuo rápida (naranja) a Ochanomizu · JR Chuo-Sobu (amarilla) 2 paradas a Iidabashi', d: '~1 h 15 min', p: '~3.250¥',
           donde: 'Andenes JR en la planta B1 de la terminal. El N’EX lleva asiento reservado: sacad billete con asiento. En Ochanomizu el cambio es en el mismo andén.',
           alt: 'Bus Airport Bus TYO-NRT hasta Tokyo Station (~1.500¥) y JR hasta Iidabashi.',
-          taxi: 'Desde Narita ~25.000¥ por coche y hacen falta 2: ~10.000¥ por persona. No compensa.', de: 'Narita Airport Terminal 1' } },
+          taxi: 'Desde Narita ~25.000¥ por coche y hacen falta 2: ~10.000¥ por persona. No compensa.', de: 'Narita Airport Terminal 2' } },
       { h: '14:45', t: 'Hotel Metropolitan Edmont', x: 'Check-in a las 15:00: hay cola y dan número. Si llegáis antes, maletas a la consigna (bell desk, planta 1) y a comer algo enfrente (FamilyMart y 7-Eleven). Ducha y descanso corto, <b>sin dormir</b>.', q: 'Hotel Metropolitan Edmont Tokyo' },
       { h: '17:30', t: 'Shinjuku: disfraces y ambiente', x: 'Salida Este hacia Kabukicho. Tiendas abiertas hasta tarde. Si alguien quiere electrónica cara, hoy es el día: Yodobashi y Bic Camera en la salida Oeste (Tax Free en caja).', q: 'Kabukicho, Shinjuku, Tokyo',
         ir: { m: 'tren', l: 'JR Chuo-Sobu (amarilla) dirección Shinjuku/Mitaka', d: '~15 min', p: '~180¥', donde: 'Estación JR Iidabashi, salida Este (5 min del hotel).', taxi: '~5 km: ~2.300¥ por coche, ~950¥ por persona con 2 taxis. El tren es 5 veces más barato.' } },
@@ -1947,16 +1961,18 @@ const HORARIO = {
     ] },
 
   '2026-11-15': {
-    clave: [['🚪', 'Check-out', 'Antes de las 11:00 (maletas a la consigna)'], ['✈️', 'Aeropuerto', '3 h antes del vuelo + 30–45 min de Tax Free', 'w'], ['🚆', 'A Kansai', 'Rapi:t ~1.450¥ · bus ~1.100¥'], ['🧾', 'Tax Free', 'Compras a mano y sin abrir'], ['🎟️', 'Umeda Sky', '2.000¥']],
+    clave: [['✈️', 'Vuelo', 'QR803 a las 17:55 · Kansai T1'], ['🚪', 'Check-out', 'Antes de las 11:00 (maletas a la consigna)'], ['🧳', 'Salir hacia Kansai', 'Sobre las 13:30 desde Namba', 'w'], ['🛬', 'En casa', 'Lunes 16 a las 7:05, Barcelona T1'], ['🚆', 'A Kansai', 'Rapi:t ~1.450¥ · bus ~1.100¥'], ['🧾', 'Tax Free', 'Compras a mano y sin abrir'], ['🎟️', 'Umeda Sky', '2.000¥']],
     pasos: [
       { h: '8:30', t: 'Check-out y maletas a la consigna', x: 'Pesad la maleta (25 kg). Las compras con Tax Free, a mano y sin abrir.', q: 'Hotel Monterey Grasmere Osaka' },
       { h: '9:30', t: 'Umeda Sky Building', x: 'Dos torres unidas por una terraza circular. Abre a las 9:30, 2.000¥.', q: 'Umeda Sky Building',
         ir: { m: 'metro', l: 'Metro Midosuji de Namba a Umeda y 15 min andando (por el pasillo subterráneo junto a Yodobashi)', d: '~25 min', p: '~240¥', taxi: '~6 km: ~2.600¥ por coche, ~1.050¥ por persona.', de: 'Namba Station Osaka' } },
-      { h: '11:30', t: 'Namba Parks, Shinsaibashi y Don Quijote', x: 'Últimos souvenirs, cosmética y snacks japoneses.', q: 'Namba Parks',
+      { h: '11:00', t: 'Namba Parks, Shinsaibashi y Don Quijote', x: 'Últimos souvenirs, cosmética y snacks japoneses. Comed algo por aquí: a las 13:00 hay que volver al hotel.', q: 'Namba Parks',
         ir: { m: 'metro', l: 'Metro Midosuji de Umeda a Namba', d: '~10 min', p: '~240¥', de: 'Umeda Station Osaka' } },
-      { h: '', t: 'Recoger maletas y al aeropuerto', x: '<b>Cuando tengamos el vuelo pondremos la hora.</b> Salid del hotel ~4 h antes del vuelo: 45 min de trayecto + 3 h de antelación + Tax Free.', q: 'Kansai International Airport',
+      { h: '13:00', t: 'Recoger maletas y al aeropuerto', x: 'Coged el tren de <b>~13:30</b> para estar en Kansai sobre las 14:15: 3 h antes del vuelo de las 17:55 más el Tax Free. Qatar sale de la <b>Terminal 1</b>, la que está pegada a la estación.', q: 'Kansai International Airport',
         ir: { m: 'tren', l: 'Nankai Rapi:t desde Nankai Namba (asiento reservado)', d: '~38 min', p: '~1.450–1.500¥', donde: 'Estación Nankai Namba, 5–10 min andando del hotel. Acepta tarjeta contactless.', alt: 'Nankai Airport Express sin reserva (~45 min, ~970¥) o bus desde OCAT, pegado al hotel (~50–70 min, ~1.100–1.400¥; en domingo puede haber atasco).', taxi: '~20.000¥ por coche a tarifa fija: ~8.000¥ por persona. No compensa.', de: 'Hotel Monterey Grasmere Osaka' } },
-      { h: '', t: 'Tax Free antes de facturar', x: 'Quiosco de Tax Free con el pasaporte y los recibos: todo lo comprado desde el 1 de noviembre. Aduanas puede pedir ver los productos. Después, facturar.', q: 'Kansai International Airport' },
+      { h: '14:15', t: 'Tax Free antes de facturar', x: 'Quiosco de Tax Free con el pasaporte y los recibos: todo lo comprado desde el 1 de noviembre. Aduanas puede pedir ver los productos. Después, facturar en Qatar Airways (maleta de 25 kg como máximo).', q: 'Kansai International Airport' },
+      { h: '17:55', t: 'Vuelo QR803 a Doha', x: '11 h 40 min de vuelo; dan de cenar a bordo. Llegáis a Doha a las 23:35 (hora de Doha).' },
+      { h: '', t: 'Vuelo QR137 a Barcelona (1:30 en Doha)', x: 'La escala en Doha es de solo 1 h 55 min: id directos a “Transfer” y a la puerta. La maleta va facturada hasta Barcelona. Llegada el <b>lunes 16 a las 7:05</b> a la Terminal 1.' },
     ] },
 };
 
@@ -2057,7 +2073,7 @@ const PRESU_DIA = {
     ['🚆', 'Transporte', 1450, 'Metro a Umeda i/v 480¥ + Nankai al aeropuerto 970¥ (el Rapi:t, ~1.450¥)'],
     ['🎟️', 'Entradas', 2000, 'Umeda Sky Building'],
     ['🍜', 'Comida', 1200, ''],
-    ['🍱', 'Cena', 1500, 'En el aeropuerto, según la hora del vuelo']],
+    ['🍱', 'Cena', 0, 'La dan en el avión (vuelo de las 17:55)']],
 };
 
 // Botones "Cerca de mí": [icono, nombre, búsqueda en Google Maps]. En japonés porque así Maps da lo correcto en Japón.
@@ -2426,8 +2442,16 @@ function renderHoteles() {
   $('#ruta-hoteles').innerHTML = HOTELES.map(hotelFicha).join('');
 }
 
+function renderVuelos() {
+  $('#ruta-vuelos').innerHTML = VUELOS.map(v => `<div class="card"><b>✈️ ${esc(v.t)}</b><ul class="tipl">${v.tramos.map(x => x.escala
+    ? `<li><span>⏳ ${esc(x.escala)}</span></li>`
+    : `<li><b>${esc(x.n)} · ${esc(x.r)}</b><span>${esc(x.h)} · ${esc(x.d)}</span></li>`).join('')}</ul></div>`).join('')
+    + `<p class="small muted" style="margin-top:8px">Qatar Airways, económica. Cada uno: 1 maleta facturada de 25 kg y la mochila en cabina. Japón va 8 h por delante de España y Doha, 2 h.</p>`;
+}
+
 /* ---------- RUTA ---------- */
 function renderRuta() {
+  renderVuelos();
   renderHoteles();
   const total = Object.values(CIUDADES).reduce((a, c) => a + (c.noches || 0), 0);
   const cities = Object.entries(CIUDADES).filter(([, c]) => c.noches);
